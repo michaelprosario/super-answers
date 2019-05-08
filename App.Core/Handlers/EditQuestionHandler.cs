@@ -9,62 +9,61 @@ using System.Runtime.Serialization;
 
 namespace App.Core.Handlers
 {
-    public class AddQuestionRequest : IRequest<AddQuestionResponse>, IUserRequest
+    public class EditQuestionRequest : IRequest<EditQuestionResponse>, IUserRequest
     {
         public string QuestionTitle { get; set; }
         public string Content { get; set; }
         public string Tags { get; set; }
         public bool NotifyMeOnResponse { get; set; }
         public string UserId { get; set; }
+        public string QuestionId { get; internal set; }
     }
 
-    public class AddQuestionRequestValidator : AbstractValidator<AddQuestionRequest>
+    public class EditQuestionRequestValidator : AbstractValidator<EditQuestionRequest>
     {
-        public AddQuestionRequestValidator()
+        public EditQuestionRequestValidator()
         {
+            RuleFor(x => x.QuestionId).NotEmpty();
             RuleFor(x => x.QuestionTitle).NotEmpty();
             RuleFor(x => x.Content).NotEmpty();
             RuleFor(x => x.UserId).NotEmpty();
         }
     }
 
-    public class AddQuestionResponse : Response
+    public class EditQuestionResponse : Response
     {
         [DataMember]
         public string Id { get; set; }
     }
     
-    public class AddQuestionHandler : BaseHandler<AddQuestionRequest, AddQuestionResponse>
+    public class EditQuestionHandler : BaseHandler<EditQuestionRequest, EditQuestionResponse>
     {
         IRepository<Question> _repository;
-        public AddQuestionHandler(IRepository<Question> repository)
+        public EditQuestionHandler(IRepository<Question> repository)
         {
             _repository = repository;
         }
-        protected override AddQuestionResponse Handle(AddQuestionRequest request)
+        protected override EditQuestionResponse Handle(EditQuestionRequest request)
         {
-            var response = new AddQuestionResponse
+            var response = new EditQuestionResponse
             {
                 Code = ResponseCode.Success
             };
 
             Require.ObjectNotNull(request, "Request is null.");
-            var validationResult = new AddQuestionRequestValidator().Validate(request);
+            var validationResult = new EditQuestionRequestValidator().Validate(request);
             if (!validationResult.IsValid)
             {
                 response.ValidationErrors = validationResult.Errors;
                 return response;
             }
 
-            var record = new Question
-            {
-                Content = request.Content,
-                QuestionTitle = request.QuestionTitle
-            };
-
-            HandlerUtilities.TimeStampRecord(record, request.UserId, true);
-            var returnRecord = _repository.Add(record);
-            response.Id = returnRecord.Id;
+            var record = _repository.GetById(request.QuestionId);
+            record.Content = request.Content;
+            record.QuestionTitle = request.QuestionTitle;
+       
+            HandlerUtilities.TimeStampRecord(record, request.UserId, false);
+            _repository.Update(record);
 
             return response;
         }

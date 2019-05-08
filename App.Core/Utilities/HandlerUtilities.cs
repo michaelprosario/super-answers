@@ -7,15 +7,21 @@ namespace App.Core.Utilities
 {
     public class HandlerUtilities
     {
-        public static void TimeStampRecord(object record, string userId)
+        public static void TimeStampRecord(object record, string userId, bool newRecordOperation)
         {
             if (record is ITimeStampedEntity)
             {
                 ITimeStampedEntity timeStampedEntity = (ITimeStampedEntity)record;
-                timeStampedEntity.CreatedAt = DateTime.Now;
-                timeStampedEntity.UpdatedAt = DateTime.Now;
-                timeStampedEntity.CreatedBy = userId;
-                timeStampedEntity.UpdatedBy = userId;
+                if (newRecordOperation)
+                {
+                    timeStampedEntity.CreatedAt = DateTime.Now;
+                    timeStampedEntity.CreatedBy = userId;
+                }
+                else
+                {
+                    timeStampedEntity.UpdatedAt = DateTime.Now;
+                    timeStampedEntity.UpdatedBy = userId;
+                }
             }
         }
     }
