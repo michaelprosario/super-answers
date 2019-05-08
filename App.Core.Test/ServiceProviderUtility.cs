@@ -24,7 +24,7 @@ namespace App.Core.Test {
             
             // if you have handlers/events in other assemblies
             services.AddMediatR(typeof(AddQuestionHandler).Assembly);
-            services.AddDbContextPool<App.Infrastructure.GZContext>(
+            services.AddDbContextPool<App.Infrastructure.EfContext>(
                 options =>
                      options.UseSqlite("Data Source=groceryzen.db", b => b.MigrationsAssembly("App"))
             );

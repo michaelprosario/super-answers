@@ -46,6 +46,10 @@ namespace App.Core.Handlers
             }
 
             var record = _repository.GetById(request.Id);
+            if (record == null) {
+                response.Code = ResponseCode.NotFound;
+                return response;
+            }
             _repository.Delete(record);
 
             return response;

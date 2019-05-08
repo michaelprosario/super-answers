@@ -8,9 +8,9 @@ namespace App.Infrastructure.Services
 {
     public class UserDataServices : IUserDataServices
     {
-        public GZContext _dbContext { get; }
+        public EfContext _dbContext { get; }
 
-        public UserDataServices(GZContext dbContext)
+        public UserDataServices(EfContext dbContext)
         {
             _dbContext = dbContext;
         }

@@ -5,6 +5,7 @@ using App.Core.Requests;
 using App.Core.Utilities;
 using MediatR;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace App.Core.Handlers
 {
@@ -13,8 +14,10 @@ namespace App.Core.Handlers
         public string UserId { get; set; }
     }
 
+    [DataContract]
     public class ListQuestionsResponse : Response
     {
+        [DataMember]
         public IList<Question> Records;
     }
 

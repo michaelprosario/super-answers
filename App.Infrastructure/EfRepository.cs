@@ -7,8 +7,8 @@ using Microsoft.EntityFrameworkCore;
 {
     public class EfRepository<T> : IRepository<T> where T : BaseEntity
     {
-        private readonly GZContext _dbContext;
-         public EfRepository(GZContext dbContext)
+        private readonly EfContext _dbContext;
+         public EfRepository(EfContext dbContext)
         {
             _dbContext = dbContext;
         }

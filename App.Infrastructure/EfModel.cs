@@ -3,14 +3,15 @@ using App.Core.Entities;
 
 namespace App.Infrastructure
 {
-    public class GZContext : DbContext
+    public class EfContext : DbContext
     {
-        public GZContext(DbContextOptions<GZContext> options)
+        public EfContext(DbContextOptions<EfContext> options)
             : base(options)
         {
             
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Question> Questions { get; set; }
     }
 }

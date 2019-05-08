@@ -4,7 +4,7 @@ using System.Text;
 
 namespace App.Core.Interfaces
 {
-    interface ITimeStampedEntity
+    public interface ITimeStampedEntity
     {
         string CreatedBy { get; set; }
         string UpdatedBy { get; set; }

@@ -16,7 +16,7 @@ namespace App.Core.Handlers
         public string Tags { get; set; }
         public bool NotifyMeOnResponse { get; set; }
         public string UserId { get; set; }
-        public string QuestionId { get; internal set; }
+        public string QuestionId { get; set; }
     }
 
     public class EditQuestionRequestValidator : AbstractValidator<EditQuestionRequest>
@@ -30,6 +30,7 @@ namespace App.Core.Handlers
         }
     }
 
+    [DataContract]
     public class EditQuestionResponse : Response
     {
         [DataMember]

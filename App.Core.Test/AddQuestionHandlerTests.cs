@@ -12,7 +12,7 @@ namespace App.Core.Test
     [TestClass]
     public class AddQuestionHandlerTests
     {
-        private readonly IRepository<Question> _repository;
+        private IRepository<Question> _repository;
         AddQuestionHandler _handler;
 
         [TestInitialize]

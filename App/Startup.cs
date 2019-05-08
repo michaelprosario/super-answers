@@ -1,5 +1,4 @@
 ﻿using App.Core;
-using App.Core.Handlers;
 using App.Core.Interfaces;
 using App.Core.SharedKernel;
 using App.Infrastructure;
@@ -71,9 +70,9 @@ namespace App
 
             // if you have handlers/events in other assemblies
 
-            services.AddDbContextPool<App.Infrastructure.GZContext>(
+            services.AddDbContextPool<App.Infrastructure.EfContext>(
                 options =>
-                     options.UseSqlite("Data Source=groceryzen.db", b => b.MigrationsAssembly("App"))
+                     options.UseSqlite("Data Source=app.db", b => b.MigrationsAssembly("App"))
             
             );
             services.AddScoped<ServiceFactory>(p => p.GetService);
