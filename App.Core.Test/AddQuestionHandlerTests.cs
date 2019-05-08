@@ -1,44 +1,35 @@
 ﻿using App.Core.Entities;
+using App.Core.Handlers;
 using App.Core.Interfaces;
 using App.Core.Requests;
-using MediatR;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System;
+using System.Threading.Tasks;
 
 namespace App.Core.Test
 {
     [TestClass]
     public class AddQuestionHandlerTests
     {
-        ServiceProvider _serviceProvider;
-        IMediator _mediator;
+        private readonly IRepository<Question> _repository;
+        AddQuestionHandler _handler;
 
         [TestInitialize]
         public void Intialize()
         {
-            _serviceProvider = ServiceProviderUtility.GetServiceProvider();
-            _mediator = _serviceProvider.GetRequiredService<IMediator>();
+            _handler = new AddQuestionHandler(_repository);
         }
 
-        [TestInitialize]
-        public void AddQuestionHandler__Handle__HappyCase() {
-            // arrange
-            var questionRepository = Substitute.For<IRepository<Question>>();
-            questionRepository.Add(SetupQuestion());
-            var request = SetupRequest();
-
-            // act
-            var reseponse = _mediator.Send(request);
-
-            // assert
-            Assert.IsTrue(reseponse != null);
-        }
-
-        private AddQuestionRequest SetupRequest()
+        [TestMethod]
+        public void AddQuestionHandler__Execute__HappyCaseAsync()
         {
-            return new AddQuestionRequest()
+            // arrange
+            var _repository = Substitute.For<IRepository<Question>>();
+            _repository.Add(Arg.Any<Question>()).Returns(SetupQuestion());
+            _handler = new AddQuestionHandler(_repository);
+
+            var request = new AddQuestionRequest()
             {
                 Content = "What is 2 + 2",
                 QuestionTitle = "What is 2 +2",
@@ -46,6 +37,35 @@ namespace App.Core.Test
                 UserId = "mrosario",
                 NotifyMeOnResponse = true
             };
+
+            // act
+            var response =  _handler.Execute(request);
+
+            // assert
+            Assert.IsTrue(response != null);
+        }
+
+        [TestMethod]
+        public void AddQuestionHandler__Execute__FailWhenContentEmptyAsync()
+        {
+            // arrange
+            var questionRepository = Substitute.For<IRepository<Question>>();
+            questionRepository.Add(Arg.Any<Question>()).Returns(SetupQuestion());
+            var request = new AddQuestionRequest()
+            {
+                Content = "",
+                QuestionTitle = "What is 2 +2",
+                Tags = "TAG1,TAG2",
+                UserId = "mrosario",
+                NotifyMeOnResponse = true
+            };
+
+            // act
+            var response = _handler.Execute(request);
+
+            // assert
+            Assert.IsTrue(response != null);
+            Assert.IsTrue(response.ValidationErrors.Count > 0);
         }
 
         private Question SetupQuestion()

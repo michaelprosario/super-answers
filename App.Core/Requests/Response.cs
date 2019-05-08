@@ -1,7 +1,7 @@
 using System.Runtime.Serialization;
 using App.Core.Enums;
 using System.Collections.Generic;
-using App.Core.Handlers;
+using FluentValidation.Results;
 
 namespace App.Core.Requests
 {
@@ -15,6 +15,6 @@ namespace App.Core.Requests
         public string Message { get; set; }
 
         [DataMember]
-        public List<RequestValidationError> ValidationErrors { get; set; }
+        public IList<ValidationFailure> ValidationErrors { get; set; }
     }   
 }
