@@ -11,7 +11,6 @@ namespace App.Core.Entities
     {
         [DataMember]
         public string Id { get; set; }
-
         [DataMember]
         public string QuestionTitle { get; set; }
         [DataMember]

@@ -4,7 +4,6 @@ using App.Core.Interfaces;
 using App.Core.Requests;
 using App.Core.Utilities;
 using MediatR;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace App.Core.Handlers
