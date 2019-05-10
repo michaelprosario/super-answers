@@ -30,17 +30,18 @@ namespace App.Core.Handlers
 
     public class AddQuestionResponse : Response
     {
-        [DataMember]
-        public string Id { get; set; }
+        [DataMember] public string Id { get; set; }
     }
-    
+
     public class AddQuestionHandler : BaseHandler<AddQuestionRequest, AddQuestionResponse>
     {
-        IRepository<Question> _repository;
-        public AddQuestionHandler(IRepository<Question> repository)
+        readonly IRepository<DbEntities.Question> _repository;
+
+        public AddQuestionHandler(IRepository<DbEntities.Question> repository)
         {
             _repository = repository;
         }
+
         protected override AddQuestionResponse Handle(AddQuestionRequest request)
         {
             var response = new AddQuestionResponse
@@ -56,7 +57,7 @@ namespace App.Core.Handlers
                 return response;
             }
 
-            var record = new Question
+            var record = new DbEntities.Question
             {
                 Content = request.Content,
                 QuestionTitle = request.QuestionTitle

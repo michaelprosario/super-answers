@@ -14,9 +14,9 @@ namespace App.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.8-servicing-32085");
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024");
 
-            modelBuilder.Entity("App.Core.Entities.Question", b =>
+            modelBuilder.Entity("App.Core.DbEntities.Question", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();

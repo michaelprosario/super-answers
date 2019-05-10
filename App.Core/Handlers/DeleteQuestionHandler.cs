@@ -25,8 +25,8 @@ namespace App.Core.Handlers
 
     public class DeleteQuestionHandler : BaseHandler<DeleteQuestionRequest, VoidResponse>
     {
-        IRepository<Question> _repository;
-        public DeleteQuestionHandler(IRepository<Question> repository)
+        IRepository<DbEntities.Question> _repository;
+        public DeleteQuestionHandler(IRepository<DbEntities.Question> repository)
         {
             _repository = repository;
         }

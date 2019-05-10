@@ -17,17 +17,18 @@ namespace App.Core.Handlers
     [DataContract]
     public class GetQuestionResponse : Response
     {
-        [DataMember]
-        public Question Question;
+        [DataMember] public Question Question;
     }
 
     public class GetQuestionHandler : BaseHandler<GetQuestionRequest, GetQuestionResponse>
     {
-        IRepository<Question> _repository;
-        public GetQuestionHandler(IRepository<Question> repository)
+        readonly IRepository<DbEntities.Question> _repository;
+
+        public GetQuestionHandler(IRepository<DbEntities.Question> repository)
         {
             _repository = repository;
         }
+
         protected override GetQuestionResponse Handle(GetQuestionRequest request)
         {
             var response = new GetQuestionResponse
@@ -36,15 +37,19 @@ namespace App.Core.Handlers
             };
 
             Require.ObjectNotNull(request, "Request is null.");
-            var record = _repository.GetById(request.Id);
-            if (record == null)
+            var dbRecord = _repository.GetById(request.Id);
+            var question = EntityMapper.GetEntity(dbRecord);
+
+            if (dbRecord == null)
             {
                 response.Code = ResponseCode.NotFound;
                 return response;
             }
 
-            response.Question = record;
+            response.Question = question;
             return response;
         }
+
+
     }
 }

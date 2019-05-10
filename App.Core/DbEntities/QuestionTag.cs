@@ -1,6 +1,6 @@
 ﻿using App.Core.SharedKernel;
 
-namespace App.Core.Entities
+namespace App.Core.DbEntities
 {
     public class QuestionTag : BaseEntity
     {

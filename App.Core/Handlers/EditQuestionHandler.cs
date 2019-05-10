@@ -1,4 +1,3 @@
-using App.Core.Entities;
 using App.Core.Enums;
 using App.Core.Interfaces;
 using App.Core.Requests;
@@ -39,8 +38,8 @@ namespace App.Core.Handlers
     
     public class EditQuestionHandler : BaseHandler<EditQuestionRequest, EditQuestionResponse>
     {
-        IRepository<Question> _repository;
-        public EditQuestionHandler(IRepository<Question> repository)
+        IRepository<DbEntities.Question> _repository;
+        public EditQuestionHandler(IRepository<DbEntities.Question> repository)
         {
             _repository = repository;
         }

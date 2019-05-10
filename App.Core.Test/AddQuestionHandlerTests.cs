@@ -1,18 +1,15 @@
-﻿using App.Core.Entities;
-using App.Core.Handlers;
+﻿using App.Core.Handlers;
 using App.Core.Interfaces;
-using App.Core.Requests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System;
-using System.Threading.Tasks;
 
 namespace App.Core.Test
 {
     [TestClass]
     public class AddQuestionHandlerTests
     {
-        private IRepository<Question> _repository;
+        private IRepository<DbEntities.Question> _repository;
         AddQuestionHandler _handler;
 
         [TestInitialize]
@@ -25,8 +22,8 @@ namespace App.Core.Test
         public void AddQuestionHandler__Execute__HappyCaseAsync()
         {
             // arrange
-            var _repository = Substitute.For<IRepository<Question>>();
-            _repository.Add(Arg.Any<Question>()).Returns(SetupQuestion());
+            var _repository = Substitute.For<IRepository<DbEntities.Question>>();
+            _repository.Add(Arg.Any<DbEntities.Question>()).Returns(SetupQuestion());
             _handler = new AddQuestionHandler(_repository);
 
             var request = new AddQuestionRequest()
@@ -49,8 +46,8 @@ namespace App.Core.Test
         public void AddQuestionHandler__Execute__FailWhenContentEmptyAsync()
         {
             // arrange
-            var questionRepository = Substitute.For<IRepository<Question>>();
-            questionRepository.Add(Arg.Any<Question>()).Returns(SetupQuestion());
+            var questionRepository = Substitute.For<IRepository<DbEntities.Question>>();
+            questionRepository.Add(Arg.Any<DbEntities.Question>()).Returns(SetupQuestion());
             var request = new AddQuestionRequest()
             {
                 Content = "",
@@ -68,9 +65,9 @@ namespace App.Core.Test
             Assert.IsTrue(response.ValidationErrors.Count > 0);
         }
 
-        private Question SetupQuestion()
+        private DbEntities.Question SetupQuestion()
         {
-            return new Question()
+            return new DbEntities.Question()
             {
                 Content = "What is 2+2?",
                 QuestionTitle = "What is 2+2",

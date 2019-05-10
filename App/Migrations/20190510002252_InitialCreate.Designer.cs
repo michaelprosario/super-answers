@@ -9,16 +9,16 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Migrations
 {
     [DbContext(typeof(EfContext))]
-    [Migration("20190508033012_InitialCreate")]
+    [Migration("20190510002252_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.8-servicing-32085");
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024");
 
-            modelBuilder.Entity("App.Core.Entities.Question", b =>
+            modelBuilder.Entity("App.Core.DbEntities.Question", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();

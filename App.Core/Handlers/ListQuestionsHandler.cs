@@ -6,6 +6,7 @@ using App.Core.Utilities;
 using MediatR;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Linq;
 
 namespace App.Core.Handlers
 {
@@ -23,8 +24,8 @@ namespace App.Core.Handlers
 
     public class ListQuestionsHandler : BaseHandler<ListQuestionsRequest, ListQuestionsResponse>
     {
-        IRepository<Question> _repository;
-        public ListQuestionsHandler(IRepository<Question> repository)
+        IRepository<DbEntities.Question> _repository;
+        public ListQuestionsHandler(IRepository<DbEntities.Question> repository)
         {
             _repository = repository;
         }
@@ -36,7 +37,12 @@ namespace App.Core.Handlers
             };
 
             Require.ObjectNotNull(request, "Request is null.");
-            response.Records = _repository.List(); 
+            response.Records = new List<Question>();
+            foreach (var dbRecord in _repository.List())
+            {
+                response.Records.Add(EntityMapper.GetEntity(dbRecord));
+            }
+
             return response;
         }
     }
