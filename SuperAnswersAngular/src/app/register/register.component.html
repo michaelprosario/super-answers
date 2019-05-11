@@ -1,0 +1,36 @@
+<h1>Register User</h1>
+<div id="divMessage"></div>
+<div>
+  First name:
+</div>
+<div>
+  <input type="text" id="txtFirstName" id="txtFirstName" [(ngModel)]="firstName" >
+</div>
+<div>
+  Last name:
+</div>
+<div>
+  <input type="text" id="txtLastName" id="txtLastName" [(ngModel)]="lastName" >
+</div>
+<div>
+  User name:
+</div>
+<div>
+  <input type="text" id="txtUserName" id="txtUserName" [(ngModel)]="userName" >
+</div>
+<div>
+  Password:
+</div>
+<div>
+  <input type="password" id="txtPassword" id="txtPassword" [(ngModel)]="password" >
+</div>
+<div>
+  Confirm Password:
+</div>
+<div>
+  <input type="password" id="txtConfirmPassword" id="txtConfirmPassword" [(ngModel)]="confirmPassword" >
+</div>
+<div>
+  <input type="button" value="Register" (click)="handleSubmit()" >
+</div>
+

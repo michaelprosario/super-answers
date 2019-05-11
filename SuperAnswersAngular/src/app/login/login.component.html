@@ -1,0 +1,17 @@
+<h1>
+  Welcome To Super Answers
+</h1>
+
+<div>
+  <input matInput placeholder="Enter user name" type="text" name="txtUserName" id="txtUserName"
+    [(ngModel)]="userName" />
+</div>
+<div>
+  <input matInput placeholder="Enter Password" type="password" name="txtPassword" id="txtPassword"
+    [(ngModel)]="password" />
+</div>
+<div>
+  <button mat-raised-button color="primary" (click)="handleLogin()">Login</button>
+</div>
+
+<div id="divMessage" class="divErrorMessage">{{message}}</div>
