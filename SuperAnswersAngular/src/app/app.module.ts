@@ -11,13 +11,15 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { RegisterComponent } from './register/register.component';
+import { ViewQuestionComponent } from './view-question/view-question.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ViewQuestionComponent
   ],
   imports: [
     BrowserModule,

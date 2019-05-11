@@ -1,0 +1,26 @@
+.divTitleRow {
+    border-bottom: 1px solid black;
+  }
+  
+  .divLeftMenu{
+    border-right: 1px solid black;
+  }
+  
+  .divQuestion{
+    padding:20px;
+  }
+  
+  .divQuestionTitle{
+    border-bottom: 1px solid black;
+  }
+
+  .divQuestionOwner{
+      background-color: gold;
+      padding:20px;
+  }
+
+  .spanTag{
+      background-color: lightskyblue;
+      padding:5px; 
+      margin:5px;
+  }
