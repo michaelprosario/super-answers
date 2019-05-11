@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { RegisterComponent } from './register/register.component';
 import { ViewQuestionComponent } from './view-question/view-question.component';
+import { AskQuestionComponent } from './ask-question/ask-question.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ViewQuestionComponent } from './view-question/view-question.component';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    ViewQuestionComponent
+    ViewQuestionComponent,
+    AskQuestionComponent
   ],
   imports: [
     BrowserModule,

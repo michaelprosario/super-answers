@@ -3,12 +3,14 @@ import { NgModule } from '@angular/core';
 import { RegisterComponent } from './register/register.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ViewQuestionComponent } from './view-question/view-question.component';
+import { AskQuestionComponent } from './ask-question/ask-question.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'question', component: ViewQuestionComponent },  
+  { path: 'askQuestion', component: AskQuestionComponent },  
 ];
 
 @NgModule({
