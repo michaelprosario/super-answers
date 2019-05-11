@@ -15,6 +15,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NJsonSchema;
+using NSwag.AspNetCore;
 
 namespace App
 {
@@ -92,6 +94,8 @@ namespace App
 
             services.AddMvc ();
             services.AddCors();
+
+            services.AddSwaggerDocument();
         }
 
         public void Configure (IApplicationBuilder app, IHostingEnvironment env) {
@@ -111,6 +115,9 @@ namespace App
             );
 
             app.UseAuthentication();
+
+            app.UseSwagger();
+            app.UseSwaggerUi3();
 
             app.UseMvc (routes => {
                 routes.MapRoute (
