@@ -5,13 +5,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { ViewQuestionComponent } from './view-question/view-question.component';
 import { AskQuestionComponent } from './ask-question/ask-question.component';
 import { TestComponent } from './test/test.component';
+import { AnswerQuestionComponent } from './answer-question/answer-question.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'askQuestion', component: AskQuestionComponent },  
+  { path: 'answerQuestion', component: AnswerQuestionComponent },  
   { path: 'login', component: LoginComponent },
   { path: 'question', component: ViewQuestionComponent },  
-  { path: 'askQuestion', component: AskQuestionComponent },  
+  { path: 'register', component: RegisterComponent },
   { path: 'test', component: TestComponent },
 ];
 

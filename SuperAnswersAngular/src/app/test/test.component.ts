@@ -28,5 +28,4 @@ export class TestComponent implements OnInit {
     });
 
   }
-
 }
