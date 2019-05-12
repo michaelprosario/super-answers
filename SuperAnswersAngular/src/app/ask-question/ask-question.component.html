@@ -31,8 +31,16 @@
 
       <div class="form-group">
           <label for="txtQuestionTags">Tags</label>
-          <input type="text" id="txtQuestionTags" class="form-control" placeholder="Tags" [(ngModel)]="questionTags" >
-        </div>
+          <input type="text"  class="form-control" placeholder="Tags" [(ngModel)]="questionTags" >
+
+          <tag-input [(ngModel)]='selectedTags' [onlyFromAutocomplete]="true" id="txtQuestionTags">
+            <tag-input-dropdown 
+              [showDropdownIfEmpty]="true"
+              [autocompleteItems]="validTags">
+            </tag-input-dropdown>
+
+          </tag-input>
+      </div>
   
 
       <br><br>

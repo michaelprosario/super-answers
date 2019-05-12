@@ -13,6 +13,8 @@ export class AskQuestionComponent implements OnInit {
   private questionTitle: string;
   private questionContent: string;
   private questionTags: string;
+  private selectedTags = ['Pizza', 'Pasta', 'Parmesan'];
+  private validTags = ['Pizza', 'Pasta', 'Parmesan'];
 
   constructor(
     private questionsService: QuestionsService
@@ -22,7 +24,8 @@ export class AskQuestionComponent implements OnInit {
   }
 
   handleAskQuestion(){
-    let addQuestionRequest = {
+
+    let addQuestionRequest : AddQuestionRequest = {
       questionTitle: this.questionTitle,
       content: this.questionContent,
       tags: this.questionTags,
@@ -36,7 +39,6 @@ export class AskQuestionComponent implements OnInit {
         console.log(response);
     });
 
-    
     console.log("saved.")
   }
 
