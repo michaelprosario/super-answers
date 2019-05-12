@@ -13,6 +13,7 @@ import { NgModule } from '@angular/core';
 import { RegisterComponent } from './register/register.component';
 import { ViewQuestionComponent } from './view-question/view-question.component';
 import { AskQuestionComponent } from './ask-question/ask-question.component';
+import { TestComponent } from './test/test.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { AskQuestionComponent } from './ask-question/ask-question.component';
     LoginComponent,
     RegisterComponent,
     ViewQuestionComponent,
-    AskQuestionComponent
+    AskQuestionComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
