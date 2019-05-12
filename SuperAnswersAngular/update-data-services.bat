@@ -1,0 +1,1 @@
+node_modules\.bin\ng-swagger-gen -i swagger-api.json -o src\data-services
