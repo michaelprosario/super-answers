@@ -1,428 +1,665 @@
 {
-    "x-generator": "NSwag v12.2.5.0 (NJsonSchema v9.13.37.0 (Newtonsoft.Json v11.0.0.0))",
-    "swagger": "2.0",
-    "info": {
-      "title": "My Title",
-      "version": "1.0.0"
-    },
-    "host": "localhost:8080",
-    "schemes": [
-      "http"
-    ],
-    "paths": {
-      "/Questions/AddQuestion": {
-        "post": {
-          "tags": [
-            "Questions"
-          ],
-          "operationId": "Questions_AddQuestion",
-          "consumes": [
-            "application/json-patch+json",
-            "application/json",
-            "text/json",
-            "application/*+json"
-          ],
-          "parameters": [
-            {
-              "name": "request",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/AddQuestionRequest"
-              },
-              "x-nullable": false
-            }
-          ],
-          "responses": {
-            "200": {
-              "x-nullable": true,
-              "description": "",
-              "schema": {
-                "type": "file"
-              }
-            }
+  "x-generator": "NSwag v12.2.5.0 (NJsonSchema v9.13.37.0 (Newtonsoft.Json v11.0.0.0))",
+  "swagger": "2.0",
+  "info": {
+    "title": "My Title",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8080",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/Questions/AddQuestion": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "Questions_AddQuestion",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddQuestionRequest"
+            },
+            "x-nullable": false
           }
-        }
-      },
-      "/Questions/EditQuestion": {
-        "post": {
-          "tags": [
-            "Questions"
-          ],
-          "operationId": "Questions_EditQuestion",
-          "consumes": [
-            "application/json-patch+json",
-            "application/json",
-            "text/json",
-            "application/*+json"
-          ],
-          "parameters": [
-            {
-              "name": "request",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/EditQuestionRequest"
-              },
-              "x-nullable": false
-            }
-          ],
-          "responses": {
-            "200": {
-              "x-nullable": true,
-              "description": "",
-              "schema": {
-                "type": "file"
-              }
-            }
-          }
-        }
-      },
-      "/Questions/DeleteQuestion": {
-        "post": {
-          "tags": [
-            "Questions"
-          ],
-          "operationId": "Questions_DeleteQuestion",
-          "consumes": [
-            "application/json-patch+json",
-            "application/json",
-            "text/json",
-            "application/*+json"
-          ],
-          "parameters": [
-            {
-              "name": "request",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/DeleteQuestionRequest"
-              },
-              "x-nullable": false
-            }
-          ],
-          "responses": {
-            "200": {
-              "x-nullable": true,
-              "description": "",
-              "schema": {
-                "type": "file"
-              }
-            }
-          }
-        }
-      },
-      "/Questions/ListQuestions": {
-        "post": {
-          "tags": [
-            "Questions"
-          ],
-          "operationId": "Questions_ListQuestions",
-          "consumes": [
-            "application/json-patch+json",
-            "application/json",
-            "text/json",
-            "application/*+json"
-          ],
-          "parameters": [
-            {
-              "name": "request",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/ListQuestionsRequest"
-              },
-              "x-nullable": false
-            }
-          ],
-          "responses": {
-            "200": {
-              "x-nullable": true,
-              "description": "",
-              "schema": {
-                "type": "file"
-              }
-            }
-          }
-        }
-      },
-      "/Questions/GetQuestion": {
-        "post": {
-          "tags": [
-            "Questions"
-          ],
-          "operationId": "Questions_GetQuestion",
-          "consumes": [
-            "application/json-patch+json",
-            "application/json",
-            "text/json",
-            "application/*+json"
-          ],
-          "parameters": [
-            {
-              "name": "request",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/GetQuestionRequest"
-              },
-              "x-nullable": false
-            }
-          ],
-          "responses": {
-            "200": {
-              "x-nullable": true,
-              "description": "",
-              "schema": {
-                "type": "file"
-              }
-            }
-          }
-        }
-      },
-      "/Users/Authenticate": {
-        "post": {
-          "tags": [
-            "Users"
-          ],
-          "operationId": "Users_Authenticate",
-          "consumes": [
-            "application/json-patch+json",
-            "application/json",
-            "text/json",
-            "application/*+json"
-          ],
-          "parameters": [
-            {
-              "name": "userDto",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/UserDto"
-              },
-              "x-nullable": false
-            }
-          ],
-          "responses": {
-            "200": {
-              "x-nullable": true,
-              "description": "",
-              "schema": {
-                "type": "file"
-              }
-            }
-          }
-        }
-      },
-      "/Users/Register": {
-        "post": {
-          "tags": [
-            "Users"
-          ],
-          "operationId": "Users_Register",
-          "consumes": [
-            "application/json-patch+json",
-            "application/json",
-            "text/json",
-            "application/*+json"
-          ],
-          "parameters": [
-            {
-              "name": "userDto",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/UserDto"
-              },
-              "x-nullable": false
-            }
-          ],
-          "responses": {
-            "200": {
-              "x-nullable": true,
-              "description": "",
-              "schema": {
-                "type": "file"
-              }
-            }
-          }
-        }
-      },
-      "/Users/GetAll": {
-        "post": {
-          "tags": [
-            "Users"
-          ],
-          "operationId": "Users_GetAll",
-          "responses": {
-            "200": {
-              "x-nullable": true,
-              "description": "",
-              "schema": {
-                "type": "file"
-              }
-            }
-          }
-        }
-      },
-      "/Users/GetById/{id}": {
-        "post": {
-          "tags": [
-            "Users"
-          ],
-          "operationId": "Users_GetById",
-          "parameters": [
-            {
-              "type": "string",
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "x-nullable": true
-            }
-          ],
-          "responses": {
-            "200": {
-              "x-nullable": true,
-              "description": "",
-              "schema": {
-                "type": "file"
-              }
-            }
-          }
-        }
-      },
-      "/Users/Delete/{id}": {
-        "post": {
-          "tags": [
-            "Users"
-          ],
-          "operationId": "Users_Delete",
-          "parameters": [
-            {
-              "type": "string",
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "x-nullable": true
-            }
-          ],
-          "responses": {
-            "200": {
-              "x-nullable": true,
-              "description": "",
-              "schema": {
-                "type": "file"
-              }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AddQuestionResponse"
             }
           }
         }
       }
     },
-    "definitions": {
-      "AddQuestionRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "notifyMeOnResponse"
+    "/Questions/EditQuestion": {
+      "post": {
+        "tags": [
+          "Questions"
         ],
-        "properties": {
-          "questionTitle": {
-            "type": "string"
-          },
-          "content": {
-            "type": "string"
-          },
-          "tags": {
-            "type": "string"
-          },
-          "notifyMeOnResponse": {
-            "type": "boolean"
-          },
-          "userId": {
-            "type": "string"
-          }
-        }
-      },
-      "EditQuestionRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "notifyMeOnResponse"
+        "operationId": "Questions_EditQuestion",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
         ],
-        "properties": {
-          "questionTitle": {
-            "type": "string"
-          },
-          "content": {
-            "type": "string"
-          },
-          "tags": {
-            "type": "string"
-          },
-          "notifyMeOnResponse": {
-            "type": "boolean"
-          },
-          "userId": {
-            "type": "string"
-          },
-          "questionId": {
-            "type": "string"
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EditQuestionRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/EditQuestionResponse"
+            }
           }
         }
-      },
-      "DeleteQuestionRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "userId": {
-            "type": "string"
+      }
+    },
+    "/Questions/DeleteQuestion": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "Questions_DeleteQuestion",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteQuestionRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/VoidResponse"
+            }
           }
         }
-      },
-      "ListQuestionsRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "userId": {
-            "type": "string"
+      }
+    },
+    "/Questions/ListQuestions": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "Questions_ListQuestions",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ListQuestionsRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ListQuestionsResponse"
+            }
           }
         }
-      },
-      "GetQuestionRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "userId": {
-            "type": "string"
+      }
+    },
+    "/Questions/GetQuestion": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "Questions_GetQuestion",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetQuestionRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GetQuestionResponse"
+            }
           }
         }
-      },
-      "UserDto": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "username": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
+      }
+    },
+    "/Users/Authenticate": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "Users_Authenticate",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "name": "userDto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserDto"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          }
+        }
+      }
+    },
+    "/Users/Register": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "Users_Register",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "name": "userDto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserDto"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          }
+        }
+      }
+    },
+    "/Users/GetAll": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "Users_GetAll",
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          }
+        }
+      }
+    },
+    "/Users/GetById/{id}": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "Users_GetById",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          }
+        }
+      }
+    },
+    "/Users/Delete/{id}": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "Users_Delete",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
           }
         }
       }
     }
+  },
+  "definitions": {
+    "AddQuestionResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Response"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "code"
+      ],
+      "properties": {
+        "code": {
+          "$ref": "#/definitions/ResponseCode"
+        },
+        "message": {
+          "type": "string"
+        },
+        "validationErrors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ValidationFailure"
+          }
+        }
+      }
+    },
+    "ResponseCode": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Success",
+        "BadRequest",
+        "NotFound",
+        "Error"
+      ],
+      "enum": [
+        200,
+        400,
+        404,
+        405
+      ]
+    },
+    "ValidationFailure": {
+      "type": "object",
+      "description": "Defines a validation failure",
+      "additionalProperties": false,
+      "required": [
+        "severity"
+      ],
+      "properties": {
+        "propertyName": {
+          "type": "string",
+          "description": "The name of the property."
+        },
+        "errorMessage": {
+          "type": "string",
+          "description": "The error message"
+        },
+        "attemptedValue": {
+          "description": "The property value that caused the failure."
+        },
+        "customState": {
+          "description": "Custom state associated with the failure."
+        },
+        "severity": {
+          "description": "Custom severity level associated with the failure.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Severity"
+            }
+          ]
+        },
+        "errorCode": {
+          "type": "string",
+          "description": "Gets or sets the error code."
+        },
+        "formattedMessageArguments": {
+          "type": "array",
+          "description": "Gets or sets the formatted message arguments.\nThese are values for custom formatted message in validator resource files\nSame formatted message can be reused in UI and with same number of format placeholders\nLike \"Value {0} that you entered should be {1}\"",
+          "items": {}
+        },
+        "formattedMessagePlaceholderValues": {
+          "type": "object",
+          "description": "Gets or sets the formatted message placeholder values.",
+          "additionalProperties": {}
+        },
+        "resourceName": {
+          "type": "string",
+          "description": "The resource name used for building the message"
+        }
+      }
+    },
+    "Severity": {
+      "type": "integer",
+      "description": "Specifies the severity of a rule. ",
+      "x-enumNames": [
+        "Error",
+        "Warning",
+        "Info"
+      ],
+      "enum": [
+        0,
+        1,
+        2
+      ]
+    },
+    "AddQuestionRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "notifyMeOnResponse"
+      ],
+      "properties": {
+        "questionTitle": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "string"
+        },
+        "notifyMeOnResponse": {
+          "type": "boolean"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "EditQuestionResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Response"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "EditQuestionRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "notifyMeOnResponse"
+      ],
+      "properties": {
+        "questionTitle": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "string"
+        },
+        "notifyMeOnResponse": {
+          "type": "boolean"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "questionId": {
+          "type": "string"
+        }
+      }
+    },
+    "VoidResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Response"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false
+        }
+      ]
+    },
+    "DeleteQuestionRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "ListQuestionsResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Response"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Question"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Question": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "createdAt",
+        "updatedAt"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "questionTitle": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "updatedBy": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "ListQuestionsRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "GetQuestionResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Response"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "question": {
+              "$ref": "#/definitions/Question"
+            }
+          }
+        }
+      ]
+    },
+    "GetQuestionRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "UserDto": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    }
   }
+}

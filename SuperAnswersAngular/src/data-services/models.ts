@@ -1,6 +1,15 @@
+export { AddQuestionResponse } from './models/add-question-response';
+export { Response } from './models/response';
+export { ResponseCode } from './models/response-code';
+export { ValidationFailure } from './models/validation-failure';
 export { AddQuestionRequest } from './models/add-question-request';
+export { EditQuestionResponse } from './models/edit-question-response';
 export { EditQuestionRequest } from './models/edit-question-request';
+export { VoidResponse } from './models/void-response';
 export { DeleteQuestionRequest } from './models/delete-question-request';
+export { ListQuestionsResponse } from './models/list-questions-response';
+export { Question } from './models/question';
 export { ListQuestionsRequest } from './models/list-questions-request';
+export { GetQuestionResponse } from './models/get-question-response';
 export { GetQuestionRequest } from './models/get-question-request';
 export { UserDto } from './models/user-dto';
