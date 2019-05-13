@@ -17,6 +17,11 @@ import { ListQuestionsResponse } from '../models/list-questions-response';
 import { ListQuestionsRequest } from '../models/list-questions-request';
 import { GetQuestionResponse } from '../models/get-question-response';
 import { GetQuestionRequest } from '../models/get-question-request';
+import { AddQuestionTagResponse } from '../models/add-question-tag-response';
+import { AddQuestionTagRequest } from '../models/add-question-tag-request';
+import { DeleteQuestionTagRequest } from '../models/delete-question-tag-request';
+import { ListQuestionTagsResponse } from '../models/list-question-tags-response';
+import { ListQuestionTagsRequest } from '../models/list-question-tags-request';
 @Injectable({
   providedIn: 'root',
 })
@@ -26,6 +31,9 @@ class QuestionsService extends __BaseService {
   static readonly QuestionsDeleteQuestionPath = '/Questions/DeleteQuestion';
   static readonly QuestionsListQuestionsPath = '/Questions/ListQuestions';
   static readonly QuestionsGetQuestionPath = '/Questions/GetQuestion';
+  static readonly QuestionsAddQuestionTagPath = '/Questions/AddQuestionTag';
+  static readonly QuestionsDeleteQuestionTagPath = '/Questions/DeleteQuestionTag';
+  static readonly QuestionsListQuestionTagsPath = '/Questions/ListQuestionTags';
 
   constructor(
     config: __Configuration,
@@ -201,6 +209,108 @@ class QuestionsService extends __BaseService {
   QuestionsGetQuestion(request: GetQuestionRequest): __Observable<GetQuestionResponse> {
     return this.QuestionsGetQuestionResponse(request).pipe(
       __map(_r => _r.body as GetQuestionResponse)
+    );
+  }
+
+  /**
+   * @param request undefined
+   */
+  QuestionsAddQuestionTagResponse(request: AddQuestionTagRequest): __Observable<__StrictHttpResponse<AddQuestionTagResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = request;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/Questions/AddQuestionTag`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<AddQuestionTagResponse>;
+      })
+    );
+  }
+  /**
+   * @param request undefined
+   */
+  QuestionsAddQuestionTag(request: AddQuestionTagRequest): __Observable<AddQuestionTagResponse> {
+    return this.QuestionsAddQuestionTagResponse(request).pipe(
+      __map(_r => _r.body as AddQuestionTagResponse)
+    );
+  }
+
+  /**
+   * @param request undefined
+   */
+  QuestionsDeleteQuestionTagResponse(request: DeleteQuestionTagRequest): __Observable<__StrictHttpResponse<VoidResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = request;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/Questions/DeleteQuestionTag`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<VoidResponse>;
+      })
+    );
+  }
+  /**
+   * @param request undefined
+   */
+  QuestionsDeleteQuestionTag(request: DeleteQuestionTagRequest): __Observable<VoidResponse> {
+    return this.QuestionsDeleteQuestionTagResponse(request).pipe(
+      __map(_r => _r.body as VoidResponse)
+    );
+  }
+
+  /**
+   * @param request undefined
+   */
+  QuestionsListQuestionTagsResponse(request: ListQuestionTagsRequest): __Observable<__StrictHttpResponse<ListQuestionTagsResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = request;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/Questions/ListQuestionTags`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<ListQuestionTagsResponse>;
+      })
+    );
+  }
+  /**
+   * @param request undefined
+   */
+  QuestionsListQuestionTags(request: ListQuestionTagsRequest): __Observable<ListQuestionTagsResponse> {
+    return this.QuestionsListQuestionTagsResponse(request).pipe(
+      __map(_r => _r.body as ListQuestionTagsResponse)
     );
   }
 }
