@@ -25,8 +25,7 @@ namespace WebApi.Controllers
         public async Task<AddQuestionResponse> AddQuestionAsync([FromBody] AddQuestionRequest request)
         {
             request.UserId = "test";
-            var response = await _mediator.Send(request);
-            return response;
+            return await _mediator.Send(request);
         }
 
         [AllowAnonymous]
@@ -34,8 +33,7 @@ namespace WebApi.Controllers
         public async Task<EditQuestionResponse> EditQuestionAsync([FromBody] EditQuestionRequest request)
         {
             request.UserId = "test";
-            var response = await _mediator.Send(request);
-            return response;
+            return await _mediator.Send(request);
         }
 
         [AllowAnonymous]
@@ -43,8 +41,7 @@ namespace WebApi.Controllers
         public async Task<VoidResponse> DeleteQuestionAsync([FromBody] DeleteQuestionRequest request)
         {
             request.UserId = "test";
-            var response = await _mediator.Send(request);
-            return response;
+            return await _mediator.Send(request);
         }
 
         [AllowAnonymous]
@@ -52,8 +49,7 @@ namespace WebApi.Controllers
         public async Task<ListQuestionsResponse> ListQuestionsAsync([FromBody] ListQuestionsRequest request)
         {
             request.UserId = "test";
-            var response = await _mediator.Send(request);
-            return response;
+            return await _mediator.Send(request);
         }
 
         [AllowAnonymous]
@@ -61,8 +57,31 @@ namespace WebApi.Controllers
         public async Task<GetQuestionResponse> GetQuestionAsync([FromBody] GetQuestionRequest request)
         {
             request.UserId = "test";
-            var response = await _mediator.Send(request);
-            return response;
+            return await _mediator.Send(request);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("AddQuestionTag")]
+        public async Task<AddQuestionTagResponse> AddQuestionTagAsync([FromBody] AddQuestionTagRequest request)
+        {
+            request.UserId = "test";
+            return await _mediator.Send(request);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("DeleteQuestionTag")]
+        public async Task<VoidResponse> DeleteQuestionTagAsync([FromBody] DeleteQuestionTagRequest request)
+        {
+            request.UserId = "test";
+            return await _mediator.Send(request);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("ListQuestionTags")]
+        public async Task<ListQuestionTagsResponse> ListQuestionTagsAsync([FromBody] ListQuestionTagsRequest request)
+        {
+            request.UserId = "test";
+            return await _mediator.Send(request);
         }
     }
 }

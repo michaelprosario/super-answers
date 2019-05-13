@@ -15,5 +15,18 @@
                 UpdatedBy = dbRecord.UpdatedBy
             };
         }
+
+        public static QuestionTag GetEntity(DbEntities.QuestionTag dbRecord)
+        {
+            return new QuestionTag()
+            {
+                Id = dbRecord.Id,
+                Title = dbRecord.Title,
+                CreatedBy = dbRecord.CreatedBy,
+                CreatedAt = dbRecord.CreatedAt,
+                UpdatedAt = dbRecord.UpdatedAt,
+                UpdatedBy = dbRecord.UpdatedBy
+            };
+        }
     }
 }
