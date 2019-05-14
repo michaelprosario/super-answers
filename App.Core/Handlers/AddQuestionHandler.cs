@@ -60,7 +60,8 @@ namespace App.Core.Handlers
             var record = new DbEntities.Question
             {
                 Content = request.Content,
-                QuestionTitle = request.QuestionTitle
+                QuestionTitle = request.QuestionTitle,
+                Tags = request.Tags
             };
 
             HandlerUtilities.TimeStampRecord(record, request.UserId, true);

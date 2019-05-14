@@ -13,6 +13,7 @@ namespace App.Migrations
                 {
                     Id = table.Column<string>(nullable: false),
                     QuestionTitle = table.Column<string>(nullable: true),
+                    Tags = table.Column<string>(nullable: true),
                     Content = table.Column<string>(nullable: true),
                     CreatedBy = table.Column<string>(nullable: true),
                     UpdatedBy = table.Column<string>(nullable: true),

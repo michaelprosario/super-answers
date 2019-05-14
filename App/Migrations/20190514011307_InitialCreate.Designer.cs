@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Migrations
 {
     [DbContext(typeof(EfContext))]
-    [Migration("20190512232012_InitialCreate")]
+    [Migration("20190514011307_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,6 +30,8 @@ namespace App.Migrations
                     b.Property<string>("CreatedBy");
 
                     b.Property<string>("QuestionTitle");
+
+                    b.Property<string>("Tags");
 
                     b.Property<DateTime>("UpdatedAt");
 

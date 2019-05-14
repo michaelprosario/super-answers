@@ -1,8 +1,5 @@
-﻿
-using System;
+﻿using System;
 using System.Runtime.Serialization;
-using App.Core.Interfaces;
-using App.Core.SharedKernel;
 
 namespace App.Core.Entities
 {
@@ -13,6 +10,10 @@ namespace App.Core.Entities
         public string Id { get; set; }
         [DataMember]
         public string QuestionTitle { get; set; }
+
+        [DataMember]
+        public string Tags { get; set; }
+
         [DataMember]
         public string Content { get; set; }
         [DataMember]

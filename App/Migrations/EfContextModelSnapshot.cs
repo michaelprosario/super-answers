@@ -29,6 +29,8 @@ namespace App.Migrations
 
                     b.Property<string>("QuestionTitle");
 
+                    b.Property<string>("Tags");
+
                     b.Property<DateTime>("UpdatedAt");
 
                     b.Property<string>("UpdatedBy");

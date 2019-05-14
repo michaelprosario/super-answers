@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QuestionsService } from 'src/data-services/services';
 import { first } from 'rxjs/operators';
 import { AddQuestionRequest, ListQuestionsRequest } from 'src/data-services/models';
+import { SiteTopRowComponent } from 'src/app/site-top-row/site-top-row.component';
 
 @Component({
   selector: 'app-ask-question',
@@ -15,6 +16,7 @@ export class AskQuestionComponent implements OnInit {
   private questionTags: string;
   private selectedTags = [];
   private validTags = [];
+  private formErrors = [];
 
   constructor(
     private questionsService: QuestionsService
@@ -28,14 +30,19 @@ export class AskQuestionComponent implements OnInit {
         response.records.map(r => this.validTags.push(r.title));
       }
     )
+
+    document.getElementById("txtQuestion").focus();
   }
 
-  handleAskQuestion(){
+  handleAskQuestion() {
+    this.formErrors.length = 0;
 
+    let tagsArray = [];
+    this.selectedTags.map(t => tagsArray.push(t.value) );
     let addQuestionRequest : AddQuestionRequest = {
       questionTitle: this.questionTitle,
       content: this.questionContent,
-      tags: this.questionTags,
+      tags: tagsArray.toString(),
       notifyMeOnResponse: false
     }
 
@@ -44,6 +51,9 @@ export class AskQuestionComponent implements OnInit {
     .subscribe(response => 
     { 
         console.log(response);
+        if(response.validationErrors.length > 0){
+          response.validationErrors.map(error => this.formErrors.push(error.errorMessage));
+        }
     });
 
     console.log("saved.")

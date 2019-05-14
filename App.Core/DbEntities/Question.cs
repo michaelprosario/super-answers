@@ -10,6 +10,8 @@ namespace App.Core.DbEntities
 
         public string QuestionTitle { get; set; }
 
+        public string Tags { get; set; }
+
         public string Content { get; set; }
 
         public string CreatedBy { get; set; }

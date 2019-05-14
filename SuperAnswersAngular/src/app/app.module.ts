@@ -16,6 +16,8 @@ import { RegisterComponent } from './register/register.component';
 import { TagInputModule } from 'ngx-chips';
 import { TestComponent } from './test/test.component';
 import { ViewQuestionComponent } from './view-question/view-question.component';
+import { SiteTopRowComponent } from './site-top-row/site-top-row.component';
+import { LeftMenuComponent } from './left-menu/left-menu.component';
 
 
 @NgModule({
@@ -27,6 +29,8 @@ import { ViewQuestionComponent } from './view-question/view-question.component';
     RegisterComponent,
     TestComponent,
     ViewQuestionComponent,
+    SiteTopRowComponent,
+    LeftMenuComponent,
   ],
   imports: [
     AppRoutingModule,

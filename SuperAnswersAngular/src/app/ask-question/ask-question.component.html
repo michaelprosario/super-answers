@@ -1,27 +1,15 @@
 <div class="container">
-  <div class="row divTitleRow">
-    <div class="col-sm-2">
-      <h4>Super Answers</h4>
-    </div>
-    <div class="col-sm-8">
-      <br>
-      <input type="text" id="txtSearchQuestions" style="width:100%">
-    </div>
-    <div class="col-sm-2">
-      <a href="">Edit Profile</a> |
-      <a href="">Messages</a>
-    </div>
-  </div>
-
+  <app-site-top-row></app-site-top-row>
   <div class="row">
-
     <div class="col-sm-2 divLeftMenu">
-      <!-- Menu goes here -->
+      <app-left-menu></app-left-menu>
     </div>
+
     <div class="col-sm-8">
       <div class="form-group">
         <label for="txtQuestion">Question</label>
-        <input type="text" id="txtQuestion" class="form-control" placeholder="Ask question here" [(ngModel)]="questionTitle" >
+        <input type="text" id="txtQuestion" class="form-control" placeholder="Ask question here"
+          [(ngModel)]="questionTitle">
       </div>
 
       <div class="form-group">
@@ -30,21 +18,24 @@
       </div>
 
       <div class="form-group">
-          <label for="txtQuestionTags">Tags</label>
-          <tag-input [(ngModel)]='selectedTags' [onlyFromAutocomplete]="true" id="txtQuestionTags">
-            <tag-input-dropdown 
-              [showDropdownIfEmpty]="true"
-              [autocompleteItems]="validTags">
-            </tag-input-dropdown>
+        <label for="txtQuestionTags">Tags</label>
+        <tag-input [(ngModel)]='selectedTags' [onlyFromAutocomplete]="true" id="txtQuestionTags">
+          <tag-input-dropdown [showDropdownIfEmpty]="true" [autocompleteItems]="validTags">
+          </tag-input-dropdown>
 
-          </tag-input>
+        </tag-input>
       </div>
-  
+
 
       <br><br>
       <button type="button" class="btn btn-primary" (click)="handleAskQuestion()">Ask Question</button>
+      <ul *ngFor="let error of formErrors">
+        <li class="liError">{{error}}</li>
+      </ul>
 
     </div>
+
+
     <div class="col-sm-2">
       
     </div>
