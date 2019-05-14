@@ -2,6 +2,7 @@
 export interface Question {
   id?: string;
   questionTitle?: string;
+  tags?: string;
   content?: string;
   createdBy?: string;
   updatedBy?: string;

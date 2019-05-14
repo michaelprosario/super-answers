@@ -701,6 +701,9 @@
         "questionTitle": {
           "type": "string"
         },
+        "tags": {
+          "type": "string"
+        },
         "content": {
           "type": "string"
         },

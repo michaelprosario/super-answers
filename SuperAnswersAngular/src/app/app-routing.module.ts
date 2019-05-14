@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'askQuestion', component: AskQuestionComponent },  
   { path: 'answerQuestion', component: AnswerQuestionComponent },  
   { path: 'login', component: LoginComponent },
-  { path: 'question', component: ViewQuestionComponent },  
+  { path: 'viewQuestion/:id', component: ViewQuestionComponent },  
   { path: 'register', component: RegisterComponent },
   { path: 'test', component: TestComponent },
 ];
