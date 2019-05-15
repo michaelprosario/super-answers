@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionsService } from 'src/data-services/services';
-import { GetQuestionRequest } from 'src/data-services/models';
+import { GetQuestionRequest, Question } from 'src/data-services/models';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -11,6 +11,7 @@ import { first } from 'rxjs/operators';
 })
 export class ViewQuestionComponent implements OnInit {
   questionId: string;
+  question: Question;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,7 +30,7 @@ export class ViewQuestionComponent implements OnInit {
     this.questionsService.QuestionsGetQuestion(request)
       .pipe(first()).subscribe(
         response => {
-          console.log(response.question)
+          this.question = response.question;
         }
       )
   }

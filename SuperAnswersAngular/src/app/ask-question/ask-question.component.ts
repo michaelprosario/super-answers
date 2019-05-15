@@ -51,7 +51,7 @@ export class AskQuestionComponent implements OnInit {
     .subscribe(response => 
     { 
         console.log(response);
-        if(response.validationErrors.length > 0){
+        if(response.validationErrors && response.validationErrors.length > 0){
           response.validationErrors.map(error => this.formErrors.push(error.errorMessage));
         }
     });

@@ -56,6 +56,7 @@ namespace WebApi.Controllers
         [HttpPost("GetQuestion")]
         public async Task<GetQuestionResponse> GetQuestionAsync([FromBody] GetQuestionRequest request)
         {
+            Console.WriteLine(">>>>>>" + request.Id);
             request.UserId = "test";
             return await _mediator.Send(request);
         }
