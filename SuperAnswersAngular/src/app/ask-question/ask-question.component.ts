@@ -3,6 +3,7 @@ import { QuestionsService } from 'src/data-services/services';
 import { first } from 'rxjs/operators';
 import { AddQuestionRequest, ListQuestionsRequest } from 'src/data-services/models';
 import { SiteTopRowComponent } from 'src/app/site-top-row/site-top-row.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ask-question',
@@ -19,7 +20,8 @@ export class AskQuestionComponent implements OnInit {
   private formErrors = [];
 
   constructor(
-    private questionsService: QuestionsService
+    private questionsService: QuestionsService,
+    private router: Router
   ) { }
 
   ngOnInit() 
@@ -49,14 +51,13 @@ export class AskQuestionComponent implements OnInit {
     this.questionsService.QuestionsAddQuestion(addQuestionRequest)
     .pipe(first())
     .subscribe(response => 
-    { 
-        console.log(response);
+    {         
         if(response.validationErrors && response.validationErrors.length > 0){
           response.validationErrors.map(error => this.formErrors.push(error.errorMessage));
+        }else{
+          this.router.navigate(['/viewQuestion/' + response.id]);
         }
-    });
-
-    console.log("saved.")
+    });    
   }
 
 }
