@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionsService } from 'src/data-services/services';
 import { GetQuestionRequest, Question } from 'src/data-services/models';
 import { first } from 'rxjs/operators';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-view-question',
@@ -12,6 +13,7 @@ import { first } from 'rxjs/operators';
 export class ViewQuestionComponent implements OnInit {
   questionId: string;
   question = {};
+  answers = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -34,9 +36,13 @@ export class ViewQuestionComponent implements OnInit {
       .pipe(first()).subscribe(
         response => {
           this.question = response.question;
-          console.log(this.question);
+          this.answers = response.answers;
         }
       )
+  }
+
+  handleAskQuestion(){
+    this.router.navigate(['/askQuestion']);
   }
 
 }

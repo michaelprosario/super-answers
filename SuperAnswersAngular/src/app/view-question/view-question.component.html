@@ -14,10 +14,8 @@
   </div>
 
   <div class="row">
-
     <div class="col-sm-2 divLeftMenu">
-      <!-- Menu goes here -->
-
+      <app-left-menu></app-left-menu>
     </div>
     <div class="col-sm-8">
 
@@ -52,47 +50,23 @@
           </div>
           <div class="col-sm-4 divQuestionOwner">
             <div><b>{{question.createdBy}}</b></div>
-            <div>Asked: 5/19/2019 at 3:30pm</div>
+            <div>Asked: {{question.createdAt | date}} at {{question.createdAt | date:'shortTime'}}</div>
           </div>
         </div>
       </div>
       <!-- END Question -->
 
-
       <!-- START Answer -->
-      <div class="divAnswer">
+      <div class="divAnswer" *ngFor="let answer of answers">
         <div class="row">
           <div class="col-sm-2" style="text-align:center;">
             ^ <br>
             <b>
-              1300
+              {{answer.votes}}
             </b>
           </div>
           <div class="col-sm-10">
-            <div id="lipsum">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam elementum semper gravida. Maecenas sit
-                amet nunc semper, tristique ex nec, hendrerit nisi. Sed suscipit gravida faucibus. Pellentesque sed
-                rutrum
-                ipsum, sit amet rutrum sapien. Ut elementum enim eu ex ultrices, sed eleifend justo iaculis. Morbi in
-                arcu
-                eget arcu semper condimentum. Sed ante ipsum, imperdiet a enim ut, efficitur sodales ante. Nunc ut diam
-                a
-                ante suscipit volutpat. Nam sed sollicitudin sapien. Etiam vel libero non ante blandit sodales blandit
-                vel
-                erat. Nunc viverra dolor ut tellus commodo, at volutpat sem venenatis. Aenean vitae massa leo.
-              </p>
-              <p>
-                Aliquam volutpat porta leo, feugiat tristique ligula viverra vitae. Nunc scelerisque purus eleifend
-                facilisis mattis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis
-                egestas. Aliquam erat volutpat. In hac habitasse platea dictumst. Proin aliquam feugiat tellus eu
-                tempus.
-                Pellentesque sagittis, nunc at consequat viverra, magna sapien finibus mauris, aliquam iaculis sapien
-                quam
-                nec nisl. In efficitur enim ac est pellentesque viverra a vel massa.
-              </p>
-
-            </div>
+            {{answer.answer}}
           </div>
         </div>
 
@@ -104,8 +78,8 @@
 
           </div>
           <div class="col-sm-4 divQuestionOwner">
-            <div><b>MRosario</b></div>
-            <div>Answered: 5/19/2019 at 3:30pm</div>
+            <div><b>{{answer.createdBy}}</b></div>
+            <div>Answered: {{question.createdAt | date}} at {{question.createdAt | date:'shortTime'}</div>
           </div>
         </div>
       </div>
@@ -114,7 +88,7 @@
     </div>
     <div class="col-sm-2">
       <br><br>
-      <button type="button" class="btn btn-primary">Ask Question</button>
+      <button type="button" class="btn btn-primary" (click)="handleAskQuestion()">Ask Question</button>
     </div>
   </div>
 </div>
