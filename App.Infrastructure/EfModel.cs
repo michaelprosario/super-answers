@@ -14,5 +14,6 @@ namespace App.Infrastructure
         public DbSet<User> Users { get; set; }
         public DbSet<Core.DbEntities.Question> Questions { get; set; }
         public DbSet<Core.DbEntities.QuestionTag> QuestionTags { get; set; }
+        public DbSet<Core.DbEntities.QuestionAnswer> QuestionAnswers { get; set; }
     }
 }

@@ -1,12 +1,12 @@
 ﻿using System;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using MediatR;
-using App.Core.Handlers;
 using System.Threading.Tasks;
+using App.Core.Handlers;
 using App.Core.Requests;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
-namespace WebApi.Controllers
+namespace App.Controllers
 {
     //[Authorize]
     [ApiController]
@@ -56,7 +56,6 @@ namespace WebApi.Controllers
         [HttpPost("GetQuestion")]
         public async Task<GetQuestionResponse> GetQuestionAsync([FromBody] GetQuestionRequest request)
         {
-            Console.WriteLine(">>>>>>" + request.Id);
             request.UserId = "test";
             return await _mediator.Send(request);
         }
@@ -80,6 +79,48 @@ namespace WebApi.Controllers
         [AllowAnonymous]
         [HttpPost("ListQuestionTags")]
         public async Task<ListQuestionTagsResponse> ListQuestionTagsAsync([FromBody] ListQuestionTagsRequest request)
+        {
+            request.UserId = "test";
+            return await _mediator.Send(request);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("AddQuestionAnswer")]
+        public async Task<AddQuestionAnswerResponse> AddQuestionAnswerAsync([FromBody] AddQuestionAnswerRequest request)
+        {
+            request.UserId = "test";
+            return await _mediator.Send(request);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("EditQuestionAnswer")]
+        public async Task<EditQuestionAnswerResponse> EditQuestionAnswerAsync(
+            [FromBody] EditQuestionAnswerRequest request)
+        {
+            request.UserId = "test";
+            return await _mediator.Send(request);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("DeleteQuestionAnswer")]
+        public async Task<VoidResponse> DeleteQuestionAnswerAsync([FromBody] DeleteQuestionAnswerRequest request)
+        {
+            request.UserId = "test";
+            return await _mediator.Send(request);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("ListQuestionAnswers")]
+        public async Task<ListQuestionAnswersResponse> ListQuestionAnswersAsync(
+            [FromBody] ListQuestionAnswersRequest request)
+        {
+            request.UserId = "test";
+            return await _mediator.Send(request);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("GetQuestionAnswer")]
+        public async Task<GetQuestionAnswerResponse> GetQuestionAnswerAsync([FromBody] GetQuestionAnswerRequest request)
         {
             request.UserId = "test";
             return await _mediator.Send(request);

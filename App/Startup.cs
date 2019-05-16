@@ -20,15 +20,17 @@ using NSwag.AspNetCore;
 
 namespace App
 {
-    public class Startup {
-        public Startup (IConfiguration configuration) {
+    public class Startup
+    {
+        public Startup(IConfiguration configuration)
+        {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
-        public void ConfigureServices (IServiceCollection services) {
-
+        public void ConfigureServices(IServiceCollection services)
+        {
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 
@@ -37,45 +39,45 @@ namespace App
             var appSettings = appSettingsSection.Get<AppSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.AuthKey);
             services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(x =>
-            {
-                x.Events = new JwtBearerEvents
                 {
-                    OnTokenValidated = context =>
+                    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(x =>
+                {
+                    x.Events = new JwtBearerEvents
                     {
-                        var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
-                        var userId = context.Principal.Identity.Name;
-                        var user = userService.GetById(userId);
-                        if (user == null)
+                        OnTokenValidated = context =>
                         {
-                            // return unauthorized if user no longer exists
-                            context.Fail("Unauthorized");
-                        }
-                        return Task.CompletedTask;
-                    }
-                };
+                            var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
+                            var userId = context.Principal.Identity.Name;
+                            var user = userService.GetById(userId);
+                            if (user == null)
+                            {
+                                // return unauthorized if user no longer exists
+                                context.Fail("Unauthorized");
+                            }
 
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-            });
+                            return Task.CompletedTask;
+                        }
+                    };
+
+                    x.RequireHttpsMetadata = false;
+                    x.SaveToken = true;
+                    x.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(key),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
 
             // if you have handlers/events in other assemblies
 
             services.AddDbContextPool<App.Infrastructure.EfContext>(
                 options =>
-                     options.UseSqlite("Data Source=app.db", b => b.MigrationsAssembly("App"))
-            
+                    options.UseSqlite("Data Source=app.db", b => b.MigrationsAssembly("App"))
             );
             services.AddScoped<ServiceFactory>(p => p.GetService);
             //Pipeline
@@ -84,29 +86,34 @@ namespace App
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped(typeof(IUserDataServices), typeof(UserDataServices));
             services.AddScoped(typeof(IAppSettingsLoader), typeof(AppSettingsLoader));
+            services.AddScoped(typeof(IQuestionsDataService), typeof(QuestionsDataService));
 
             // Use Scrutor to scan and register all
             // classes as their implemented interfaces.
             services.Scan(scan => scan
                 .FromAssembliesOf(typeof(IMediator), typeof(BaseEntity))
                 .AddClasses()
-                .AsImplementedInterfaces());           
+                .AsImplementedInterfaces());
 
-            services.AddMvc ();
+            services.AddMvc();
             services.AddCors();
 
             services.AddSwaggerDocument();
         }
 
-        public void Configure (IApplicationBuilder app, IHostingEnvironment env) {
-            if (env.IsDevelopment ()) {
-                app.UseDeveloperExceptionPage ();
-            } else {
-                app.UseExceptionHandler ("/Home/Error");
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
             }
 
             app.UseDefaultFiles();
-            app.UseStaticFiles ();
+            app.UseStaticFiles();
 
             app.UseCors(builder =>
                 builder.AllowAnyOrigin()
@@ -119,8 +126,9 @@ namespace App
             app.UseSwagger();
             app.UseSwaggerUi3();
 
-            app.UseMvc (routes => {
-                routes.MapRoute (
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });

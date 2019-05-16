@@ -8,6 +8,24 @@ namespace App.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "QuestionAnswers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    QuestionId = table.Column<string>(nullable: true),
+                    Answer = table.Column<string>(nullable: true),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    UpdatedAt = table.Column<DateTime>(nullable: false),
+                    UpdatedBy = table.Column<string>(nullable: true),
+                    Votes = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QuestionAnswers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Questions",
                 columns: table => new
                 {
@@ -64,6 +82,9 @@ namespace App.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "QuestionAnswers");
+
             migrationBuilder.DropTable(
                 name: "Questions");
 

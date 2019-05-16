@@ -8,9 +8,9 @@
       <input type="text" id="txtSearchQuestions" style="width:100%">
     </div>
     <div class="col-sm-2">
-      <a href="">Edit Profile</a> | 
+      <a href="">Edit Profile</a> |
       <a href="">Messages</a>
-    </div> 
+    </div>
   </div>
 
   <div class="row">
@@ -25,26 +25,21 @@
       <div class="divQuestion">
         <div class="row divQuestionTitle">
           <div class="col-sm-12">
-            <h3>question title goes here</h3>
+            <h3>{{question.questionTitle}}</h3>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-2" style="text-align:center;">
             ^ <br>
             <b>
-            1300
+              1300
             </b>
           </div>
           <div class="col-sm-10">
-            <p>Can someone please explain the difference between Promise and Observable in Angular?</p>
-
-            <p>An example on each would be helpful in understanding both the cases. In what scenario can we use each
-              case?
-            </p>
+            {{question.content}}
+            <br>
             <div>
-              <span class="spanTag">Tag1</span> 
-              <span class="spanTag">Tag2</span> 
-              <span class="spanTag">Tag3</span>
+              <span class="spanTag" *ngFor="let tag of question.tagArray">{{tag}}&nbsp;</span>
             </div>
           </div>
         </div>
@@ -55,10 +50,10 @@
           <div class="col-sm-4">
 
           </div>
-          <div class="col-sm-4 divQuestionOwner" >
-              <div><b>MRosario</b></div>
-              <div>Asked: 5/19/2019 at 3:30pm</div>
-          </div>          
+          <div class="col-sm-4 divQuestionOwner">
+            <div><b>{{question.createdBy}}</b></div>
+            <div>Asked: 5/19/2019 at 3:30pm</div>
+          </div>
         </div>
       </div>
       <!-- END Question -->
@@ -70,7 +65,7 @@
           <div class="col-sm-2" style="text-align:center;">
             ^ <br>
             <b>
-            1300
+              1300
             </b>
           </div>
           <div class="col-sm-10">
@@ -103,12 +98,12 @@
 
         <div class="row">
           <div class="col-sm-4">
-            
+
           </div>
           <div class="col-sm-4">
 
           </div>
-          <div class="col-sm-4 divQuestionOwner" >
+          <div class="col-sm-4 divQuestionOwner">
             <div><b>MRosario</b></div>
             <div>Answered: 5/19/2019 at 3:30pm</div>
           </div>
@@ -118,8 +113,8 @@
 
     </div>
     <div class="col-sm-2">
-        <br><br>
-        <button type="button" class="btn btn-primary">Ask Question</button>
+      <br><br>
+      <button type="button" class="btn btn-primary">Ask Question</button>
     </div>
   </div>
 </div>

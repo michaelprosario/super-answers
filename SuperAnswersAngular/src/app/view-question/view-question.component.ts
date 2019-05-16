@@ -11,7 +11,7 @@ import { first } from 'rxjs/operators';
 })
 export class ViewQuestionComponent implements OnInit {
   questionId: string;
-  question: Question;
+  question = {};
 
   constructor(
     private route: ActivatedRoute,
@@ -22,15 +22,19 @@ export class ViewQuestionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadQuestionContent();
+  }
+
+  loadQuestionContent(){
     let request: GetQuestionRequest = {};
     request.id = this.questionId;
     request.userId = "test";
 
-    
     this.questionsService.QuestionsGetQuestion(request)
       .pipe(first()).subscribe(
         response => {
           this.question = response.question;
+          console.log(this.question);
         }
       )
   }

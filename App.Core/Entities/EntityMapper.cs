@@ -1,4 +1,7 @@
-﻿namespace App.Core.Entities
+﻿using System;
+using App.Core.DbEntities;
+
+namespace App.Core.Entities
 {
     public class EntityMapper
     {
@@ -30,6 +33,23 @@
                 UpdatedAt = dbRecord.UpdatedAt,
                 UpdatedBy = dbRecord.UpdatedBy
             };
+        }
+
+        public static QuestionAnswer GetEntity(DbEntities.QuestionAnswer dbRecord)
+        {
+            var questionAnswer = new QuestionAnswer
+            {
+                CreatedAt = dbRecord.CreatedAt,
+                Answer = dbRecord.Answer,
+                CreatedBy = dbRecord.CreatedBy,
+                Id = dbRecord.Id,
+                QuestionId = dbRecord.QuestionId,
+                UpdatedAt = dbRecord.UpdatedAt,
+                UpdatedBy = dbRecord.UpdatedBy,
+                Votes = dbRecord.Votes
+            };
+
+            return questionAnswer;
         }
     }
 }

@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
-using System.Text;
-using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Authorization;
-using App.Core.Interfaces;
-using App.Core.Entities;
-using Microsoft.Extensions.Options;
-using App;
+using System.Text;
 using App.Core;
+using App.Core.Entities;
+using App.Core.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
-namespace WebApi.Controllers
+namespace App.Controllers
 {
     // Implementation based largely on http://jasonwatmore.com/post/2018/06/26/aspnet-core-21-simple-api-for-authentication-registration-and-user-management#user-dto-cs
     [Authorize]

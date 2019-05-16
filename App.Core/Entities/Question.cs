@@ -15,6 +15,16 @@ namespace App.Core.Entities
         public string Tags { get; set; }
 
         [DataMember]
+        public string[] TagArray
+        {
+            get
+            {
+                string[] array = Tags.Split(',');
+                return array;
+            }
+        }
+
+        [DataMember]
         public string Content { get; set; }
         [DataMember]
         public string CreatedBy { get; set; }

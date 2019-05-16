@@ -14,7 +14,7 @@ namespace App.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.8-servicing-32085");
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024");
 
             modelBuilder.Entity("App.Core.DbEntities.Question", b =>
                 {
@@ -38,6 +38,30 @@ namespace App.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Questions");
+                });
+
+            modelBuilder.Entity("App.Core.DbEntities.QuestionAnswer", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Answer");
+
+                    b.Property<DateTime>("CreatedAt");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<string>("QuestionId");
+
+                    b.Property<DateTime>("UpdatedAt");
+
+                    b.Property<string>("UpdatedBy");
+
+                    b.Property<int>("Votes");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("QuestionAnswers");
                 });
 
             modelBuilder.Entity("App.Core.DbEntities.QuestionTag", b =>
