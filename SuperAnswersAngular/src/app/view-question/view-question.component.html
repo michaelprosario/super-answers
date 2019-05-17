@@ -1,17 +1,5 @@
 <div class="container">
-  <div class="row divTitleRow">
-    <div class="col-sm-2">
-      <h4>Super Answers</h4>
-    </div>
-    <div class="col-sm-8">
-      <br>
-      <input type="text" id="txtSearchQuestions" style="width:100%">
-    </div>
-    <div class="col-sm-2">
-      <a href="">Edit Profile</a> |
-      <a href="">Messages</a>
-    </div>
-  </div>
+  <app-site-top-row></app-site-top-row>
 
   <div class="row">
     <div class="col-sm-2 divLeftMenu">
@@ -87,7 +75,11 @@
 
       <!-- START Answer Form -->
       <h3>What's your answer?</h3>
-      <textarea class="form-control" id="txtAnswer" rows="3" [(ngModel)]="answer"></textarea>      
+
+      
+      <md-editor name="Content" [(ngModel)]="answer" [height]="'400px'" [mode]="preview" required>
+      </md-editor>
+      
       <button type="button" class="btn btn-primary" (click)="postAnswer()">Post Answer</button>
       <!-- END Answer Form -->
       

@@ -18,6 +18,7 @@ import { TestComponent } from './test/test.component';
 import { ViewQuestionComponent } from './view-question/view-question.component';
 import { SiteTopRowComponent } from './site-top-row/site-top-row.component';
 import { LeftMenuComponent } from './left-menu/left-menu.component';
+import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { LeftMenuComponent } from './left-menu/left-menu.component';
     HttpClientModule,
     ReactiveFormsModule,    
     TagInputModule,
+    LMarkdownEditorModule,
   ],
   providers: [
     AuthGuard,

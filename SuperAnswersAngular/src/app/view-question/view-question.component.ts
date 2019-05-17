@@ -53,9 +53,10 @@ export class ViewQuestionComponent implements OnInit {
       return false;
     }
 
-    let request: AddQuestionAnswerRequest = {};
-    request.answer = this.answer;
-    request.questionId = this.questionId;
+    let request: AddQuestionAnswerRequest = {
+      answer: this.answer,
+      questionId: this.questionId
+    };
 
     this.questionsService.QuestionsAddQuestionAnswer(request)
       .pipe(first()).subscribe(
@@ -64,9 +65,6 @@ export class ViewQuestionComponent implements OnInit {
           this.loadQuestionContent();
         }
       )
-
-
-
   }
 
 }

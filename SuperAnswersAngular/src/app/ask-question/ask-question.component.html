@@ -14,7 +14,10 @@
 
       <div class="form-group">
         <label for="txtQuestionContent">Question Content</label>
-        <textarea class="form-control" id="txtQuestionContent" rows="3" [(ngModel)]="questionContent"></textarea>
+
+        <md-editor name="Content" [(ngModel)]="questionContent" [height]="'400px'" [mode]="preview" required>
+        </md-editor>
+
       </div>
 
       <div class="form-group">
@@ -25,7 +28,6 @@
         </tag-input>
       </div>
 
-
       <br><br>
       <button type="button" class="btn btn-primary" (click)="handleAskQuestion()">Ask Question</button>
       <ul *ngFor="let error of formErrors">
@@ -34,9 +36,8 @@
 
     </div>
 
-
     <div class="col-sm-2">
-      
+
     </div>
   </div>
 </div>

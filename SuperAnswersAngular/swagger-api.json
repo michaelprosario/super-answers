@@ -1223,35 +1223,12 @@
     "AddQuestionAnswerRequest": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "createdAt",
-        "updatedAt",
-        "votes"
-      ],
       "properties": {
         "questionId": {
           "type": "string"
         },
         "answer": {
           "type": "string"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "createdBy": {
-          "type": "string"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updatedBy": {
-          "type": "string"
-        },
-        "votes": {
-          "type": "integer",
-          "format": "int32"
         },
         "userId": {
           "type": "string"
