@@ -1,6 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
 using App.Core.Entities;
@@ -18,10 +16,10 @@ namespace App.Infrastructure
 
         public IList<QuestionAnswer> GetAnswersForQuestion(string questionId)
         {
-            using (var cnn = DbConnection())
+            using (var connection = DbConnection())
             {
-                cnn.Open();
-                var resultsQuestionAnswers = cnn.Query<QuestionAnswer>(
+                connection.Open();
+                var resultsQuestionAnswers = connection.Query<QuestionAnswer>(
                 @"
                 select 
                 QuestionId,
@@ -50,6 +48,25 @@ namespace App.Infrastructure
             return new SQLiteConnection("Data Source=" + DbFile);
         }
 
+        public int GetQuestionVotes(string questionId)
+        {
+            int voteCount;
+            using (var connection = DbConnection())
+            {
+                connection.Open();
+                voteCount = connection.QuerySingle<int>(
+                @"
+                select 
+                count(*)
+                from QuestionVotes
+                where questionId = @questionId ",
+                    new
+                    {
+                        questionId
+                    });
+            }
 
+            return voteCount;
+        }
     }
 }

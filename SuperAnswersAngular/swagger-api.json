@@ -517,6 +517,84 @@
         }
       }
     },
+    "/Questions/AddQuestionVote": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "Questions_AddQuestionVote",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddQuestionVoteRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AddQuestionVoteResponse"
+            }
+          }
+        }
+      }
+    },
+    "/Questions/DeleteQuestionVote": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "Questions_DeleteQuestionVote",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteQuestionVoteRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/VoidResponse"
+            }
+          }
+        }
+      }
+    },
     "/Users/Authenticate": {
       "post": {
         "tags": [
@@ -887,7 +965,8 @@
       "additionalProperties": false,
       "required": [
         "createdAt",
-        "updatedAt"
+        "updatedAt",
+        "votes"
       ],
       "properties": {
         "id": {
@@ -921,6 +1000,10 @@
         "updatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "votes": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -1284,6 +1367,64 @@
       ]
     },
     "GetQuestionAnswerRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "AddQuestionVoteResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Response"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "AddQuestionVoteRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "createdAt",
+        "updatedAt"
+      ],
+      "properties": {
+        "questionId": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedBy": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "DeleteQuestionVoteRequest": {
       "type": "object",
       "additionalProperties": false,
       "properties": {

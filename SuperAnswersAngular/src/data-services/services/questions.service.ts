@@ -31,6 +31,9 @@ import { ListQuestionAnswersResponse } from '../models/list-question-answers-res
 import { ListQuestionAnswersRequest } from '../models/list-question-answers-request';
 import { GetQuestionAnswerResponse } from '../models/get-question-answer-response';
 import { GetQuestionAnswerRequest } from '../models/get-question-answer-request';
+import { AddQuestionVoteResponse } from '../models/add-question-vote-response';
+import { AddQuestionVoteRequest } from '../models/add-question-vote-request';
+import { DeleteQuestionVoteRequest } from '../models/delete-question-vote-request';
 @Injectable({
   providedIn: 'root',
 })
@@ -48,6 +51,8 @@ class QuestionsService extends __BaseService {
   static readonly QuestionsDeleteQuestionAnswerPath = '/Questions/DeleteQuestionAnswer';
   static readonly QuestionsListQuestionAnswersPath = '/Questions/ListQuestionAnswers';
   static readonly QuestionsGetQuestionAnswerPath = '/Questions/GetQuestionAnswer';
+  static readonly QuestionsAddQuestionVotePath = '/Questions/AddQuestionVote';
+  static readonly QuestionsDeleteQuestionVotePath = '/Questions/DeleteQuestionVote';
 
   constructor(
     config: __Configuration,
@@ -495,6 +500,74 @@ class QuestionsService extends __BaseService {
   QuestionsGetQuestionAnswer(request: GetQuestionAnswerRequest): __Observable<GetQuestionAnswerResponse> {
     return this.QuestionsGetQuestionAnswerResponse(request).pipe(
       __map(_r => _r.body as GetQuestionAnswerResponse)
+    );
+  }
+
+  /**
+   * @param request undefined
+   */
+  QuestionsAddQuestionVoteResponse(request: AddQuestionVoteRequest): __Observable<__StrictHttpResponse<AddQuestionVoteResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = request;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/Questions/AddQuestionVote`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<AddQuestionVoteResponse>;
+      })
+    );
+  }
+  /**
+   * @param request undefined
+   */
+  QuestionsAddQuestionVote(request: AddQuestionVoteRequest): __Observable<AddQuestionVoteResponse> {
+    return this.QuestionsAddQuestionVoteResponse(request).pipe(
+      __map(_r => _r.body as AddQuestionVoteResponse)
+    );
+  }
+
+  /**
+   * @param request undefined
+   */
+  QuestionsDeleteQuestionVoteResponse(request: DeleteQuestionVoteRequest): __Observable<__StrictHttpResponse<VoidResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = request;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/Questions/DeleteQuestionVote`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<VoidResponse>;
+      })
+    );
+  }
+  /**
+   * @param request undefined
+   */
+  QuestionsDeleteQuestionVote(request: DeleteQuestionVoteRequest): __Observable<VoidResponse> {
+    return this.QuestionsDeleteQuestionVoteResponse(request).pipe(
+      __map(_r => _r.body as VoidResponse)
     );
   }
 }

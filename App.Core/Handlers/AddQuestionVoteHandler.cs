@@ -10,73 +10,66 @@ using System;
 
 namespace App.Core.Handlers
 {
-    public class AddQuestionAnswerRequest : IRequest<AddQuestionAnswerResponse>, IUserRequest
+    public class AddQuestionVoteRequest : IRequest<AddQuestionVoteResponse>, IUserRequest
     {
         
             [DataMember(Order = 1)]
             public string QuestionId { get; set; }
             [DataMember(Order = 2)]
-            public string Answer { get; set; }
-            [DataMember(Order = 3)]
             public DateTime CreatedAt { get; set; }
-            [DataMember(Order = 4)]
+            [DataMember(Order = 3)]
             public string CreatedBy { get; set; }
-            [DataMember(Order = 5)]
+            [DataMember(Order = 4)]
             public DateTime UpdatedAt { get; set; }
-            [DataMember(Order = 6)]
+            [DataMember(Order = 5)]
             public string UpdatedBy { get; set; }
-            [DataMember(Order = 7)]
-            public int Votes { get; set; }
-            [DataMember]
             public string UserId { get; set; }
     }
 
-    public class AddQuestionAnswerRequestValidator : AbstractValidator<AddQuestionAnswerRequest>
+    public class AddQuestionVoteRequestValidator : AbstractValidator<AddQuestionVoteRequest>
     {
-        public AddQuestionAnswerRequestValidator()
+        public AddQuestionVoteRequestValidator()
         {
-            RuleFor(x => x.Answer).NotEmpty();
+
         }
     }
 
-    public class AddQuestionAnswerResponse : Response
+    public class AddQuestionVoteResponse : Response
     {
         [DataMember] public string Id { get; set; }
     }
 
-    public class AddQuestionAnswerHandler : BaseHandler<AddQuestionAnswerRequest, AddQuestionAnswerResponse>
+    public class AddQuestionVoteHandler : BaseHandler<AddQuestionVoteRequest, AddQuestionVoteResponse>
     {
-        readonly IRepository<DbEntities.QuestionAnswer> _repository;
+        readonly IRepository<DbEntities.QuestionVote> _repository;
 
-        public AddQuestionAnswerHandler(IRepository<DbEntities.QuestionAnswer> repository)
+        public AddQuestionVoteHandler(IRepository<DbEntities.QuestionVote> repository)
         {
             _repository = repository;
         }
 
-        protected override AddQuestionAnswerResponse Handle(AddQuestionAnswerRequest request)
+        protected override AddQuestionVoteResponse Handle(AddQuestionVoteRequest request)
         {
-            var response = new AddQuestionAnswerResponse
+            var response = new AddQuestionVoteResponse
             {
                 Code = ResponseCode.Success
             };
 
             Require.ObjectNotNull(request, "Request is null.");
-            var validationResult = new AddQuestionAnswerRequestValidator().Validate(request);
+            var validationResult = new AddQuestionVoteRequestValidator().Validate(request);
             if (!validationResult.IsValid)
             {
                 response.ValidationErrors = validationResult.Errors;
                 return response;
             }
 
-            var record = new DbEntities.QuestionAnswer();
+            var record = new DbEntities.QuestionVote();
             
             record.QuestionId = request.QuestionId; 
-            record.Answer = request.Answer; 
             record.CreatedAt = request.CreatedAt; 
             record.CreatedBy = request.CreatedBy; 
             record.UpdatedAt = request.UpdatedAt; 
             record.UpdatedBy = request.UpdatedBy; 
-            record.Votes = request.Votes; 
     
             HandlerUtilities.TimeStampRecord(record, request.UserId, true);
             var returnRecord = _repository.Add(record);

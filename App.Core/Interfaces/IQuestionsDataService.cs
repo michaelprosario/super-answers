@@ -7,5 +7,6 @@ namespace App.Core.Interfaces
     public interface IQuestionsDataService
     {
         IList<QuestionAnswer> GetAnswersForQuestion(string questionId);
+        int GetQuestionVotes(string id);
     }
 }

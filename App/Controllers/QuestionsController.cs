@@ -125,5 +125,21 @@ namespace App.Controllers
             request.UserId = "test";
             return await _mediator.Send(request);
         }
+
+        [AllowAnonymous]
+        [HttpPost("AddQuestionVote")]
+        public async Task<AddQuestionVoteResponse> AddQuestionVoteAsync([FromBody] AddQuestionVoteRequest request)
+        {
+            request.UserId = "test";
+            return await _mediator.Send(request);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("DeleteQuestionVote")]
+        public async Task<VoidResponse> DeleteQuestionVoteAsync([FromBody] DeleteQuestionVoteRequest request)
+        {
+            request.UserId = "test";
+            return await _mediator.Send(request);
+        }
     }
 }

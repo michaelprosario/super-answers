@@ -43,6 +43,7 @@ namespace App.Core.Factories
             {
                 var question = _mapper.Map<Question>(dbRecord);
                 response.Question = question;
+                response.Question.Votes = _questionsDataService.GetQuestionVotes(response.Question.Id);
             }
 
             var answers = _questionsDataService.GetAnswersForQuestion(response.Question.Id);
