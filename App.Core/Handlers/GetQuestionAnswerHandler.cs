@@ -3,6 +3,7 @@ using App.Core.Enums;
 using App.Core.Interfaces;
 using App.Core.Requests;
 using App.Core.Utilities;
+using AutoMapper;
 using MediatR;
 using System.Runtime.Serialization;
 
@@ -23,10 +24,12 @@ namespace App.Core.Handlers
     public class GetQuestionAnswerHandler : BaseHandler<GetQuestionAnswerRequest, GetQuestionAnswerResponse>
     {
         readonly IRepository<DbEntities.QuestionAnswer> _repository;
+        private readonly IMapper _mapper;
 
-        public GetQuestionAnswerHandler(IRepository<DbEntities.QuestionAnswer> repository)
+        public GetQuestionAnswerHandler(IRepository<DbEntities.QuestionAnswer> repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         protected override GetQuestionAnswerResponse Handle(GetQuestionAnswerRequest request)
@@ -44,7 +47,7 @@ namespace App.Core.Handlers
                 return response;
             }
 
-            var entity = EntityMapper.GetEntity(dbRecord);
+            var entity = _mapper.Map<QuestionAnswer>(dbRecord);
 
             response.QuestionAnswer = entity;
             return response;

@@ -7,6 +7,7 @@ using MediatR;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Linq;
+using AutoMapper;
 
 namespace App.Core.Handlers
 {
@@ -25,9 +26,12 @@ namespace App.Core.Handlers
     public class ListQuestionsHandler : BaseHandler<ListQuestionsRequest, ListQuestionsResponse>
     {
         IRepository<DbEntities.Question> _repository;
-        public ListQuestionsHandler(IRepository<DbEntities.Question> repository)
+        private readonly IMapper _mapper;
+
+        public ListQuestionsHandler(IRepository<DbEntities.Question> repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
         protected override ListQuestionsResponse Handle(ListQuestionsRequest request)
         {
@@ -40,7 +44,7 @@ namespace App.Core.Handlers
             response.Records = new List<Question>();
             foreach (var dbRecord in _repository.List())
             {
-                response.Records.Add(EntityMapper.GetEntity(dbRecord));
+                response.Records.Add(_mapper.Map<Question>(dbRecord));
             }
 
             return response;

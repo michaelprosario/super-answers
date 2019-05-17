@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="dapper" Version="1.60.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.4" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.110" />
@@ -15,10 +16,6 @@
     <ProjectReference Include="..\App.Core\App.Core.csproj" />
   </ItemGroup>
 
- <ItemGroup>
-   <Reference Include="Dapper">
-     <HintPath>..\..\..\Users\rosariom\.nuget\packages\dapper\1.60.6\lib\netstandard2.0\Dapper.dll</HintPath>
-   </Reference>
- </ItemGroup>
+
 
 </Project>

@@ -4,6 +4,7 @@ using App.Core.Enums;
 using App.Core.Handlers;
 using App.Core.Interfaces;
 using App.Core.Utilities;
+using AutoMapper;
 
 namespace App.Core.Factories
 {
@@ -16,11 +17,13 @@ namespace App.Core.Factories
     {
         private readonly IRepository<DbEntities.Question> _questionRepository;
         private readonly IQuestionsDataService _questionsDataService;
+        private readonly IMapper _mapper;
 
-        public QuestionsFactory(IRepository<DbEntities.Question> questionRepository, IQuestionsDataService questionsDataService)
+        public QuestionsFactory(IRepository<DbEntities.Question> questionRepository, IQuestionsDataService questionsDataService, IMapper mapper)
         {
             _questionRepository = questionRepository;
             _questionsDataService = questionsDataService;
+            _mapper = mapper;
         }
 
         public GetQuestionResponse GetQuestion(GetQuestionRequest request)
@@ -38,7 +41,7 @@ namespace App.Core.Factories
             }
             else
             {
-                var question = EntityMapper.GetEntity(dbRecord);
+                var question = _mapper.Map<Question>(dbRecord);
                 response.Question = question;
             }
 

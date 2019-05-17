@@ -17,6 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NJsonSchema;
 using NSwag.AspNetCore;
+using AutoMapper;
 
 namespace App
 {
@@ -95,6 +96,7 @@ namespace App
                 .AddClasses()
                 .AsImplementedInterfaces());
 
+            services.AddAutoMapper();
             services.AddMvc();
             services.AddCors();
 
