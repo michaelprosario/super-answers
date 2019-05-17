@@ -43,12 +43,17 @@ namespace App.Core.Factories
             {
                 var question = _mapper.Map<Question>(dbRecord);
                 response.Question = question;
+                question.Content = Markdig.Markdown.ToHtml(question.Content);
                 response.Question.Votes = _questionsDataService.GetQuestionVotes(response.Question.Id);
             }
 
             var answers = _questionsDataService.GetAnswersForQuestion(response.Question.Id);
-            if(answers.Any()) { 
-                response.Answers = answers;
+            if(answers.Any()) {
+                foreach (var answer in answers)
+                {
+                    answer.Answer = Markdig.Markdown.ToHtml(answer.Answer);
+                }
+                response.Answers = answers;                
             }
 
             return response;
