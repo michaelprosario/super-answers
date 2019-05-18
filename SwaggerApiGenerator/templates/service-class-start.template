@@ -1,0 +1,6 @@
+@Injectable({
+  providedIn: 'root'
+})
+export class {{controllerName}}Service {
+
+constructor( private http: HttpClient ) {}

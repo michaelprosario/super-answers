@@ -1,0 +1,3 @@
+{{endPointName}} (request: {{endPointName}}Request): Observable<{{endPointName}}Response> {
+    return this.http.post<{{endPointName}}Response>(environment.apiUrl + '/{{controllerName}}/{{endPointName}}', request, httpOptions);
+}
