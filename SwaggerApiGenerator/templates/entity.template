@@ -1,5 +1,0 @@
-export class {{entityName}} {
-  {{#each properties}}  
-  {{@key}}: {{#if type }}{{type}}{{/if}};  
-  {{/each}}
-}
