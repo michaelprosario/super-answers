@@ -1,0 +1,1438 @@
+{
+  "x-generator": "NSwag v12.2.5.0 (NJsonSchema v9.13.37.0 (Newtonsoft.Json v11.0.0.0))",
+  "swagger": "2.0",
+  "info": {
+    "title": "My Title",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8080",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/Questions/AddQuestion": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "Questions_AddQuestion",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddQuestionRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AddQuestionResponse"
+            }
+          }
+        }
+      }
+    },
+    "/Questions/EditQuestion": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "Questions_EditQuestion",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EditQuestionRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/EditQuestionResponse"
+            }
+          }
+        }
+      }
+    },
+    "/Questions/DeleteQuestion": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "Questions_DeleteQuestion",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteQuestionRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/VoidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/Questions/ListQuestions": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "Questions_ListQuestions",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ListQuestionsRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ListQuestionsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/Questions/GetQuestion": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "Questions_GetQuestion",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetQuestionRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GetQuestionResponse"
+            }
+          }
+        }
+      }
+    },
+    "/Questions/AddQuestionTag": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "Questions_AddQuestionTag",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddQuestionTagRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AddQuestionTagResponse"
+            }
+          }
+        }
+      }
+    },
+    "/Questions/DeleteQuestionTag": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "Questions_DeleteQuestionTag",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteQuestionTagRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/VoidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/Questions/ListQuestionTags": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "Questions_ListQuestionTags",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ListQuestionTagsRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ListQuestionTagsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/Questions/AddQuestionAnswer": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "Questions_AddQuestionAnswer",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddQuestionAnswerRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AddQuestionAnswerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/Questions/EditQuestionAnswer": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "Questions_EditQuestionAnswer",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EditQuestionAnswerRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/EditQuestionAnswerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/Questions/DeleteQuestionAnswer": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "Questions_DeleteQuestionAnswer",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteQuestionAnswerRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/VoidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/Questions/ListQuestionAnswers": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "Questions_ListQuestionAnswers",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ListQuestionAnswersRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ListQuestionAnswersResponse"
+            }
+          }
+        }
+      }
+    },
+    "/Questions/GetQuestionAnswer": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "Questions_GetQuestionAnswer",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetQuestionAnswerRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GetQuestionAnswerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/Questions/AddQuestionVote": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "Questions_AddQuestionVote",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddQuestionVoteRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AddQuestionVoteResponse"
+            }
+          }
+        }
+      }
+    },
+    "/Questions/DeleteQuestionVote": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "Questions_DeleteQuestionVote",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteQuestionVoteRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/VoidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/Users/Authenticate": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "Users_Authenticate",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "name": "userDto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserDto"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          }
+        }
+      }
+    },
+    "/Users/Register": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "Users_Register",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "name": "userDto",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserDto"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          }
+        }
+      }
+    },
+    "/Users/GetAll": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "Users_GetAll",
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          }
+        }
+      }
+    },
+    "/Users/GetById/{id}": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "Users_GetById",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          }
+        }
+      }
+    },
+    "/Users/Delete/{id}": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "Users_Delete",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AddQuestionResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Response"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "code"
+      ],
+      "properties": {
+        "code": {
+          "$ref": "#/definitions/ResponseCode"
+        },
+        "message": {
+          "type": "string"
+        },
+        "validationErrors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ValidationFailure"
+          }
+        }
+      }
+    },
+    "ResponseCode": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Success",
+        "BadRequest",
+        "NotFound",
+        "Error"
+      ],
+      "enum": [
+        200,
+        400,
+        404,
+        405
+      ]
+    },
+    "ValidationFailure": {
+      "type": "object",
+      "description": "Defines a validation failure",
+      "additionalProperties": false,
+      "required": [
+        "severity"
+      ],
+      "properties": {
+        "propertyName": {
+          "type": "string",
+          "description": "The name of the property."
+        },
+        "errorMessage": {
+          "type": "string",
+          "description": "The error message"
+        },
+        "attemptedValue": {
+          "description": "The property value that caused the failure."
+        },
+        "customState": {
+          "description": "Custom state associated with the failure."
+        },
+        "severity": {
+          "description": "Custom severity level associated with the failure.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/Severity"
+            }
+          ]
+        },
+        "errorCode": {
+          "type": "string",
+          "description": "Gets or sets the error code."
+        },
+        "formattedMessageArguments": {
+          "type": "array",
+          "description": "Gets or sets the formatted message arguments.\nThese are values for custom formatted message in validator resource files\nSame formatted message can be reused in UI and with same number of format placeholders\nLike \"Value {0} that you entered should be {1}\"",
+          "items": {}
+        },
+        "formattedMessagePlaceholderValues": {
+          "type": "object",
+          "description": "Gets or sets the formatted message placeholder values.",
+          "additionalProperties": {}
+        },
+        "resourceName": {
+          "type": "string",
+          "description": "The resource name used for building the message"
+        }
+      }
+    },
+    "Severity": {
+      "type": "integer",
+      "description": "Specifies the severity of a rule. ",
+      "x-enumNames": [
+        "Error",
+        "Warning",
+        "Info"
+      ],
+      "enum": [
+        0,
+        1,
+        2
+      ]
+    },
+    "AddQuestionRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "notifyMeOnResponse"
+      ],
+      "properties": {
+        "questionTitle": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "string"
+        },
+        "notifyMeOnResponse": {
+          "type": "boolean"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "EditQuestionResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Response"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "EditQuestionRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "notifyMeOnResponse"
+      ],
+      "properties": {
+        "questionTitle": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "string"
+        },
+        "notifyMeOnResponse": {
+          "type": "boolean"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "questionId": {
+          "type": "string"
+        }
+      }
+    },
+    "VoidResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Response"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false
+        }
+      ]
+    },
+    "DeleteQuestionRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "ListQuestionsResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Response"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Question"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Question": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "createdAt",
+        "updatedAt",
+        "votes"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "questionTitle": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "string"
+        },
+        "tagArray": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "content": {
+          "type": "string"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "updatedBy": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "votes": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "ListQuestionsRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "GetQuestionResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Response"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "question": {
+              "$ref": "#/definitions/Question"
+            },
+            "answers": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/QuestionAnswer"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "QuestionAnswer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "createdAt",
+        "updatedAt",
+        "votes"
+      ],
+      "properties": {
+        "questionId": {
+          "type": "string"
+        },
+        "answer": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedBy": {
+          "type": "string"
+        },
+        "votes": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "GetQuestionRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "AddQuestionTagResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Response"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "AddQuestionTagRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "createdAt",
+        "updatedAt"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedBy": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "DeleteQuestionTagRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "ListQuestionTagsResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Response"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/QuestionTag"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "QuestionTag": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "createdAt",
+        "updatedAt"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedBy": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "ListQuestionTagsRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "AddQuestionAnswerResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Response"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "AddQuestionAnswerRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "questionId": {
+          "type": "string"
+        },
+        "answer": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "EditQuestionAnswerResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Response"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false
+        }
+      ]
+    },
+    "EditQuestionAnswerRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "createdAt",
+        "updatedAt",
+        "votes"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "questionId": {
+          "type": "string"
+        },
+        "answer": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedBy": {
+          "type": "string"
+        },
+        "votes": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "DeleteQuestionAnswerRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "ListQuestionAnswersResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Response"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/QuestionAnswer"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ListQuestionAnswersRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "GetQuestionAnswerResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Response"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "questionAnswer": {
+              "$ref": "#/definitions/QuestionAnswer"
+            }
+          }
+        }
+      ]
+    },
+    "GetQuestionAnswerRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "AddQuestionVoteResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Response"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "AddQuestionVoteRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "createdAt",
+        "updatedAt"
+      ],
+      "properties": {
+        "questionId": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedBy": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "DeleteQuestionVoteRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "UserDto": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
