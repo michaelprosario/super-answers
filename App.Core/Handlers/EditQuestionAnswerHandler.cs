@@ -21,19 +21,8 @@ namespace App.Core.Handlers
         public string Answer { get; set; }
         
         [DataMember(Order = 4)]
-        public DateTime CreatedAt { get; set; }
-        
-        [DataMember(Order = 5)]
-        public string CreatedBy { get; set; }
-        
-        [DataMember(Order = 6)]
-        public DateTime UpdatedAt { get; set; }
-        
-        [DataMember(Order = 7)]
-        public string UpdatedBy { get; set; }
-        
-        [DataMember(Order = 8)]
         public int Votes { get; set; }
+
         [DataMember(Order =9)]
         public string UserId { get; set; }
     }
@@ -42,7 +31,9 @@ namespace App.Core.Handlers
     {
         public EditQuestionAnswerRequestValidator()
         {
-
+            RuleFor(r => r.QuestionId).NotEmpty();
+            RuleFor(r => r.Answer).NotEmpty();
+            RuleFor(r => r.UserId).NotEmpty();
         }
     }
 
@@ -77,16 +68,12 @@ namespace App.Core.Handlers
                 return response;
             }
 
-            var record = new DbEntities.QuestionAnswer();
-            
-            record.QuestionId = request.QuestionId; 
+            var record = _repository.GetById(request.Id);
+
             record.Answer = request.Answer; 
-            record.CreatedAt = request.CreatedAt; 
-            record.CreatedBy = request.CreatedBy; 
-            record.UpdatedAt = request.UpdatedAt; 
-            record.UpdatedBy = request.UpdatedBy; 
+            record.UpdatedAt = DateTime.Now; 
+            record.UpdatedBy = request.UserId; 
             record.Votes = request.Votes; 
-            record.Id = request.Id;    
             _repository.Update(record);
 
             HandlerUtilities.TimeStampRecord(record, request.UserId, false);

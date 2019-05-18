@@ -16,13 +16,6 @@ namespace App.Core.Handlers
             [DataMember(Order = 1)]
             public string QuestionId { get; set; }
             [DataMember(Order = 2)]
-            public DateTime CreatedAt { get; set; }
-            [DataMember(Order = 3)]
-            public string CreatedBy { get; set; }
-            [DataMember(Order = 4)]
-            public DateTime UpdatedAt { get; set; }
-            [DataMember(Order = 5)]
-            public string UpdatedBy { get; set; }
             public string UserId { get; set; }
     }
 
@@ -30,7 +23,8 @@ namespace App.Core.Handlers
     {
         public AddQuestionVoteRequestValidator()
         {
-
+            RuleFor(r => r.QuestionId).NotEmpty();
+            RuleFor(r => r.UserId).NotEmpty();            
         }
     }
 
@@ -66,10 +60,10 @@ namespace App.Core.Handlers
             var record = new DbEntities.QuestionVote();
             
             record.QuestionId = request.QuestionId; 
-            record.CreatedAt = request.CreatedAt; 
-            record.CreatedBy = request.CreatedBy; 
-            record.UpdatedAt = request.UpdatedAt; 
-            record.UpdatedBy = request.UpdatedBy; 
+            record.CreatedAt = DateTime.Now; 
+            record.CreatedBy = request.UserId; 
+            record.UpdatedAt = DateTime.Now; 
+            record.UpdatedBy = request.UserId; 
     
             HandlerUtilities.TimeStampRecord(record, request.UserId, true);
             var returnRecord = _repository.Add(record);

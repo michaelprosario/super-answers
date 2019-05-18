@@ -25,6 +25,7 @@ namespace App.Core.Handlers
         public AddQuestionAnswerRequestValidator()
         {
             RuleFor(x => x.Answer).NotEmpty();
+            RuleFor(x => x.Answer).NotEmpty();
         }
     }
 
