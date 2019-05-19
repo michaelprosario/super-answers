@@ -4,6 +4,7 @@ using System.Linq;
 using App.Core.Entities;
 using App.Core.Interfaces;
 using Dapper;
+using App.Core.Utilities;
 
 namespace App.Infrastructure
 {
@@ -12,6 +13,26 @@ namespace App.Infrastructure
         public QuestionsDataService()
         {
 
+        }
+
+        public bool QuestionVoteAlreadyExists(string userId, string questionId){
+            Require.NotNullOrEmpty(userId, "userId is required");
+            Require.NotNullOrEmpty(questionId, "questionId is required");
+
+            int count = 0;
+            using (var connection = DbConnection())
+            {
+                connection.Open();
+                count = connection.QuerySingle<int>(
+                @"
+                select 
+                count(*)
+                from QuestionVotes where questionId = @questionId and createdBy = @userId
+                ",
+                new { questionId, userId });
+            }
+
+            return count > 0;
         }
 
         public IList<QuestionAnswer> GetAnswersForQuestion(string questionId)

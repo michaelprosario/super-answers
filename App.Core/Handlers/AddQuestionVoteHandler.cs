@@ -36,10 +36,15 @@ namespace App.Core.Handlers
     public class AddQuestionVoteHandler : BaseHandler<AddQuestionVoteRequest, AddQuestionVoteResponse>
     {
         readonly IRepository<DbEntities.QuestionVote> _repository;
+        readonly IQuestionsDataService _questionsDataService;
 
-        public AddQuestionVoteHandler(IRepository<DbEntities.QuestionVote> repository)
+        public AddQuestionVoteHandler(
+            IRepository<DbEntities.QuestionVote> repository,
+            IQuestionsDataService questionsDataService
+            )
         {
             _repository = repository;
+            _questionsDataService = questionsDataService;
         }
 
         protected override AddQuestionVoteResponse Handle(AddQuestionVoteRequest request)
@@ -54,6 +59,12 @@ namespace App.Core.Handlers
             if (!validationResult.IsValid)
             {
                 response.ValidationErrors = validationResult.Errors;
+                return response;
+            }
+
+            if(_questionsDataService.QuestionVoteAlreadyExists(request.UserId, request.QuestionId)){
+                response.Message = "User has already voted for this question";
+                response.Code = ResponseCode.Success;
                 return response;
             }
 

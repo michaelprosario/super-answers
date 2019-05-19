@@ -8,5 +8,7 @@ namespace App.Core.Interfaces
     {
         IList<QuestionAnswer> GetAnswersForQuestion(string questionId);
         int GetQuestionVotes(string id);
+
+        bool QuestionVoteAlreadyExists(string userId, string questionId);
     }
 }

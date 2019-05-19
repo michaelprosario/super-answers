@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionsService } from 'src/data-services/services';
-import { GetQuestionRequest, Question, AddQuestionAnswerRequest } from 'src/data-services/models';
+import { GetQuestionRequest, Question, AddQuestionAnswerRequest, AddQuestionVoteRequest } from 'src/data-services/models';
 import { first } from 'rxjs/operators';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 
@@ -12,9 +12,9 @@ import { routerNgProbeToken } from '@angular/router/src/router_module';
 })
 export class ViewQuestionComponent implements OnInit {
   questionId: string;
-  question = {};
+  question: Question;
   answers = [];
-  answer: string = '';
+  answer = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -22,6 +22,12 @@ export class ViewQuestionComponent implements OnInit {
     private router: Router
   ) {
     this.questionId = this.route.snapshot.paramMap.get('id');
+    this.question = {
+      tagArray: [],
+      createdAt: null,
+      updatedAt: null,
+      votes: 0
+    };
   }
 
   ngOnInit() {
@@ -40,7 +46,21 @@ export class ViewQuestionComponent implements OnInit {
           this.answers = response.answers;
         }
       )
+  }
 
+  handleQuestionVote(){
+    const request: AddQuestionVoteRequest = {};
+    request.questionId = this.questionId;
+    request.userId = 'test';
+
+    this.questionsService.QuestionsAddQuestionVote(request)
+      .pipe(first()).subscribe(
+        response => {
+          if (response.message === null) {
+            this.question.votes++;
+          }
+        }
+      );
   }
 
   handleAskQuestion(){
