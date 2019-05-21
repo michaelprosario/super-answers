@@ -31,6 +31,8 @@ import { ListQuestionAnswersResponse } from '../models/list-question-answers-res
 import { ListQuestionAnswersRequest } from '../models/list-question-answers-request';
 import { GetQuestionAnswerResponse } from '../models/get-question-answer-response';
 import { GetQuestionAnswerRequest } from '../models/get-question-answer-request';
+import { AddAnswerVoteResponse } from '../models/add-answer-vote-response';
+import { AddAnswerVoteRequest } from '../models/add-answer-vote-request';
 import { AddQuestionVoteResponse } from '../models/add-question-vote-response';
 import { AddQuestionVoteRequest } from '../models/add-question-vote-request';
 import { DeleteQuestionVoteRequest } from '../models/delete-question-vote-request';
@@ -51,6 +53,7 @@ class QuestionsService extends __BaseService {
   static readonly QuestionsDeleteQuestionAnswerPath = '/Questions/DeleteQuestionAnswer';
   static readonly QuestionsListQuestionAnswersPath = '/Questions/ListQuestionAnswers';
   static readonly QuestionsGetQuestionAnswerPath = '/Questions/GetQuestionAnswer';
+  static readonly QuestionsAddAnswerVotePath = '/Questions/AddAnswerVote';
   static readonly QuestionsAddQuestionVotePath = '/Questions/AddQuestionVote';
   static readonly QuestionsDeleteQuestionVotePath = '/Questions/DeleteQuestionVote';
 
@@ -500,6 +503,40 @@ class QuestionsService extends __BaseService {
   QuestionsGetQuestionAnswer(request: GetQuestionAnswerRequest): __Observable<GetQuestionAnswerResponse> {
     return this.QuestionsGetQuestionAnswerResponse(request).pipe(
       __map(_r => _r.body as GetQuestionAnswerResponse)
+    );
+  }
+
+  /**
+   * @param request undefined
+   */
+  QuestionsAddAnswerVoteResponse(request: AddAnswerVoteRequest): __Observable<__StrictHttpResponse<AddAnswerVoteResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = request;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/Questions/AddAnswerVote`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<AddAnswerVoteResponse>;
+      })
+    );
+  }
+  /**
+   * @param request undefined
+   */
+  QuestionsAddAnswerVote(request: AddAnswerVoteRequest): __Observable<AddAnswerVoteResponse> {
+    return this.QuestionsAddAnswerVoteResponse(request).pipe(
+      __map(_r => _r.body as AddAnswerVoteResponse)
     );
   }
 

@@ -35,6 +35,26 @@ namespace App.Infrastructure
             return count > 0;
         }
 
+        public bool AnswerVoteAlreadyExists(string userId, string questionAnswerId){
+            Require.NotNullOrEmpty(userId, "userId is required");
+            Require.NotNullOrEmpty(questionAnswerId, "questionAnswerId is required");
+
+            int count = 0;
+            using (var connection = DbConnection())
+            {
+                connection.Open();
+                count = connection.QuerySingle<int>(
+                @"
+                select 
+                count(*)
+                from QuestionAnswerVotes where questionAnswerId = @questionAnswerId and createdBy = @userId
+                ",
+                new { questionAnswerId, userId });
+            }
+
+            return count > 0;
+        }        
+
         public IList<QuestionAnswer> GetAnswersForQuestion(string questionId)
         {
             using (var connection = DbConnection())

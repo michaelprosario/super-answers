@@ -1,13 +1,15 @@
-
+using App.Core.SharedKernel;
 using System.Runtime.Serialization;
 using System;
+using App.Core.Interfaces;
 
-namespace App.Core.Entities {
+namespace App.Core.DbEntities {
+
     [DataContract]
-    public class QuestionVote
+    public class QuestionAnswerVote : BaseEntity, ITimeStampedEntity
     {
         [DataMember]
-        public string QuestionId { get; set; }
+        public string QuestionAnswerId { get; set; }
         
         [DataMember]
         public DateTime CreatedAt { get; set; }
@@ -21,8 +23,6 @@ namespace App.Core.Entities {
         [DataMember]
         public string UpdatedBy { get; set; }
             
-        
-        [DataMember]
-        public string Id { get; set; }
-    }
+    } 
 }
+

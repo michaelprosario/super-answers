@@ -127,6 +127,15 @@ namespace App.Controllers
         }
 
         [AllowAnonymous]
+        [HttpPost("AddAnswerVote")]
+        public async Task<AddAnswerVoteResponse> AddAnswerVoteAsync([FromBody] AddAnswerVoteRequest request)
+        {
+            request.UserId = "test";
+            return await _mediator.Send(request);
+        }
+
+
+        [AllowAnonymous]
         [HttpPost("AddQuestionVote")]
         public async Task<AddQuestionVoteResponse> AddQuestionVoteAsync([FromBody] AddQuestionVoteRequest request)
         {

@@ -28,6 +28,8 @@ export { ListQuestionAnswersResponse } from './models/list-question-answers-resp
 export { ListQuestionAnswersRequest } from './models/list-question-answers-request';
 export { GetQuestionAnswerResponse } from './models/get-question-answer-response';
 export { GetQuestionAnswerRequest } from './models/get-question-answer-request';
+export { AddAnswerVoteResponse } from './models/add-answer-vote-response';
+export { AddAnswerVoteRequest } from './models/add-answer-vote-request';
 export { AddQuestionVoteResponse } from './models/add-question-vote-response';
 export { AddQuestionVoteRequest } from './models/add-question-vote-request';
 export { DeleteQuestionVoteRequest } from './models/delete-question-vote-request';

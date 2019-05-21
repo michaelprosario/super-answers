@@ -10,5 +10,7 @@ namespace App.Core.Interfaces
         int GetQuestionVotes(string id);
 
         bool QuestionVoteAlreadyExists(string userId, string questionId);
+
+        bool AnswerVoteAlreadyExists(string userId, string questionAnswerId);
     }
 }
