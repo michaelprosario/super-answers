@@ -16,5 +16,6 @@ namespace App.Infrastructure
         public DbSet<Core.DbEntities.QuestionTag> QuestionTags { get; set; }
         public DbSet<Core.DbEntities.QuestionAnswer> QuestionAnswers { get; set; }
         public DbSet<Core.DbEntities.QuestionVote> QuestionVotes { get; set; }
+        public DbSet<Core.DbEntities.QuestionAnswerVote> QuestionAnswerVotes { get; set; }
     }
 }
