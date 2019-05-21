@@ -45,7 +45,7 @@
       <div class="divAnswer" *ngFor="let answer of answers">
         <div class="row">
           <div class="col-sm-2" style="text-align:center;">
-            ^ <br>
+            <div (click)="handleAnswerVote(answer)">&nbsp;^&nbsp;</div>
             <b>
               {{answer.votes}}
             </b>
