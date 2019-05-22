@@ -61,6 +61,7 @@ namespace App.Core.Handlers
             var record = _repository.GetById(request.QuestionId);
             record.Content = request.Content;
             record.QuestionTitle = request.QuestionTitle;
+            record.Tags = request.Tags;
        
             HandlerUtilities.TimeStampRecord(record, request.UserId, false);
             _repository.Update(record);

@@ -65,18 +65,15 @@ export class EditQuestionComponent implements OnInit {
     this.formErrors.length = 0;
 
     let tagsArray = [];
-    this.selectedTags.map(t => tagsArray.push(t.value) );
+    this.question.tagArray.map(t => tagsArray.push(t.value) );
     let editQuestionRequest : EditQuestionRequest = {
       questionTitle: this.question.questionTitle,
       content: this.question.contentAsMarkDown,
-      tags: this.question.tagArray.toString(),
+      tags: tagsArray.toString(),
       notifyMeOnResponse: false,
       questionId: this.question.id
     }
 
-    console.log(editQuestionRequest);
-
-    return;
 
     this.questionsService.QuestionsEditQuestion(editQuestionRequest)
     .pipe(first())
