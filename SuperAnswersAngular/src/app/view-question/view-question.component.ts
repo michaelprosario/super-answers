@@ -63,18 +63,16 @@ export class ViewQuestionComponent implements OnInit {
       );
   }
 
-  handleAnswerVote(answer){
-    console.log(answer);
-    
+  handleAnswerVote(answer) {   
     const request: AddAnswerVoteRequest = {};
     request.questionAnswerId = answer.id;
     request.userId = 'test';
 
-    this.questionsService.QuestionsAddQuestionVote(request)
+    this.questionsService.QuestionsAddAnswerVote(request)
       .pipe(first()).subscribe(
         response => {
           if (response.message === null) {
-            alert('Vote added');
+            answer.votes++;
           }
         }
       ); 

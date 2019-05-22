@@ -69,9 +69,9 @@ namespace App.Infrastructure
                 CreatedBy,
                 UpdatedAt,
                 UpdatedBy,
-                (select count(*) from QuestionAnswers q1 where q1.Id = q2.Id  ) Votes,
+                (select count(*) from QuestionAnswerVotes where QuestionAnswerId = QuestionAnswers.Id  ) Votes,
                 Id
-                from QuestionAnswers q2
+                from QuestionAnswers
                 where questionId = @questionId ",
                     new
                     {
