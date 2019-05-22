@@ -31,6 +31,9 @@
           <div class="col-sm-4">
             <div>
               <span class="spanTag" *ngFor="let tag of question.tagArray">{{tag}}&nbsp;</span>
+              <br>
+              <br>
+              
             </div>
           </div>
           <div class="col-sm-4 divQuestionOwner">
@@ -82,6 +85,9 @@
     <div class="col-sm-2">
       <br><br>
       <button type="button" class="btn btn-primary" (click)="handleAskQuestion()">Ask Question</button>
+      <br><br>
+      <button type="button" class="btn btn-primary" (click)="handleEditQuestion()">Edit Question</button>
+
     </div>
   </div>
 </div>

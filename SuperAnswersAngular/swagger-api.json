@@ -1026,6 +1026,9 @@
         "content": {
           "type": "string"
         },
+        "contentAsMarkDown": {
+          "type": "string"
+        },
         "createdBy": {
           "type": "string"
         },

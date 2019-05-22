@@ -1,10 +1,11 @@
 /* tslint:disable */
 export interface Question {
+  contentAsMarkDown?: string;
   id?: string;
-  questionTitle?: string;
   tags?: string;
   tagArray?: Array<string>;
   content?: string;
+  questionTitle?: string;
   createdBy?: string;
   updatedBy?: string;
   createdAt: string;

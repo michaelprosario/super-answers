@@ -26,6 +26,10 @@ namespace App.Core.Entities
 
         [DataMember]
         public string Content { get; set; }
+
+        [DataMember]
+        public string ContentAsMarkDown { get; set; }
+
         [DataMember]
         public string CreatedBy { get; set; }
         [DataMember]

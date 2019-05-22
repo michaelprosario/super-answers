@@ -102,4 +102,8 @@ export class ViewQuestionComponent implements OnInit {
       )
   }
 
+  handleEditQuestion(){
+    this.router.navigate(['/editQuestion/' + this.questionId]);
+  }
+
 }

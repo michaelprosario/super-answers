@@ -43,6 +43,7 @@ namespace App.Core.Factories
             {
                 var question = _mapper.Map<Question>(dbRecord);
                 response.Question = question;
+                question.ContentAsMarkDown = question.Content;
                 question.Content = Markdig.Markdown.ToHtml(question.Content);
                 response.Question.Votes = _questionsDataService.GetQuestionVotes(response.Question.Id);
             }

@@ -1,0 +1,43 @@
+<div class="container">
+  <app-site-top-row></app-site-top-row>
+  <div class="row">
+    <div class="col-sm-2 divLeftMenu">
+      <app-left-menu></app-left-menu>
+    </div>
+
+    <div class="col-sm-8">
+      <div class="form-group">
+        <label for="txtQuestion">Question</label>
+        <input type="text" id="txtQuestion" class="form-control" placeholder="Ask question here"
+          [(ngModel)]="question.questionTitle">
+      </div>
+
+      <div class="form-group">
+        <label for="txtQuestionContent">Question Content</label>
+
+        <md-editor name="Content" [(ngModel)]="question.contentAsMarkDown" [height]="'400px'" [mode]="preview" required>
+        </md-editor>
+
+      </div>
+
+      <div class="form-group">
+        <label for="txtQuestionTags">Tags</label>
+        <tag-input [(ngModel)]='question.tagArray' [onlyFromAutocomplete]="true" id="txtQuestionTags">
+          <tag-input-dropdown [showDropdownIfEmpty]="true" [autocompleteItems]="validTags">
+          </tag-input-dropdown>
+        </tag-input>
+      </div>
+
+      <br><br>
+      <button type="button" class="btn btn-primary" (click)="handleUpdateQuestion()">Update Question</button>
+      <ul *ngFor="let error of formErrors">
+        <li class="liError">{{error}}</li>
+      </ul>
+
+    </div>
+
+    <div class="col-sm-2">
+
+    </div>
+  </div>
+</div>
