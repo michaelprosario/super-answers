@@ -60,6 +60,10 @@ export class EditQuestionComponent implements OnInit {
       )
   }
 
+  viewQuestion(){
+    this.router.navigate(['/viewQuestion/' + this.questionId])
+  }  
+
   handleUpdateQuestion() {
     this.formErrors.length = 0;
 

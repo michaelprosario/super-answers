@@ -27,6 +27,13 @@ export class EditQuestionAnswerComponent implements OnInit {
       updatedAt: null,
       votes: 0
     };
+
+    this.answer = {
+      answer: '',
+      createdAt: null,
+      updatedAt: null,
+      votes: 0
+    }
   }
 
   ngOnInit() {
@@ -51,6 +58,10 @@ export class EditQuestionAnswerComponent implements OnInit {
     this.router.navigate(['/askQuestion']);
   }
 
+  viewQuestion(){
+    this.router.navigate(['/viewQuestion/' + this.answer.questionId])
+  }
+
   postAnswer(){
     if(this.answer.answer === ''){
       alert('Enter a valid answer');
@@ -65,7 +76,7 @@ export class EditQuestionAnswerComponent implements OnInit {
     this.questionsService.QuestionsEditQuestionAnswer(request)
       .pipe(first()).subscribe(
         response => {
-          this.router.navigate(['/viewQuestion/' + this.answer.questionId]);
+          this.viewQuestion();
         }
       )
   }

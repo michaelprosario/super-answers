@@ -29,7 +29,8 @@
       </div>
 
       <br><br>
-      <button type="button" class="btn btn-primary" (click)="handleUpdateQuestion()">Update Question</button>
+      <button type="button" class="btn btn-primary" (click)="handleUpdateQuestion()">Update Question</button>&nbsp;
+      <button type="button" class="btn btn-primary" (click)="viewQuestion()">Cancel</button>
       <ul *ngFor="let error of formErrors">
         <li class="liError">{{error}}</li>
       </ul>
