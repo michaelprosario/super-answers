@@ -22,7 +22,8 @@
 
       <div class="form-group">
         <label for="txtQuestionTags">Tags</label>
-        <tag-input [(ngModel)]='question.tagArray' [onlyFromAutocomplete]="true" id="txtQuestionTags" modelAsStrings="true">
+        <tag-input [(ngModel)]='question.tagArray' [onlyFromAutocomplete]="true" id="txtQuestionTags"
+          modelAsStrings="true">
           <tag-input-dropdown [showDropdownIfEmpty]="true" [autocompleteItems]="validTags">
           </tag-input-dropdown>
         </tag-input>
