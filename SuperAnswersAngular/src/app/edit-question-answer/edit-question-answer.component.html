@@ -16,7 +16,7 @@
         </div>
         <div class="row">
           <div class="col-sm-2" style="text-align:center;">
-            <div (click)="handleQuestionVote()">&nbsp;^&nbsp;</div> 
+            <div>&nbsp;^&nbsp;</div> 
             <b>
               {{question.votes}}
             </b>
@@ -44,38 +44,11 @@
       </div>
       <!-- END Question -->
 
-      <!-- START Answer -->
-      <div class="divAnswer" *ngFor="let answer of answers">
-        <div class="row">
-          <div class="col-sm-2" style="text-align:center;">
-            <div (click)="handleAnswerVote(answer)">&nbsp;^&nbsp;</div>
-            <b>
-              {{answer.votes}}
-            </b>
-          </div>
-          <div class="col-sm-10" [innerHTML]="answer.answer"></div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-4">
-            <button type="button" class="btn btn-primary" (click)="editAnswer(answer)">Edit</button>
-          </div>
-          <div class="col-sm-4">
-
-          </div>
-          <div class="col-sm-4 divQuestionOwner">
-            <div><b>{{answer.createdBy}}</b></div>
-            <div>Answered: {{answer.createdAt | date}} at {{answer.createdAt | date:'shortTime' }}</div>
-          </div>
-        </div>
-      </div>
-      <!-- END ANSWER -->
 
       <!-- START Answer Form -->
       <h3>What's your answer?</h3>
 
-      
-      <md-editor name="Content" [(ngModel)]="answer" [height]="'400px'" [mode]="preview" required>
+      <md-editor name="Content" [(ngModel)]="answer.answer" [height]="'400px'" [mode]="preview" required>
       </md-editor>
       
       <button type="button" class="btn btn-primary" (click)="postAnswer()">Post Answer</button>

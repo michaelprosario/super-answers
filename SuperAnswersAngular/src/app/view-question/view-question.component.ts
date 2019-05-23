@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionsService } from 'src/data-services/services';
-import { GetQuestionRequest, Question, AddQuestionAnswerRequest, AddQuestionVoteRequest, AddAnswerVoteResponse, AddAnswerVoteRequest } from 'src/data-services/models';
+import { GetQuestionRequest, Question, AddQuestionAnswerRequest, AddQuestionVoteRequest, AddAnswerVoteResponse, AddAnswerVoteRequest, QuestionAnswer } from 'src/data-services/models';
 import { first } from 'rxjs/operators';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 
@@ -106,4 +106,7 @@ export class ViewQuestionComponent implements OnInit {
     this.router.navigate(['/editQuestion/' + this.questionId]);
   }
 
+  editAnswer(answer: QuestionAnswer){
+    this.router.navigate(['/editQuestionAnswer/' + answer.id]);
+  }
 }

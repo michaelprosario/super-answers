@@ -13,16 +13,10 @@ namespace App.Core.Handlers
     {
         [DataMember(Order=1)]
         public string Id { get; set; }
-        
-        [DataMember(Order = 2)]
-        public string QuestionId { get; set; }
-        
+               
         [DataMember(Order = 3)]
         public string Answer { get; set; }
         
-        [DataMember(Order = 4)]
-        public int Votes { get; set; }
-
         [DataMember(Order =9)]
         public string UserId { get; set; }
     }
@@ -31,7 +25,6 @@ namespace App.Core.Handlers
     {
         public EditQuestionAnswerRequestValidator()
         {
-            RuleFor(r => r.QuestionId).NotEmpty();
             RuleFor(r => r.Answer).NotEmpty();
             RuleFor(r => r.UserId).NotEmpty();
         }
@@ -69,13 +62,14 @@ namespace App.Core.Handlers
             }
 
             var record = _repository.GetById(request.Id);
+            if(record == null)
+            {
+                response.Code = ResponseCode.NotFound;
+                response.Message = "Record not found";
+                return response;
+            }
 
             record.Answer = request.Answer; 
-            record.UpdatedAt = DateTime.Now; 
-            record.UpdatedBy = request.UserId; 
-            record.Votes = request.Votes; 
-            _repository.Update(record);
-
             HandlerUtilities.TimeStampRecord(record, request.UserId, false);
             _repository.Update(record);
 

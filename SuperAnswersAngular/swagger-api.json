@@ -1273,22 +1273,12 @@
     "EditQuestionAnswerRequest": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "votes"
-      ],
       "properties": {
         "id": {
           "type": "string"
         },
-        "questionId": {
-          "type": "string"
-        },
         "answer": {
           "type": "string"
-        },
-        "votes": {
-          "type": "integer",
-          "format": "int32"
         },
         "userId": {
           "type": "string"
@@ -1346,6 +1336,9 @@
           "properties": {
             "questionAnswer": {
               "$ref": "#/definitions/QuestionAnswer"
+            },
+            "question": {
+              "$ref": "#/definitions/Question"
             }
           }
         }

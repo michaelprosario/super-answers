@@ -20,6 +20,7 @@ import { SiteTopRowComponent } from './site-top-row/site-top-row.component';
 import { LeftMenuComponent } from './left-menu/left-menu.component';
 import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 import { EditQuestionComponent } from './edit-question/edit-question.component';
+import { EditQuestionAnswerComponent } from './edit-question-answer/edit-question-answer.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { EditQuestionComponent } from './edit-question/edit-question.component';
     SiteTopRowComponent,
     LeftMenuComponent,
     EditQuestionComponent,
+    EditQuestionAnswerComponent,
   ],
   imports: [
     AppRoutingModule,
