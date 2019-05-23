@@ -56,7 +56,6 @@ export class EditQuestionComponent implements OnInit {
       .pipe(first()).subscribe(
         response => {
           this.question = response.question;
-          console.log(this.question);
         }
       )
   }
@@ -65,7 +64,8 @@ export class EditQuestionComponent implements OnInit {
     this.formErrors.length = 0;
 
     let tagsArray = [];
-    this.question.tagArray.map(t => tagsArray.push(t.value) );
+    
+    this.question.tagArray.map(t => tagsArray.push(t) );
     let editQuestionRequest : EditQuestionRequest = {
       questionTitle: this.question.questionTitle,
       content: this.question.contentAsMarkDown,
@@ -73,7 +73,6 @@ export class EditQuestionComponent implements OnInit {
       notifyMeOnResponse: false,
       questionId: this.question.id
     }
-
 
     this.questionsService.QuestionsEditQuestion(editQuestionRequest)
     .pipe(first())
