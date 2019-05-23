@@ -1,5 +1,4 @@
 
-import { AnswerQuestionComponent } from './answer-question/answer-question.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AskQuestionComponent } from './ask-question/ask-question.component';
@@ -22,10 +21,8 @@ import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 import { EditQuestionComponent } from './edit-question/edit-question.component';
 import { EditQuestionAnswerComponent } from './edit-question-answer/edit-question-answer.component';
 
-
 @NgModule({
   declarations: [
-    AnswerQuestionComponent,
     AppComponent,
     AskQuestionComponent,
     LoginComponent,
