@@ -6,20 +6,20 @@ using App.Core.Interfaces;
 using App.Core.Utilities;
 using AutoMapper;
 
-namespace App.Core.Factories
+namespace App.Core.Aggregates
 {
-    public interface IQuestionsFactory
+    public interface IQuestions
     {
         GetQuestionResponse GetQuestion(GetQuestionRequest request);
     }
 
-    public class QuestionsFactory : IQuestionsFactory
+    public class Questions : IQuestions
     {
         private readonly IRepository<DbEntities.Question> _questionRepository;
         private readonly IQuestionsDataService _questionsDataService;
         private readonly IMapper _mapper;
 
-        public QuestionsFactory(IRepository<DbEntities.Question> questionRepository, IQuestionsDataService questionsDataService, IMapper mapper)
+        public Questions(IRepository<DbEntities.Question> questionRepository, IQuestionsDataService questionsDataService, IMapper mapper)
         {
             _questionRepository = questionRepository;
             _questionsDataService = questionsDataService;
@@ -54,7 +54,7 @@ namespace App.Core.Factories
                 {
                     answer.Answer = Markdig.Markdown.ToHtml(answer.Answer);
                 }
-                response.Answers = answers;                
+                response.Answers = answers.OrderByDescending(r => r.Votes).ToList();
             }
 
             return response;

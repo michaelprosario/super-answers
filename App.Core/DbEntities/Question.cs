@@ -6,8 +6,6 @@ namespace App.Core.DbEntities
 {
     public class Question : BaseEntity, ITimeStampedEntity
     {
-        public string Id { get; set; }
-
         public string QuestionTitle { get; set; }
 
         public string Tags { get; set; }

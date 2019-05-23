@@ -4,7 +4,7 @@ using App.Core.Interfaces;
 using App.Core.Requests;
 using MediatR;
 using System.Runtime.Serialization;
-using App.Core.Factories;
+using App.Core.Aggregates;
 
 namespace App.Core.Handlers
 {
@@ -26,16 +26,16 @@ namespace App.Core.Handlers
 
     public class GetQuestionHandler : BaseHandler<GetQuestionRequest, GetQuestionResponse>
     {
-        private readonly IQuestionsFactory _questionsFactory;
+        private readonly IQuestions _questions;
 
-        public GetQuestionHandler(IQuestionsFactory questionsFactory)
+        public GetQuestionHandler(IQuestions questionsFactory)
         {
-            _questionsFactory = questionsFactory;
+            _questions = questionsFactory;
         }
 
         protected override GetQuestionResponse Handle(GetQuestionRequest request)
         {
-            return _questionsFactory.GetQuestion(request);
+            return _questions.GetQuestion(request);
         }
     }
 }

@@ -1,6 +1,6 @@
 using App.Core.Entities;
 using App.Core.Enums;
-using App.Core.Factories;
+using App.Core.Aggregates;
 using App.Core.Interfaces;
 using App.Core.Requests;
 using App.Core.Utilities;
@@ -27,13 +27,13 @@ namespace App.Core.Handlers
     {
         readonly IRepository<DbEntities.QuestionAnswer> _repository;
         private readonly IMapper _mapper;
-        private readonly IQuestionsFactory _questionsFactory;
+        private readonly IQuestions _questions;
 
-        public GetQuestionAnswerHandler(IRepository<DbEntities.QuestionAnswer> repository, IMapper mapper, IQuestionsFactory questionsFactory)
+        public GetQuestionAnswerHandler(IRepository<DbEntities.QuestionAnswer> repository, IMapper mapper, IQuestions questions)
         {
             _repository = repository;
             _mapper = mapper;
-            _questionsFactory = questionsFactory;
+            _questions = questions;
         }
 
         protected override GetQuestionAnswerResponse Handle(GetQuestionAnswerRequest request)
@@ -61,7 +61,7 @@ namespace App.Core.Handlers
                 UserId = request.UserId
             };
 
-            response.Question = _questionsFactory.GetQuestion(getQuestionRequest).Question;
+            response.Question = _questions.GetQuestion(getQuestionRequest).Question;
             return response;
         }
     }
