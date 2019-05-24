@@ -1,16 +1,21 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using App.Core.DbEntities;
 using App.Core.Entities;
 using App.Core.Enums;
 using App.Core.Handlers;
 using App.Core.Interfaces;
 using App.Core.Utilities;
 using AutoMapper;
+using Question = App.Core.Entities.Question;
 
 namespace App.Core.Aggregates
 {
     public interface IQuestions
     {
         GetQuestionResponse GetQuestion(GetQuestionRequest request);
+        IEnumerable<Question> SearchByKeyword(string searchTerm);
     }
 
     public class Questions : IQuestions
@@ -58,6 +63,12 @@ namespace App.Core.Aggregates
             }
 
             return response;
+        }
+
+        public IEnumerable<Question> SearchByKeyword(string searchTerm)
+        {
+            Require.ObjectNotNull(searchTerm, "searchTerm should not be null");
+            return _questionsDataService.SearchByKeyword(searchTerm);
         }
     }
 }

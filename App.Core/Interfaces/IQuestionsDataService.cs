@@ -12,5 +12,6 @@ namespace App.Core.Interfaces
         bool QuestionVoteAlreadyExists(string userId, string questionId);
 
         bool AnswerVoteAlreadyExists(string userId, string questionAnswerId);
+        IEnumerable<Question> SearchByKeyword(string searchTerm);
     }
 }

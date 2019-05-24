@@ -53,7 +53,34 @@ namespace App.Infrastructure
             }
 
             return count > 0;
-        }        
+        }
+
+        public IEnumerable<Question> SearchByKeyword(string searchTermFromRequest)
+        {
+            var searchTerm = $"%{searchTermFromRequest}%";
+            using (var connection = DbConnection())
+            {
+                connection.Open();
+                var resultsQuestions = connection.Query<Question>(
+                    @"
+                    select top 200 * 
+                    from questions
+                    where (questionTitle like @searchTerm
+                    or content like @searchTerm)
+                    or id in (
+                    select QuestionId 
+                    from QuestionAnswers
+                    where (answer like @searchTerm)
+                    )
+                    ",
+                    new
+                    {
+                        searchTerm
+                    });
+
+                return resultsQuestions.ToList();
+            }
+        }
 
         public IList<QuestionAnswer> GetAnswersForQuestion(string questionId)
         {
