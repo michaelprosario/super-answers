@@ -8,10 +8,12 @@
 
     <div class="col-sm-8">
       <div id="divSearchResults" *ngFor="let question of searchResults" >
-          <div class="divQuestion">
+          <div class="divQuestion" >
             <div class="row divQuestionTitle">
               <div class="col-sm-12">
-                <h3>{{question.questionTitle}}</h3>
+                <a [routerLink]="['/viewQuestion/' + question.id]">
+                  <h3>{{question.questionTitle}}</h3>
+                </a>
               </div>
             </div>
             <div class="row">
