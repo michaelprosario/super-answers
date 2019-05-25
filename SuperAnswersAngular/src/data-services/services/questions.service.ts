@@ -36,6 +36,8 @@ import { AddAnswerVoteRequest } from '../models/add-answer-vote-request';
 import { AddQuestionVoteResponse } from '../models/add-question-vote-response';
 import { AddQuestionVoteRequest } from '../models/add-question-vote-request';
 import { DeleteQuestionVoteRequest } from '../models/delete-question-vote-request';
+import { SearchByKeywordResponse } from '../models/search-by-keyword-response';
+import { SearchByKeywordRequest } from '../models/search-by-keyword-request';
 @Injectable({
   providedIn: 'root',
 })
@@ -56,6 +58,7 @@ class QuestionsService extends __BaseService {
   static readonly QuestionsAddAnswerVotePath = '/Questions/AddAnswerVote';
   static readonly QuestionsAddQuestionVotePath = '/Questions/AddQuestionVote';
   static readonly QuestionsDeleteQuestionVotePath = '/Questions/DeleteQuestionVote';
+  static readonly QuestionsSearchByKeywordPath = '/Questions/SearchByKeyword';
 
   constructor(
     config: __Configuration,
@@ -605,6 +608,40 @@ class QuestionsService extends __BaseService {
   QuestionsDeleteQuestionVote(request: DeleteQuestionVoteRequest): __Observable<VoidResponse> {
     return this.QuestionsDeleteQuestionVoteResponse(request).pipe(
       __map(_r => _r.body as VoidResponse)
+    );
+  }
+
+  /**
+   * @param request undefined
+   */
+  QuestionsSearchByKeywordResponse(request: SearchByKeywordRequest): __Observable<__StrictHttpResponse<SearchByKeywordResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = request;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/Questions/SearchByKeyword`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<SearchByKeywordResponse>;
+      })
+    );
+  }
+  /**
+   * @param request undefined
+   */
+  QuestionsSearchByKeyword(request: SearchByKeywordRequest): __Observable<SearchByKeywordResponse> {
+    return this.QuestionsSearchByKeywordResponse(request).pipe(
+      __map(_r => _r.body as SearchByKeywordResponse)
     );
   }
 }

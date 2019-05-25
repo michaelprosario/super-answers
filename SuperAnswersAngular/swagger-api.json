@@ -634,6 +634,45 @@
         }
       }
     },
+    "/Questions/SearchByKeyword": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "Questions_SearchByKeyword",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SearchByKeywordRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SearchByKeywordResponse"
+            }
+          }
+        }
+      }
+    },
     "/Users/Authenticate": {
       "post": {
         "tags": [
@@ -1417,6 +1456,37 @@
       "additionalProperties": false,
       "properties": {
         "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "SearchByKeywordResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Response"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "questions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Question"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "SearchByKeywordRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "searchTerms": {
           "type": "string"
         },
         "userId": {

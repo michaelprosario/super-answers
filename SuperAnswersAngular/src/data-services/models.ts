@@ -33,4 +33,6 @@ export { AddAnswerVoteRequest } from './models/add-answer-vote-request';
 export { AddQuestionVoteResponse } from './models/add-question-vote-response';
 export { AddQuestionVoteRequest } from './models/add-question-vote-request';
 export { DeleteQuestionVoteRequest } from './models/delete-question-vote-request';
+export { SearchByKeywordResponse } from './models/search-by-keyword-response';
+export { SearchByKeywordRequest } from './models/search-by-keyword-request';
 export { UserDto } from './models/user-dto';
