@@ -158,7 +158,5 @@ namespace App.Controllers
             request.UserId = "test";
             return await _mediator.Send(request);
         }
-
-
     }
 }

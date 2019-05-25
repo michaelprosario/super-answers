@@ -63,7 +63,17 @@ namespace App.Infrastructure
                 connection.Open();
                 var resultsQuestions = connection.Query<Question>(
                     @"
-                    select * 
+                    select 
+                    Id,
+                    QuestionTitle,
+                    Tags,
+                    Content,
+                    CreatedBy,
+                    CreatedAt,
+                    UpdatedBy,
+                    UpdatedAt,
+                    (select count(*) from QuestionVotes qv where qv.QuestionId = questions.Id) Votes,
+                    (select count(*) from QuestionAnswers qa where qa.QuestionId = questions.Id) AnswerCount
                     from questions
                     where (questionTitle like @searchTerm
                     or content like @searchTerm)
