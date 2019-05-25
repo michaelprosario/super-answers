@@ -63,7 +63,7 @@ namespace App.Infrastructure
                 connection.Open();
                 var resultsQuestions = connection.Query<Question>(
                     @"
-                    select top 200 * 
+                    select * 
                     from questions
                     where (questionTitle like @searchTerm
                     or content like @searchTerm)

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Question, SearchByKeywordRequest } from 'src/data-services/models';
+import { ActivatedRoute, Router } from '@angular/router';
+import { QuestionsService } from 'src/data-services/services';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-question-search',
@@ -7,9 +11,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionSearchComponent implements OnInit {
 
-  constructor() { }
+  searchResults: Question[];
+  terms: string;
 
-  ngOnInit() {
+  constructor(
+    private route: ActivatedRoute,
+    private questionsService: QuestionsService,
+    private router: Router
+  ) {
+    this.terms = this.route.snapshot.paramMap.get('terms');
+    this.searchResults = [];
   }
 
+  ngOnInit() {
+    let request: SearchByKeywordRequest = {};
+    request.searchTerms = this.terms;
+    request.userId = "test";
+    
+    let current = this;
+    this.questionsService.QuestionsSearchByKeyword(request)
+      .pipe(first()).subscribe(
+        response => {
+          current.searchResults = response.questions;
+        }
+      )
+  }
 }
