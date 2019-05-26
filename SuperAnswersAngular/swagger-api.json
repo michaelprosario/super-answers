@@ -673,6 +673,45 @@
         }
       }
     },
+    "/Questions/GetMostRecentQuestions": {
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "operationId": "Questions_GetMostRecentQuestions",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetMostRecentQuestionsRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GetMostRecentQuestionsResponse"
+            }
+          }
+        }
+      }
+    },
     "/Users/Authenticate": {
       "post": {
         "tags": [
@@ -1044,7 +1083,8 @@
       "required": [
         "createdAt",
         "updatedAt",
-        "votes"
+        "votes",
+        "answerCount"
       ],
       "properties": {
         "id": {
@@ -1083,6 +1123,10 @@
           "format": "date-time"
         },
         "votes": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "answerCount": {
           "type": "integer",
           "format": "int32"
         }
@@ -1489,6 +1533,34 @@
         "searchTerms": {
           "type": "string"
         },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "GetMostRecentQuestionsResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Response"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "questions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Question"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "GetMostRecentQuestionsRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
         "userId": {
           "type": "string"
         }

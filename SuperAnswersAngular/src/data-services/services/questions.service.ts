@@ -38,6 +38,8 @@ import { AddQuestionVoteRequest } from '../models/add-question-vote-request';
 import { DeleteQuestionVoteRequest } from '../models/delete-question-vote-request';
 import { SearchByKeywordResponse } from '../models/search-by-keyword-response';
 import { SearchByKeywordRequest } from '../models/search-by-keyword-request';
+import { GetMostRecentQuestionsResponse } from '../models/get-most-recent-questions-response';
+import { GetMostRecentQuestionsRequest } from '../models/get-most-recent-questions-request';
 @Injectable({
   providedIn: 'root',
 })
@@ -59,6 +61,7 @@ class QuestionsService extends __BaseService {
   static readonly QuestionsAddQuestionVotePath = '/Questions/AddQuestionVote';
   static readonly QuestionsDeleteQuestionVotePath = '/Questions/DeleteQuestionVote';
   static readonly QuestionsSearchByKeywordPath = '/Questions/SearchByKeyword';
+  static readonly QuestionsGetMostRecentQuestionsPath = '/Questions/GetMostRecentQuestions';
 
   constructor(
     config: __Configuration,
@@ -642,6 +645,40 @@ class QuestionsService extends __BaseService {
   QuestionsSearchByKeyword(request: SearchByKeywordRequest): __Observable<SearchByKeywordResponse> {
     return this.QuestionsSearchByKeywordResponse(request).pipe(
       __map(_r => _r.body as SearchByKeywordResponse)
+    );
+  }
+
+  /**
+   * @param request undefined
+   */
+  QuestionsGetMostRecentQuestionsResponse(request: GetMostRecentQuestionsRequest): __Observable<__StrictHttpResponse<GetMostRecentQuestionsResponse>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = request;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/Questions/GetMostRecentQuestions`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<GetMostRecentQuestionsResponse>;
+      })
+    );
+  }
+  /**
+   * @param request undefined
+   */
+  QuestionsGetMostRecentQuestions(request: GetMostRecentQuestionsRequest): __Observable<GetMostRecentQuestionsResponse> {
+    return this.QuestionsGetMostRecentQuestionsResponse(request).pipe(
+      __map(_r => _r.body as GetMostRecentQuestionsResponse)
     );
   }
 }

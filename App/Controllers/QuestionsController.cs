@@ -158,5 +158,13 @@ namespace App.Controllers
             request.UserId = "test";
             return await _mediator.Send(request);
         }
+
+        [AllowAnonymous]
+        [HttpPost("GetMostRecentQuestions")]
+        public async Task<GetMostRecentQuestionsResponse> GetMostRecentQuestionsAsync([FromBody] GetMostRecentQuestionsRequest request)
+        {
+            request.UserId = "test";
+            return await _mediator.Send(request);
+        }
     }
 }

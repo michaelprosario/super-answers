@@ -56,6 +56,18 @@ namespace App.Infrastructure
             return count > 0;
         }
 
+        public IEnumerable<Question> GetMostRecentQuestions()
+        {
+            using (var connection = DbConnection())
+            {
+                connection.Open();
+                string sql = GetQuestionSql();
+                sql += " (1=1) order by CreatedAt desc limit 30 ";
+                var resultsQuestions = connection.Query<Question>(sql);
+                return resultsQuestions.ToList();
+            }
+        }
+
         public IEnumerable<Question> SearchByKeyword(string searchPhrase)
         {
             Require.NotNullOrEmpty(searchPhrase, "Search term should not be empty");
@@ -63,7 +75,37 @@ namespace App.Infrastructure
             using (var connection = DbConnection())
             {
                 connection.Open();
-                string sql = @"
+                string sql = GetQuestionSql();
+
+                var parameters = new DynamicParameters();
+                int termCount = 0;
+                foreach (var term in searchTerms)
+                {
+                    var searchTerm = $"%{term}%";
+                    var searchTermName = $"@term{termCount}";
+                    string searchTermSql = $@" 
+                    (questionTitle like {searchTermName} or content like {searchTermName})
+                    or id in ( select QuestionId from QuestionAnswers where (answer like {searchTermName}) ) ";
+
+                    if (termCount > 0)
+                    {
+                        searchTermSql = " or " + searchTermSql;
+                    }
+                    sql += searchTermSql;
+                    parameters.Add(searchTermName, searchTerm, DbType.String, ParameterDirection.Input);
+                    termCount++;
+                }
+
+                sql += " limit 200 ";
+
+                var resultsQuestions = connection.Query<Question>(sql, parameters);
+                return resultsQuestions.ToList();
+            }
+        }
+
+        private static string GetQuestionSql()
+        {
+            return @"
                     select distinct
                     Id,
                     QuestionTitle,
@@ -78,29 +120,6 @@ namespace App.Infrastructure
                     from questions
                     where
                     ";
-            
-                var parameters = new DynamicParameters();
-                int termCount = 0;
-                foreach (var term in searchTerms)
-                {
-                    var searchTerm = $"%{term}%";
-                    var searchTermName = $"@term{termCount}";
-                    string searchTermSql = $@" 
-                    (questionTitle like {searchTermName} or content like {searchTermName})
-                    or id in ( select QuestionId from QuestionAnswers where (answer like {searchTermName}) ) ";
-
-                    if(termCount > 0)
-                    {
-                        searchTermSql = " or " + searchTermSql;
-                    }
-                    sql += searchTermSql;
-                    parameters.Add(searchTermName,searchTerm, DbType.String, ParameterDirection.Input);
-                    termCount++;
-                }
-
-                var resultsQuestions = connection.Query<Question>(sql, parameters);
-                return resultsQuestions.ToList();
-            }
         }
 
         public IList<QuestionAnswer> GetAnswersForQuestion(string questionId)

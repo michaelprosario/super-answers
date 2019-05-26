@@ -13,5 +13,7 @@ namespace App.Core.Interfaces
 
         bool AnswerVoteAlreadyExists(string userId, string questionAnswerId);
         IEnumerable<Question> SearchByKeyword(string searchTerm);
+
+        IEnumerable<Question> GetMostRecentQuestions();
     }
 }

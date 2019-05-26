@@ -8,6 +8,7 @@ import { TestComponent } from './test/test.component';
 import { EditQuestionComponent } from './edit-question/edit-question.component';
 import { EditQuestionAnswerComponent } from './edit-question-answer/edit-question-answer.component';
 import { QuestionSearchComponent } from './question-search/question-search.component';
+import { RecentQuestionsComponent } from './recent-questions/recent-questions.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'editQuestionAnswer/:id', component: EditQuestionAnswerComponent },   
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'recentQuestions', component: RecentQuestionsComponent },
   { path: 'searchQuestions/:terms', component: QuestionSearchComponent },   
   { path: 'test', component: TestComponent },
   { path: 'viewQuestion/:id', component: ViewQuestionComponent },  

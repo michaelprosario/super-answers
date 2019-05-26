@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using App.Core.Entities;
 using App.Core.Requests;
@@ -9,35 +9,34 @@ using App.Core.Utilities;
 
 namespace App.Core.Handlers
 {
-    public class SearchByKeywordRequest : IRequest<SearchByKeywordResponse>
+    public class GetMostRecentQuestionsRequest : IRequest<GetMostRecentQuestionsResponse>
     {
-        public string SearchTerms { get; set; }
         public string UserId { get; set; }
     }
 
     [DataContract]
-    public class SearchByKeywordResponse : Response
+    public class GetMostRecentQuestionsResponse : Response
     {
         [DataMember]
         public IList<Question> Questions;
     }
 
-    public class SearchByKeywordHandler : BaseHandler<SearchByKeywordRequest, SearchByKeywordResponse>
+    public class GetMostRecentQuestionsHandler : BaseHandler<GetMostRecentQuestionsRequest, GetMostRecentQuestionsResponse>
     {
         private readonly IQuestions _questions;
 
-        public SearchByKeywordHandler(IQuestions questions)
+        public GetMostRecentQuestionsHandler(IQuestions questions)
         {
             _questions = questions;
         }
 
-        protected override SearchByKeywordResponse Handle(SearchByKeywordRequest request)
+        protected override GetMostRecentQuestionsResponse Handle(GetMostRecentQuestionsRequest request)
         {
             Require.ObjectNotNull(request, "request should not be null");
 
-            var response = new SearchByKeywordResponse
+            var response = new GetMostRecentQuestionsResponse
             {
-                Questions = _questions.SearchByKeyword(request.SearchTerms).ToList()
+                Questions = _questions.GetMostRecentQuestions().ToList()
             };
 
             return response;

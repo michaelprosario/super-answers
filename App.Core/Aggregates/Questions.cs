@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using App.Core.DbEntities;
-using App.Core.Entities;
 using App.Core.Enums;
 using App.Core.Handlers;
 using App.Core.Interfaces;
@@ -16,6 +13,7 @@ namespace App.Core.Aggregates
     {
         GetQuestionResponse GetQuestion(GetQuestionRequest request);
         IEnumerable<Question> SearchByKeyword(string searchTerm);
+        IEnumerable<Question> GetMostRecentQuestions();
     }
 
     public class Questions : IQuestions
@@ -69,6 +67,11 @@ namespace App.Core.Aggregates
         {
             Require.ObjectNotNull(searchTerm, "searchTerm should not be null");
             return _questionsDataService.SearchByKeyword(searchTerm);
+        }
+
+        public IEnumerable<Question> GetMostRecentQuestions()
+        {
+            return _questionsDataService.GetMostRecentQuestions();
         }
     }
 }

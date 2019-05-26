@@ -1,14 +1,15 @@
 /* tslint:disable */
 export interface Question {
-  contentAsMarkDown?: string;
+  createdBy?: string;
   id?: string;
   tags?: string;
   tagArray?: Array<string>;
   content?: string;
+  contentAsMarkDown?: string;
   questionTitle?: string;
-  createdBy?: string;
   updatedBy?: string;
   createdAt: string;
   updatedAt: string;
   votes: number;
+  answerCount: number;
 }

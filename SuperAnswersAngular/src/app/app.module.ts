@@ -21,6 +21,7 @@ import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 import { EditQuestionComponent } from './edit-question/edit-question.component';
 import { EditQuestionAnswerComponent } from './edit-question-answer/edit-question-answer.component';
 import { QuestionSearchComponent } from './question-search/question-search.component';
+import { RecentQuestionsComponent } from './recent-questions/recent-questions.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { QuestionSearchComponent } from './question-search/question-search.compo
     EditQuestionComponent,
     EditQuestionAnswerComponent,
     QuestionSearchComponent,
+    RecentQuestionsComponent,
   ],
   imports: [
     AppRoutingModule,

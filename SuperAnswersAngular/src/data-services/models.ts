@@ -35,4 +35,6 @@ export { AddQuestionVoteRequest } from './models/add-question-vote-request';
 export { DeleteQuestionVoteRequest } from './models/delete-question-vote-request';
 export { SearchByKeywordResponse } from './models/search-by-keyword-response';
 export { SearchByKeywordRequest } from './models/search-by-keyword-request';
+export { GetMostRecentQuestionsResponse } from './models/get-most-recent-questions-response';
+export { GetMostRecentQuestionsRequest } from './models/get-most-recent-questions-request';
 export { UserDto } from './models/user-dto';
