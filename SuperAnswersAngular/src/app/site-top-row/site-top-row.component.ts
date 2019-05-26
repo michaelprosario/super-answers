@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-site-top-row',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SiteTopRowComponent implements OnInit {
 
-  constructor() { }
+  searchPhrase: string = '';
+  
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
 
+  keyDownFunction(event) {
+    if(event.keyCode == 13) {
+      this.router.navigate(['/searchQuestions/' + this.searchPhrase]);
+    }
+  }  
 }

@@ -19,11 +19,13 @@ export class QuestionSearchComponent implements OnInit {
     private questionsService: QuestionsService,
     private router: Router
   ) {
-    this.terms = this.route.snapshot.paramMap.get('terms');
     this.searchResults = [];
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
   ngOnInit() {
+    this.terms = this.route.snapshot.paramMap.get('terms');
+
     let request: SearchByKeywordRequest = {};
     request.searchTerms = this.terms;
     request.userId = "test";
