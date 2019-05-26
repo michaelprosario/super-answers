@@ -40,5 +40,7 @@ namespace App.Core.Entities
         public DateTime UpdatedAt { get; set; }
         [DataMember]
         public int Votes { get; set; }
+        [DataMember]
+        public int AnswerCount { get; set; }
     }
 }

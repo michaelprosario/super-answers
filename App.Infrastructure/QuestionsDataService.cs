@@ -5,6 +5,7 @@ using App.Core.Entities;
 using App.Core.Interfaces;
 using Dapper;
 using App.Core.Utilities;
+using System.Data;
 
 namespace App.Infrastructure
 {
@@ -53,7 +54,54 @@ namespace App.Infrastructure
             }
 
             return count > 0;
-        }        
+        }
+
+        public IEnumerable<Question> SearchByKeyword(string searchPhrase)
+        {
+            Require.NotNullOrEmpty(searchPhrase, "Search term should not be empty");
+            var searchTerms = searchPhrase.Split(' ');
+            using (var connection = DbConnection())
+            {
+                connection.Open();
+                string sql = @"
+                    select distinct
+                    Id,
+                    QuestionTitle,
+                    Tags,
+                    Content,
+                    CreatedBy,
+                    CreatedAt,
+                    UpdatedBy,
+                    UpdatedAt,
+                    (select count(*) from QuestionVotes qv where qv.QuestionId = questions.Id) Votes,
+                    (select count(*) from QuestionAnswers qa where qa.QuestionId = questions.Id) AnswerCount
+                    from questions
+                    where
+                    ";
+            
+                var parameters = new DynamicParameters();
+                int termCount = 0;
+                foreach (var term in searchTerms)
+                {
+                    var searchTerm = $"%{term}%";
+                    var searchTermName = $"@term{termCount}";
+                    string searchTermSql = $@" 
+                    (questionTitle like {searchTermName} or content like {searchTermName})
+                    or id in ( select QuestionId from QuestionAnswers where (answer like {searchTermName}) ) ";
+
+                    if(termCount > 0)
+                    {
+                        searchTermSql = " or " + searchTermSql;
+                    }
+                    sql += searchTermSql;
+                    parameters.Add(searchTermName,searchTerm, DbType.String, ParameterDirection.Input);
+                    termCount++;
+                }
+
+                var resultsQuestions = connection.Query<Question>(sql, parameters);
+                return resultsQuestions.ToList();
+            }
+        }
 
         public IList<QuestionAnswer> GetAnswersForQuestion(string questionId)
         {

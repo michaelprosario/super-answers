@@ -20,6 +20,7 @@ import { LeftMenuComponent } from './left-menu/left-menu.component';
 import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 import { EditQuestionComponent } from './edit-question/edit-question.component';
 import { EditQuestionAnswerComponent } from './edit-question-answer/edit-question-answer.component';
+import { QuestionSearchComponent } from './question-search/question-search.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { EditQuestionAnswerComponent } from './edit-question-answer/edit-questio
     LeftMenuComponent,
     EditQuestionComponent,
     EditQuestionAnswerComponent,
+    QuestionSearchComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -150,5 +150,13 @@ namespace App.Controllers
             request.UserId = "test";
             return await _mediator.Send(request);
         }
+
+        [AllowAnonymous]
+        [HttpPost("SearchByKeyword")]
+        public async Task<SearchByKeywordResponse> SearchByKeywordAsync([FromBody] SearchByKeywordRequest request)
+        {
+            request.UserId = "test";
+            return await _mediator.Send(request);
+        }
     }
 }
