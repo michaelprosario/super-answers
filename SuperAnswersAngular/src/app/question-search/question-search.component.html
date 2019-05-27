@@ -5,6 +5,9 @@
       <app-left-menu></app-left-menu>
     </div>
     <!-- START Question -->
+    <div *ngIf="searchResults?.length == 0">
+      No questions found.
+    </div>
 
     <div class="col-sm-8">
       <div id="divSearchResults" *ngFor="let question of searchResults" >

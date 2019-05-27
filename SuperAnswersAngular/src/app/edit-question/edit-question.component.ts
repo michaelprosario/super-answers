@@ -17,6 +17,7 @@ export class EditQuestionComponent implements OnInit {
   private validTags = [];  
   private formErrors = [];  
   private selectedTags = [];
+  private isLoading;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,14 +25,7 @@ export class EditQuestionComponent implements OnInit {
     private router: Router
   ) {
     this.questionId = this.route.snapshot.paramMap.get('id');
-    this.question = {
-      questionTitle: '',
-      createdAt: null,
-      createdBy: '',
-      updatedAt: null,
-      updatedBy: '',
-      votes:0
-    }
+    this.isLoading = true;
   }
 
   ngOnInit() {
@@ -56,6 +50,7 @@ export class EditQuestionComponent implements OnInit {
       .pipe(first()).subscribe(
         response => {
           this.question = response.question;
+          this.isLoading = false;
         }
       )
   }

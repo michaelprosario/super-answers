@@ -14,6 +14,7 @@ export class EditQuestionAnswerComponent implements OnInit {
   questionAnswerId: string;
   question: Question;
   answer: QuestionAnswer;
+  isLoading: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,12 +22,7 @@ export class EditQuestionAnswerComponent implements OnInit {
     private router: Router
   ) {
     this.questionAnswerId = this.route.snapshot.paramMap.get('id');
-    this.question = {
-      tagArray: [],
-      createdAt: null,
-      updatedAt: null,
-      votes: 0
-    };
+    this.isLoading = true;
 
     this.answer = {
       answer: '',
@@ -50,6 +46,7 @@ export class EditQuestionAnswerComponent implements OnInit {
         response => {
           this.question = response.question;
           this.answer = response.questionAnswer;
+          this.isLoading = false;
         }
       )
   }

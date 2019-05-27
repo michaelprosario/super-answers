@@ -8,7 +8,7 @@
     <div class="col-sm-8">
 
       <!-- START Question -->
-      <div class="divQuestion">
+      <div class="divQuestion" *ngIf="!isLoading">
         <div class="row divQuestionTitle">
           <div class="col-sm-12">
             <h3>{{question.questionTitle}}</h3>

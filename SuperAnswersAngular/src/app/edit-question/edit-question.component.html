@@ -5,7 +5,8 @@
       <app-left-menu></app-left-menu>
     </div>
 
-    <div class="col-sm-8">
+    <div class="col-sm-8" *ngIf="!isLoading">
+
       <div class="form-group">
         <label for="txtQuestion">Question</label>
         <input type="text" id="txtQuestion" class="form-control" placeholder="Ask question here"

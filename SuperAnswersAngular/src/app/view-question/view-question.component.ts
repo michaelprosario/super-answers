@@ -15,6 +15,7 @@ export class ViewQuestionComponent implements OnInit {
   question: Question;
   answers = [];
   answer = '';
+  isLoading: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,12 +23,7 @@ export class ViewQuestionComponent implements OnInit {
     private router: Router
   ) {
     this.questionId = this.route.snapshot.paramMap.get('id');
-    this.question = {
-      tagArray: [],
-      createdAt: null,
-      updatedAt: null,
-      votes: 0
-    };
+    this.isLoading = true;
   }
 
   ngOnInit() {
@@ -44,6 +40,7 @@ export class ViewQuestionComponent implements OnInit {
         response => {
           this.question = response.question;
           this.answers = response.answers;
+          this.isLoading = false;
         }
       )
   }
