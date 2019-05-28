@@ -5,38 +5,40 @@ import { AskQuestionComponent } from './ask-question/ask-question.component';
 import { AuthGuard } from './guards/auth.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { EditQuestionAnswerComponent } from './edit-question-answer/edit-question-answer.component';
+import { EditQuestionComponent } from './edit-question/edit-question.component';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { LeftMenuComponent } from './left-menu/left-menu.component';
+import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
+import { QuestionComponent } from './question/question.component';
+import { QuestionSearchComponent } from './question-search/question-search.component';
+import { RecentQuestionsComponent } from './recent-questions/recent-questions.component';
 import { RegisterComponent } from './register/register.component';
+import { SiteTopRowComponent } from './site-top-row/site-top-row.component';
 import { TagInputModule } from 'ngx-chips';
 import { TestComponent } from './test/test.component';
 import { ViewQuestionComponent } from './view-question/view-question.component';
-import { SiteTopRowComponent } from './site-top-row/site-top-row.component';
-import { LeftMenuComponent } from './left-menu/left-menu.component';
-import { LMarkdownEditorModule } from 'ngx-markdown-editor';
-import { EditQuestionComponent } from './edit-question/edit-question.component';
-import { EditQuestionAnswerComponent } from './edit-question-answer/edit-question-answer.component';
-import { QuestionSearchComponent } from './question-search/question-search.component';
-import { RecentQuestionsComponent } from './recent-questions/recent-questions.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AskQuestionComponent,
-    LoginComponent,
-    RegisterComponent,
-    TestComponent,
-    ViewQuestionComponent,
-    SiteTopRowComponent,
-    LeftMenuComponent,
-    EditQuestionComponent,
     EditQuestionAnswerComponent,
+    EditQuestionComponent,
+    LeftMenuComponent,
+    LoginComponent,
+    QuestionComponent,
     QuestionSearchComponent,
     RecentQuestionsComponent,
+    RegisterComponent,
+    SiteTopRowComponent,
+    TestComponent,
+    ViewQuestionComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -46,9 +48,9 @@ import { RecentQuestionsComponent } from './recent-questions/recent-questions.co
     FormsModule,
     FormsModule,
     HttpClientModule,
+    LMarkdownEditorModule,
     ReactiveFormsModule,    
     TagInputModule,
-    LMarkdownEditorModule,
   ],
   providers: [
     AuthGuard,

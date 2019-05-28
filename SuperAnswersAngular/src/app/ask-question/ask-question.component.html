@@ -14,10 +14,8 @@
 
       <div class="form-group">
         <label for="txtQuestionContent">Question Content</label>
-
         <md-editor name="Content" [(ngModel)]="questionContent" [height]="'400px'" [mode]="preview" required>
         </md-editor>
-
       </div>
 
       <div class="form-group">
@@ -33,11 +31,10 @@
       <ul *ngFor="let error of formErrors">
         <li class="liError">{{error}}</li>
       </ul>
-
     </div>
 
     <div class="col-sm-2">
-
+      &nbsp;
     </div>
   </div>
 </div>
