@@ -13,7 +13,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { LeftMenuComponent } from './left-menu/left-menu.component';
-import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { QuestionComponent } from './question/question.component';
@@ -50,7 +49,6 @@ import { ViewQuestionComponent } from './view-question/view-question.component';
     FormsModule,
     FormsModule,
     HttpClientModule,
-    LMarkdownEditorModule,
     ReactiveFormsModule,    
     TagInputModule,
   ],

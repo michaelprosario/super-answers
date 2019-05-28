@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     .subscribe(response => 
     { 
       this.message = "";
-      this.router.navigate(["/shopping-list"]);
+      this.router.navigate(["/recentQuestions"]);
     }, 
     error => {
       this.message = "Enter valid user name and password";

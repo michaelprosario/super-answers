@@ -2,9 +2,9 @@
 .divTitleRow {
     border-bottom: 1px solid black;
   }
-  
-  .divLeftMenu{
-    border-right: 1px solid black;
+  .divContent
+  {
+    border-left: 1px solid black;
   }
   
   .divQuestion{

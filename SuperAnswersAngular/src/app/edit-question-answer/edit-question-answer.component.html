@@ -5,7 +5,7 @@
     <div class="col-sm-2 divLeftMenu">
       <app-left-menu></app-left-menu>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-8  divContent">
 
       <!-- START Question -->
       <div class="divQuestion" *ngIf="!isLoading">
@@ -35,7 +35,6 @@
               <span class="spanTag" *ngFor="let tag of question.tagArray">{{tag}}&nbsp;</span>
               <br>
               <br>
-
             </div>
           </div>
           <div class="col-sm-4 divQuestionOwner">
