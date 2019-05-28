@@ -75,8 +75,7 @@
       <!-- START Answer Form -->
       <h3>What's your answer?</h3>
 
-      <md-editor name="Content" [(ngModel)]="answer" [height]="'400px'" [mode]="preview" required showPreview="false">
-      </md-editor>
+      <td-text-editor [(ngModel)]="answer"></td-text-editor>
 
       <button type="button" class="btn btn-primary" (click)="postAnswer()">Post Answer</button>
       <!-- END Answer Form -->

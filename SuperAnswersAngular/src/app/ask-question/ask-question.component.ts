@@ -14,7 +14,6 @@ export class AskQuestionComponent implements OnInit {
 
   private questionTitle: string;
   private questionContent: string;
-  private questionTags: string;
   private selectedTags = [];
   private validTags = [];
   private formErrors = [];
@@ -22,7 +21,9 @@ export class AskQuestionComponent implements OnInit {
   constructor(
     private questionsService: QuestionsService,
     private router: Router
-  ) { }
+  ) { 
+    
+  }
 
   ngOnInit() 
   {

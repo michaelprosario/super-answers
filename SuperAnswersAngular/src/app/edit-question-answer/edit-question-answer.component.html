@@ -49,8 +49,7 @@
       <!-- START Answer Form -->
       <h3>What's your answer?</h3>
 
-      <md-editor name="Content" [(ngModel)]="answer.answer" [height]="'400px'" [mode]="preview" required>
-      </md-editor>
+      <td-text-editor [(ngModel)]="answer.answer"></td-text-editor>
 
       <button type="button" class="btn btn-primary" (click)="postAnswer()">Post Answer</button>&nbsp;
       <button type="button" class="btn btn-primary" (click)="viewQuestion()">Cancel</button>

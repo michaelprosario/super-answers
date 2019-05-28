@@ -5,6 +5,7 @@ import { AskQuestionComponent } from './ask-question/ask-question.component';
 import { AuthGuard } from './guards/auth.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { CovalentTextEditorModule } from '@covalent/text-editor';
 import { EditQuestionAnswerComponent } from './edit-question-answer/edit-question-answer.component';
 import { EditQuestionComponent } from './edit-question/edit-question.component';
 import { ErrorInterceptor } from './helpers/error.interceptor';
@@ -45,6 +46,7 @@ import { ViewQuestionComponent } from './view-question/view-question.component';
     BrowserAnimationsModule,
     BrowserAnimationsModule,
     BrowserModule,
+    CovalentTextEditorModule,
     FormsModule,
     FormsModule,
     HttpClientModule,

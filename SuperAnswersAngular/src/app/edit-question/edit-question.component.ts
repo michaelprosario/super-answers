@@ -40,7 +40,7 @@ export class EditQuestionComponent implements OnInit {
       }
     )
 
-    document.getElementById("txtQuestion").focus();
+    // document.getElementById("txtQuestion").focus();
 
     let request: GetQuestionRequest = {};
     request.id = this.questionId;

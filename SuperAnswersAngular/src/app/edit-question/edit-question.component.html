@@ -15,8 +15,7 @@
 
       <div class="form-group">
         <label for="txtQuestionContent">Question Content</label>
-        <md-editor name="Content" [(ngModel)]="question.contentAsMarkDown" [height]="'400px'" [mode]="preview" required>
-        </md-editor>
+        <td-text-editor [(ngModel)]="question.contentAsMarkDown"></td-text-editor>
       </div>
 
       <div class="form-group">
