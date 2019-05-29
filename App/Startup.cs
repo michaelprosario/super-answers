@@ -1,4 +1,5 @@
-﻿using App.Core;
+﻿using System;
+using App.Core;
 using App.Core.Interfaces;
 using App.Core.SharedKernel;
 using App.Infrastructure;
@@ -96,7 +97,7 @@ namespace App
                 .AddClasses()
                 .AsImplementedInterfaces());
 
-            services.AddAutoMapper();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies(), ServiceLifetime.Transient);
             services.AddMvc();
             services.AddCors();
 
