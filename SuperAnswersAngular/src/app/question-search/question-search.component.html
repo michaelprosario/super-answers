@@ -12,6 +12,9 @@
       <div id="divSearchResults" *ngFor="let question of searchResults" >
         <app-question [question]="question"></app-question>
       </div>
-      <div class="col-sm-2">&nbsp;</div>
     </div>
-</div>
+    <div class="col-sm-2">
+        <button type="button" class="btn btn-primary" (click)="handleAskQuestion()">Ask Question</button>
+    </div>
+
+  </div>

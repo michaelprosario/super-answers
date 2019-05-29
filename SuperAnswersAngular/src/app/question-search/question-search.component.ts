@@ -23,6 +23,10 @@ export class QuestionSearchComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
+  handleAskQuestion(){
+    this.router.navigate(['/askQuestion']);
+  }  
+
   ngOnInit() {
     this.terms = this.route.snapshot.paramMap.get('terms');
 

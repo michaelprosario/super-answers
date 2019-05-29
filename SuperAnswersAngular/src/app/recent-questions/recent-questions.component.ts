@@ -21,10 +21,13 @@ export class RecentQuestionsComponent implements OnInit {
     this.searchResults = [];
   }
 
+  handleAskQuestion(){
+    this.router.navigate(['/askQuestion']);
+  }  
+
   ngOnInit() {
 
     let request: GetMostRecentQuestionsRequest = {};
-    request.userId = "test";
     
     let current = this;
     this.questionsService.QuestionsGetMostRecentQuestions(request)
