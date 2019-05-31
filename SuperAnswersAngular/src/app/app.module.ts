@@ -23,6 +23,7 @@ import { SiteTopRowComponent } from './site-top-row/site-top-row.component';
 import { TagInputModule } from 'ngx-chips';
 import { TestComponent } from './test/test.component';
 import { ViewQuestionComponent } from './view-question/view-question.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ViewQuestionComponent } from './view-question/view-question.component';
     FormsModule,
     FormsModule,
     HttpClientModule,
+    MDBBootstrapModule.forRoot(),
     ReactiveFormsModule,    
     TagInputModule,
   ],
