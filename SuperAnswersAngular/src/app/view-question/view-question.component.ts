@@ -8,7 +8,7 @@ import { routerNgProbeToken } from '@angular/router/src/router_module';
 @Component({
   selector: 'app-view-question',
   templateUrl: './view-question.component.html',
-  styleUrls: ['./view-question.component.css']
+  styleUrls: ['./view-question.component.scss']
 })
 export class ViewQuestionComponent implements OnInit {
   questionId: string;

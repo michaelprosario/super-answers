@@ -7,7 +7,7 @@ import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-edit-question-answer',
   templateUrl: './edit-question-answer.component.html',
-  styleUrls: ['./edit-question-answer.component.css']
+  styleUrls: ['./edit-question-answer.component.scss']
 })
 export class EditQuestionAnswerComponent implements OnInit {
   questionId: string;

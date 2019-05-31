@@ -7,7 +7,7 @@ import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-recent-questions',
   templateUrl: './recent-questions.component.html',
-  styleUrls: ['./recent-questions.component.css']
+  styleUrls: ['./recent-questions.component.scss']
 })
 export class RecentQuestionsComponent implements OnInit {
 

@@ -7,7 +7,7 @@ import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-question-search',
   templateUrl: './question-search.component.html',
-  styleUrls: ['./question-search.component.css']
+  styleUrls: ['./question-search.component.scss']
 })
 export class QuestionSearchComponent implements OnInit {
 
