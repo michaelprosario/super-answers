@@ -38,3 +38,5 @@ export { SearchByKeywordRequest } from './models/search-by-keyword-request';
 export { GetMostRecentQuestionsResponse } from './models/get-most-recent-questions-response';
 export { GetMostRecentQuestionsRequest } from './models/get-most-recent-questions-request';
 export { UserDto } from './models/user-dto';
+export { RegisterUserResponse } from './models/register-user-response';
+export { RegisterUserRequest } from './models/register-user-request';

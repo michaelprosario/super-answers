@@ -9,6 +9,12 @@
   "schemes": [
     "http"
   ],
+  "consumes": [
+    "application/json-patch+json",
+    "application/json",
+    "text/json",
+    "application/*+json"
+  ],
   "paths": {
     "/Questions/AddQuestion": {
       "post": {
@@ -16,12 +22,6 @@
           "Questions"
         ],
         "operationId": "Questions_AddQuestion",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "produces": [
           "text/plain",
           "application/json",
@@ -55,12 +55,6 @@
           "Questions"
         ],
         "operationId": "Questions_EditQuestion",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "produces": [
           "text/plain",
           "application/json",
@@ -94,12 +88,6 @@
           "Questions"
         ],
         "operationId": "Questions_DeleteQuestion",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "produces": [
           "text/plain",
           "application/json",
@@ -133,12 +121,6 @@
           "Questions"
         ],
         "operationId": "Questions_ListQuestions",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "produces": [
           "text/plain",
           "application/json",
@@ -172,12 +154,6 @@
           "Questions"
         ],
         "operationId": "Questions_GetQuestion",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "produces": [
           "text/plain",
           "application/json",
@@ -211,12 +187,6 @@
           "Questions"
         ],
         "operationId": "Questions_AddQuestionTag",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "produces": [
           "text/plain",
           "application/json",
@@ -250,12 +220,6 @@
           "Questions"
         ],
         "operationId": "Questions_DeleteQuestionTag",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "produces": [
           "text/plain",
           "application/json",
@@ -289,12 +253,6 @@
           "Questions"
         ],
         "operationId": "Questions_ListQuestionTags",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "produces": [
           "text/plain",
           "application/json",
@@ -328,12 +286,6 @@
           "Questions"
         ],
         "operationId": "Questions_AddQuestionAnswer",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "produces": [
           "text/plain",
           "application/json",
@@ -367,12 +319,6 @@
           "Questions"
         ],
         "operationId": "Questions_EditQuestionAnswer",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "produces": [
           "text/plain",
           "application/json",
@@ -406,12 +352,6 @@
           "Questions"
         ],
         "operationId": "Questions_DeleteQuestionAnswer",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "produces": [
           "text/plain",
           "application/json",
@@ -445,12 +385,6 @@
           "Questions"
         ],
         "operationId": "Questions_ListQuestionAnswers",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "produces": [
           "text/plain",
           "application/json",
@@ -484,12 +418,6 @@
           "Questions"
         ],
         "operationId": "Questions_GetQuestionAnswer",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "produces": [
           "text/plain",
           "application/json",
@@ -523,12 +451,6 @@
           "Questions"
         ],
         "operationId": "Questions_AddAnswerVote",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "produces": [
           "text/plain",
           "application/json",
@@ -562,12 +484,6 @@
           "Questions"
         ],
         "operationId": "Questions_AddQuestionVote",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "produces": [
           "text/plain",
           "application/json",
@@ -601,12 +517,6 @@
           "Questions"
         ],
         "operationId": "Questions_DeleteQuestionVote",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "produces": [
           "text/plain",
           "application/json",
@@ -640,12 +550,6 @@
           "Questions"
         ],
         "operationId": "Questions_SearchByKeyword",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "produces": [
           "text/plain",
           "application/json",
@@ -679,12 +583,6 @@
           "Questions"
         ],
         "operationId": "Questions_GetMostRecentQuestions",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "produces": [
           "text/plain",
           "application/json",
@@ -718,12 +616,6 @@
           "Users"
         ],
         "operationId": "Users_Authenticate",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "parameters": [
           {
             "name": "userDto",
@@ -746,25 +638,24 @@
         }
       }
     },
-    "/Users/Register": {
+    "/Users/RegisterUser": {
       "post": {
         "tags": [
           "Users"
         ],
-        "operationId": "Users_Register",
-        "consumes": [
-          "application/json-patch+json",
+        "operationId": "Users_RegisterUser",
+        "produces": [
+          "text/plain",
           "application/json",
-          "text/json",
-          "application/*+json"
+          "text/json"
         ],
         "parameters": [
           {
-            "name": "userDto",
+            "name": "request",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/UserDto"
+              "$ref": "#/definitions/RegisterUserRequest"
             },
             "x-nullable": false
           }
@@ -774,76 +665,7 @@
             "x-nullable": true,
             "description": "",
             "schema": {
-              "type": "file"
-            }
-          }
-        }
-      }
-    },
-    "/Users/GetAll": {
-      "post": {
-        "tags": [
-          "Users"
-        ],
-        "operationId": "Users_GetAll",
-        "responses": {
-          "200": {
-            "x-nullable": true,
-            "description": "",
-            "schema": {
-              "type": "file"
-            }
-          }
-        }
-      }
-    },
-    "/Users/GetById/{id}": {
-      "post": {
-        "tags": [
-          "Users"
-        ],
-        "operationId": "Users_GetById",
-        "parameters": [
-          {
-            "type": "string",
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "x-nullable": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "x-nullable": true,
-            "description": "",
-            "schema": {
-              "type": "file"
-            }
-          }
-        }
-      }
-    },
-    "/Users/Delete/{id}": {
-      "post": {
-        "tags": [
-          "Users"
-        ],
-        "operationId": "Users_Delete",
-        "parameters": [
-          {
-            "type": "string",
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "x-nullable": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "x-nullable": true,
-            "description": "",
-            "schema": {
-              "type": "file"
+              "$ref": "#/definitions/RegisterUserResponse"
             }
           }
         }
@@ -1580,6 +1402,40 @@
           "type": "string"
         },
         "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "RegisterUserResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Response"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "RegisterUserRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "userName": {
           "type": "string"
         },
         "password": {

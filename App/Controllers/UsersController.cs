@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 using App.Core;
 using App.Core.Entities;
+using App.Core.Handlers;
 using App.Core.Interfaces;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -20,12 +23,14 @@ namespace App.Controllers
     public class UsersController : ControllerBase
     {
         private IUserService _userService;
+        private readonly IMediator _mediator;
 
         public AppSettings _settings { get; }
 
-        public UsersController(IUserService userService, IOptions<AppSettings> settings)
+        public UsersController(IUserService userService, IOptions<AppSettings> settings, IMediator mediator)
         {
             _userService = userService;
+            this._mediator = mediator;
             _settings = settings.Value;
         }
 
@@ -67,67 +72,10 @@ namespace App.Controllers
         }
         
         [AllowAnonymous]
-        [HttpPost("Register")]
-        public IActionResult Register([FromBody]UserDto userDto)
+        [HttpPost("RegisterUser")]
+        public async Task<RegisterUserResponse> RegisterUserAsync([FromBody] RegisterUserRequest request)
         {
-            var user = new User()
-            {
-                 FirstName = userDto.FirstName,
-                 LastName = userDto.LastName,
-                 UserName = userDto.Username
-            };
-
-            try
-            {
-                _userService.Create(user, userDto.Password);
-                return Ok();
-            }
-            catch (ApplicationException ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
-        }
-
-        [HttpPost("GetAll")]
-        public IActionResult GetAll()
-        {
-            var users = _userService.GetAll();
-
-            List<UserDto> list = new List<UserDto>();
-            foreach(var user in users)
-            {
-                var userDto = GetUserDto(user);
-                list.Add(userDto);
-            }
-
-            return Ok(list);
-        }
-
-        private static UserDto GetUserDto(User user)
-        {
-            return new UserDto()
-            {
-                Id = user.Id,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Username = user.UserName,
-                Password = string.Empty
-            };
-        }
-
-        [HttpPost("GetById/{id}")]
-        public IActionResult GetById(string id)
-        {
-            var user = _userService.GetById(id);
-            var userDto = GetUserDto(user);
-            return Ok(userDto);
-        }
-
-        [HttpPost("Delete/{id}")]
-        public IActionResult Delete(string id)
-        {
-            _userService.Delete(id);
-            return Ok();
+            return await _mediator.Send(request);
         }
     }
 }

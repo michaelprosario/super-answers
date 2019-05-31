@@ -8,15 +8,14 @@ import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { UserDto } from '../models/user-dto';
+import { RegisterUserResponse } from '../models/register-user-response';
+import { RegisterUserRequest } from '../models/register-user-request';
 @Injectable({
   providedIn: 'root',
 })
 class UsersService extends __BaseService {
   static readonly UsersAuthenticatePath = '/Users/Authenticate';
-  static readonly UsersRegisterPath = '/Users/Register';
-  static readonly UsersGetAllPath = '/Users/GetAll';
-  static readonly UsersGetByIdPath = '/Users/GetById/{id}';
-  static readonly UsersDeletePath = '/Users/Delete/{id}';
+  static readonly UsersRegisterUserPath = '/Users/RegisterUser';
 
   constructor(
     config: __Configuration,
@@ -60,129 +59,36 @@ class UsersService extends __BaseService {
   }
 
   /**
-   * @param userDto undefined
+   * @param request undefined
    */
-  UsersRegisterResponse(userDto: UserDto): __Observable<__StrictHttpResponse<Blob>> {
+  UsersRegisterUserResponse(request: RegisterUserRequest): __Observable<__StrictHttpResponse<RegisterUserResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = userDto;
+    __body = request;
     let req = new HttpRequest<any>(
       'POST',
-      this.rootUrl + `/Users/Register`,
+      this.rootUrl + `/Users/RegisterUser`,
       __body,
       {
         headers: __headers,
         params: __params,
-        responseType: 'blob'
+        responseType: 'json'
       });
 
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Blob>;
+        return _r as __StrictHttpResponse<RegisterUserResponse>;
       })
     );
   }
   /**
-   * @param userDto undefined
+   * @param request undefined
    */
-  UsersRegister(userDto: UserDto): __Observable<Blob> {
-    return this.UsersRegisterResponse(userDto).pipe(
-      __map(_r => _r.body as Blob)
-    );
-  }
-  UsersGetAllResponse(): __Observable<__StrictHttpResponse<Blob>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-    let req = new HttpRequest<any>(
-      'POST',
-      this.rootUrl + `/Users/GetAll`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'blob'
-      });
-
-    return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
-      __map((_r) => {
-        return _r as __StrictHttpResponse<Blob>;
-      })
-    );
-  }  UsersGetAll(): __Observable<Blob> {
-    return this.UsersGetAllResponse().pipe(
-      __map(_r => _r.body as Blob)
-    );
-  }
-
-  /**
-   * @param id undefined
-   */
-  UsersGetByIdResponse(id: null | string): __Observable<__StrictHttpResponse<Blob>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-
-    let req = new HttpRequest<any>(
-      'POST',
-      this.rootUrl + `/Users/GetById/${id}`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'blob'
-      });
-
-    return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
-      __map((_r) => {
-        return _r as __StrictHttpResponse<Blob>;
-      })
-    );
-  }
-  /**
-   * @param id undefined
-   */
-  UsersGetById(id: null | string): __Observable<Blob> {
-    return this.UsersGetByIdResponse(id).pipe(
-      __map(_r => _r.body as Blob)
-    );
-  }
-
-  /**
-   * @param id undefined
-   */
-  UsersDeleteResponse(id: null | string): __Observable<__StrictHttpResponse<Blob>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-
-    let req = new HttpRequest<any>(
-      'POST',
-      this.rootUrl + `/Users/Delete/${id}`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'blob'
-      });
-
-    return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
-      __map((_r) => {
-        return _r as __StrictHttpResponse<Blob>;
-      })
-    );
-  }
-  /**
-   * @param id undefined
-   */
-  UsersDelete(id: null | string): __Observable<Blob> {
-    return this.UsersDeleteResponse(id).pipe(
-      __map(_r => _r.body as Blob)
+  UsersRegisterUser(request: RegisterUserRequest): __Observable<RegisterUserResponse> {
+    return this.UsersRegisterUserResponse(request).pipe(
+      __map(_r => _r.body as RegisterUserResponse)
     );
   }
 }

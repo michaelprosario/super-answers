@@ -33,4 +33,6 @@
 <div>
   <input type="button" value="Register" (click)="handleSubmit()" >
 </div>
-
+<ul *ngFor="let error of formErrors">
+  <li class="liError">{{error}}</li>
+</ul>

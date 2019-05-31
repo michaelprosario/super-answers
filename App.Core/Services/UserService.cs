@@ -57,27 +57,10 @@ namespace App.Core
             return user;
         }
 
-        public void Delete(string id)
-        {
-            Require.NotNullOrEmpty(id, "User id must be defined.");
-            var user = GetById(id);
-            _users.Delete(user);
-        }
-
-        public IEnumerable<User> GetAll()
-        {
-            return _users.List();
-        }
-
         public User GetById(string id)
         {
             Require.NotNullOrEmpty(id, "User id must be defined.");
             return _users.GetById(id);
-        }
-
-        public void Update(User user, string password = null)
-        {
-            throw new System.NotImplementedException();
         }
 
         // https://github.com/cornflourblue/aspnet-core-registration-login-api/blob/master/Services/UserService.cs
