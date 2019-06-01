@@ -1,21 +1,29 @@
-<h1>
-  Welcome To Super Answers
-</h1>
+<div class="row">
+  <div class="col-md-4">&nbsp;</div>
+  <div class="col-md-4">
+    <h1>
+      Welcome To Super Answers
+    </h1>
 
-<div>
-  <input matInput placeholder="Enter user name" type="text" name="txtUserName" id="txtUserName"
-    [(ngModel)]="userName" />
-</div>
-<div>
-  <input matInput placeholder="Enter Password" type="password" name="txtPassword" id="txtPassword"
-    [(ngModel)]="password" />
-</div>
-<div>
-  <button mat-raised-button color="primary" (click)="handleLogin()">Login</button>
-</div>
+    <div class="form-group">
+      <label for="txtUserName">User name</label>
+      <input class="form-control" placeholder="Enter user name" type="text" name="txtUserName" id="txtUserName"
+        [(ngModel)]="userName" />
+    </div>
 
-<div id="divMessage" class="divErrorMessage">{{message}}</div>
-<br>
-<div>
-  <a routerLink="/register">Register for account</a>
+    <div class="form-group">
+      <label for="txtUserName">Password</label>
+      <input class="form-control" placeholder="Enter Password" type="password" name="txtPassword" id="txtPassword"
+        [(ngModel)]="password" />
+    </div>
+
+    <div>
+      <button class="btn btn-default" (click)="handleLogin()">Login</button>&nbsp;
+      <button class="btn btn-default" routerLink="/register">Register</button>
+    </div>
+
+    <div id="divMessage" class="divErrorMessage">{{message}}</div>
+    
+  </div>
+  <div class="col-md-4">&nbsp;</div>
 </div>
