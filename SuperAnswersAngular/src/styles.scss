@@ -20,12 +20,17 @@
       padding:20px;
   }
 
-  .spanTag{
-      background-color: lightskyblue;
-      padding:5px; 
-      margin:5px;
+  .topicTag {
+      background-color: purple;
+      color: white;
+      padding:10px;
+      margin:2px;
   }
 
   .liError {
     color:red;
+  }
+
+  .divTitleRow{
+    padding-bottom:20px;
   }

@@ -26,14 +26,12 @@
       </div>
       <div class="col-sm-4">
         <div>
-          <span class="spanTag" *ngFor="let tag of question.tagArray">{{tag}}&nbsp;</span>
-          <br>
-          <br>
+          <app-topic-tags [tagsArray]="question.tagArray"></app-topic-tags>
         </div>
       </div>
-      <div class="col-sm-4 divQuestionOwner">
-        <div><b>{{question.createdBy}}</b></div>
-        <div>Asked: {{question.createdAt | date}} at {{question.createdAt | date:'shortTime'}}</div>
+      
+      <div class="col-sm-4">
+      <app-time-stamp-box [record]="question"></app-time-stamp-box>
       </div>
     </div>
   </div>

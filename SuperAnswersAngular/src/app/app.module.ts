@@ -24,6 +24,8 @@ import { TagInputModule } from 'ngx-chips';
 import { TestComponent } from './test/test.component';
 import { ViewQuestionComponent } from './view-question/view-question.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { TopicTagsComponent } from './topic-tags/topic-tags.component';
+import { TimeStampBoxComponent } from './time-stamp-box/time-stamp-box.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     SiteTopRowComponent,
     TestComponent,
     ViewQuestionComponent,
+    TopicTagsComponent,
+    TimeStampBoxComponent,
   ],
   imports: [
     AppRoutingModule,
