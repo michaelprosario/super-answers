@@ -26,7 +26,7 @@ namespace App.Core.Test {
             services.AddMediatR(typeof(AddQuestionHandler).Assembly);
             services.AddDbContextPool<App.Infrastructure.EfContext>(
                 options =>
-                     options.UseSqlite("Data Source=groceryzen.db", b => b.MigrationsAssembly("App"))
+                     options.UseMySql("Server=localhost;Database=super_answers;Uid=super_answers;Pwd=;", b => b.MigrationsAssembly("App"))
             );
             services.AddScoped<ServiceFactory>(p => p.GetService);
             //Pipeline

@@ -1,19 +1,22 @@
 ﻿using System.Collections.Generic;
-using System.Data.SQLite;
 using System.Linq;
 using App.Core.Entities;
 using App.Core.Interfaces;
 using Dapper;
 using App.Core.Utilities;
 using System.Data;
+using App.Core;
+using Microsoft.Extensions.Configuration;
 
 namespace App.Infrastructure
 {
     public class QuestionsDataService : IQuestionsDataService
     {
-        public QuestionsDataService()
-        {
+        private readonly IConfiguration configuration;
 
+        public QuestionsDataService(IConfiguration configuration)
+        {
+            this.configuration = configuration;
         }
 
         public bool QuestionVoteAlreadyExists(string userId, string questionId){
@@ -149,11 +152,11 @@ namespace App.Infrastructure
             }
         }
 
-        public static string DbFile => "app.db";
-
-        public static SQLiteConnection DbConnection()
+        public MySql.Data.MySqlClient.MySqlConnection DbConnection()
         {
-            return new SQLiteConnection("Data Source=" + DbFile);
+            var appSettingsSection = configuration.GetSection("AppSettings");
+            var appSettings = appSettingsSection.Get<AppSettings>();
+            return new MySql.Data.MySqlClient.MySqlConnection(appSettings.ConnectionString);
         }
 
         public int GetQuestionVotes(string questionId)
