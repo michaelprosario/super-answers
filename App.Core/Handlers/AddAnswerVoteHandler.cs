@@ -1,4 +1,3 @@
-using App.Core.Entities;
 using App.Core.Enums;
 using App.Core.Interfaces;
 using App.Core.Requests;
@@ -68,14 +67,15 @@ namespace App.Core.Handlers
                 return response;
             }
 
-            var record = new DbEntities.QuestionAnswerVote();
-            
-            record.QuestionAnswerId = request.QuestionAnswerId; 
-            record.CreatedAt = DateTime.Now; 
-            record.CreatedBy = request.UserId; 
-            record.UpdatedAt = DateTime.Now; 
-            record.UpdatedBy = request.UserId; 
-    
+            var record = new DbEntities.QuestionAnswerVote
+            {
+                QuestionAnswerId = request.QuestionAnswerId,
+                CreatedAt = DateTime.Now,
+                CreatedBy = request.UserId,
+                UpdatedAt = DateTime.Now,
+                UpdatedBy = request.UserId
+            };
+
             HandlerUtilities.TimeStampRecord(record, request.UserId, true);
             var returnRecord = _repository.Add(record);
             response.Id = returnRecord.Id;

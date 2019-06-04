@@ -78,7 +78,7 @@ namespace App
 
             services.AddDbContextPool<App.Infrastructure.EfContext>(
                 options =>
-                    options.UseMySql("Server=localhost;Database=super_answers;Uid=super_answers;Pwd=;", b => b.MigrationsAssembly("App"))
+                    options.UseMySql(appSettings.ConnectionString, b => b.MigrationsAssembly("App"))
             );
             services.AddScoped<ServiceFactory>(p => p.GetService);
             //Pipeline
