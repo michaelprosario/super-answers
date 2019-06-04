@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data.SQLite;
 using System.Linq;
 using App.Core.Entities;
 using App.Core.Interfaces;
@@ -149,11 +148,10 @@ namespace App.Infrastructure
             }
         }
 
-        public static string DbFile => "app.db";
-
-        public static SQLiteConnection DbConnection()
+        readonly string connectionString = "Server=localhost;Database=super_answers;Uid=super_answers;Pwd=;";
+        public MySql.Data.MySqlClient.MySqlConnection DbConnection()
         {
-            return new SQLiteConnection("Data Source=" + DbFile);
+            return new MySql.Data.MySqlClient.MySqlConnection(connectionString);
         }
 
         public int GetQuestionVotes(string questionId)

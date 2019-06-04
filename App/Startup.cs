@@ -16,7 +16,6 @@ using Microsoft.IdentityModel.Tokens;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NJsonSchema;
 using NSwag.AspNetCore;
 using AutoMapper;
 
@@ -79,7 +78,7 @@ namespace App
 
             services.AddDbContextPool<App.Infrastructure.EfContext>(
                 options =>
-                    options.UseSqlite("Data Source=app.db", b => b.MigrationsAssembly("App"))
+                    options.UseMySql("Server=localhost;Database=super_answers;Uid=super_answers;Pwd=;", b => b.MigrationsAssembly("App"))
             );
             services.AddScoped<ServiceFactory>(p => p.GetService);
             //Pipeline
