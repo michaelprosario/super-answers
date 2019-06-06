@@ -14,10 +14,10 @@ export class EditQuestionComponent implements OnInit {
   question: Question;
   answers = [];
   answer = '';
-  private validTags = [];  
-  private formErrors = [];  
-  private selectedTags = [];
-  private isLoading;
+  validTags = [];  
+  formErrors = [];  
+  selectedTags = [];
+  isLoading : boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -39,8 +39,6 @@ export class EditQuestionComponent implements OnInit {
         response.records.map(r => this.validTags.push(r.title));
       }
     )
-
-    // document.getElementById("txtQuestion").focus();
 
     let request: GetQuestionRequest = {};
     request.id = this.questionId;

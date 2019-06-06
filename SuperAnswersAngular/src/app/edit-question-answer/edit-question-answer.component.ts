@@ -59,6 +59,10 @@ export class EditQuestionAnswerComponent implements OnInit {
     this.router.navigate(['/viewQuestion/' + this.answer.questionId])
   }
 
+  handleEditQuestion(){
+    this.router.navigate(['/editQuestion/' + this.questionId]);
+  }  
+
   postAnswer(){
     if(this.answer.answer === ''){
       alert('Enter a valid answer');

@@ -12,11 +12,11 @@ import { Router } from '@angular/router';
 })
 export class AskQuestionComponent implements OnInit {
 
-  private questionTitle: string;
-  private questionContent: string;
-  private selectedTags = [];
-  private validTags = [];
-  private formErrors = [];
+  questionTitle: string;
+  questionContent: string;
+  selectedTags = [];
+  validTags = [];
+  formErrors = [];
 
   constructor(
     private questionsService: QuestionsService,

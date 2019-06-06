@@ -7,16 +7,17 @@ using App.Core.Utilities;
 using System.Data;
 using App.Core;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace App.Infrastructure
 {
     public class QuestionsDataService : IQuestionsDataService
     {
-        private readonly IConfiguration configuration;
+        private readonly IOptions<AppSettings> settings;
 
-        public QuestionsDataService(IConfiguration configuration)
+        public QuestionsDataService(IOptions<AppSettings> settings)
         {
-            this.configuration = configuration;
+            this.settings = settings;
         }
 
         public bool QuestionVoteAlreadyExists(string userId, string questionId){
@@ -154,9 +155,7 @@ namespace App.Infrastructure
 
         public MySql.Data.MySqlClient.MySqlConnection DbConnection()
         {
-            var appSettingsSection = configuration.GetSection("AppSettings");
-            var appSettings = appSettingsSection.Get<AppSettings>();
-            return new MySql.Data.MySqlClient.MySqlConnection(appSettings.ConnectionString);
+            return new MySql.Data.MySqlClient.MySqlConnection(settings.Value.ConnectionString);
         }
 
         public int GetQuestionVotes(string questionId)
