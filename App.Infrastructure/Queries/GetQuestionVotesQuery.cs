@@ -1,7 +1,7 @@
 using Dapper;
 using MySql.Data.MySqlClient;
 
-namespace App.Infrastructure
+namespace App.Infrastructure.Queries
 {
     public class GetQuestionVotesQuery
     {
@@ -14,7 +14,7 @@ namespace App.Infrastructure
                                  ";
 
             var commandDefinition = new CommandDefinition(sql, new { questionId });
-            return new DapperExecutor().QuerySingle<int>(connection, commandDefinition);
+            return QueryExe.QuerySingle<int>(connection, commandDefinition);
         }
     }
 }

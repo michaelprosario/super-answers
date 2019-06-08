@@ -1,7 +1,7 @@
 using Dapper;
 using MySql.Data.MySqlClient;
 
-namespace App.Infrastructure
+namespace App.Infrastructure.Queries
 {
     public class QuestionVoteAlreadyExistsQuery {  
         public int Execute (MySqlConnection connection, string userId, string questionId) {
@@ -12,7 +12,7 @@ namespace App.Infrastructure
                                 AND createdBy = @userId ";
 
             var commandDefinition = new CommandDefinition(sql, new { questionId, userId });
-            return new DapperExecutor().QuerySingle<int>(connection, commandDefinition);
+            return QueryExe.QuerySingle<int>(connection, commandDefinition);
         }
     }
 }
