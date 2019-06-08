@@ -20,33 +20,21 @@ namespace App.Infrastructure
             this.settings = settings;
         }
 
-        public bool QuestionVoteAlreadyExists(string userId, string questionId){
+        public bool QuestionVoteAlreadyExists(string userId, string questionId)
+        {
             Require.NotNullOrEmpty(userId, "userId is required");
             Require.NotNullOrEmpty(questionId, "questionId is required");
 
             int count = new QuestionVoteAlreadyExistsQuery().Execute(DbConnection(), userId, questionId);
-
-            System.Console.WriteLine($"vote count = {count}");
             return count > 0;
         }
 
-        public bool AnswerVoteAlreadyExists(string userId, string questionAnswerId){
+        public bool AnswerVoteAlreadyExists(string userId, string questionAnswerId)
+        {
             Require.NotNullOrEmpty(userId, "userId is required");
             Require.NotNullOrEmpty(questionAnswerId, "questionAnswerId is required");
 
-            int count = 0;
-            using (var connection = DbConnection())
-            {
-                connection.Open();
-                count = connection.QuerySingle<int>(
-                @"
-                select 
-                count(*)
-                from QuestionAnswerVotes where questionAnswerId = @questionAnswerId and createdBy = @userId
-                ",
-                new { questionAnswerId, userId });
-            }
-
+            int count = new QuestionAnswerVoteAlreadyExistsQuery().Execute(DbConnection(), userId, questionAnswerId);
             return count > 0;
         }
 
@@ -150,23 +138,7 @@ namespace App.Infrastructure
 
         public int GetQuestionVotes(string questionId)
         {
-            int voteCount;
-            using (var connection = DbConnection())
-            {
-                connection.Open();
-                voteCount = connection.QuerySingle<int>(
-                @"
-                select 
-                count(*)
-                from QuestionVotes
-                where questionId = @questionId ",
-                    new
-                    {
-                        questionId
-                    });
-            }
-
-            return voteCount;
+            return new GetQuestionVotesQuery().Execute(DbConnection(), questionId);
         }
     }
 }
