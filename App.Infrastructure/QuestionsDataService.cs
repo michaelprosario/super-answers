@@ -24,19 +24,9 @@ namespace App.Infrastructure
             Require.NotNullOrEmpty(userId, "userId is required");
             Require.NotNullOrEmpty(questionId, "questionId is required");
 
-            int count = 0;
-            using (var connection = DbConnection())
-            {
-                connection.Open();
-                count = connection.QuerySingle<int>(
-                @"
-                select 
-                count(*)
-                from QuestionVotes where questionId = @questionId and createdBy = @userId
-                ",
-                new { questionId, userId });
-            }
+            int count = new QuestionVoteAlreadyExistsQuery().Execute(DbConnection(), userId, questionId);
 
+            System.Console.WriteLine($"vote count = {count}");
             return count > 0;
         }
 
