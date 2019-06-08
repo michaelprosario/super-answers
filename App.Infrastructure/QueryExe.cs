@@ -4,13 +4,15 @@ using System.Collections.Generic;
 
 namespace App.Infrastructure
 {
-    public class QueryExe {
-
-        public static T QuerySingle<T>(MySqlConnection mySqlConnection, CommandDefinition command) {
+    public class QueryExe
+    {
+        public static T QuerySingle<T>(MySqlConnection mySqlConnection, CommandDefinition command)
+        {
             T output;
-            using (var connection = mySqlConnection) {
-                connection.Open ();
-                output = connection.QuerySingle<T> (command);
+            using (var connection = mySqlConnection)
+            {
+                connection.Open();
+                output = connection.QuerySingle<T>(command);
             }
 
             return output;
@@ -27,7 +29,5 @@ namespace App.Infrastructure
 
             return output;
         }
-
-
     }
 }

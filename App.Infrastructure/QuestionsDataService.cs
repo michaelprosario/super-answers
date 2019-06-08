@@ -9,6 +9,7 @@ using App.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using App.Infrastructure.Queries;
+using MySql.Data.MySqlClient;
 
 namespace App.Infrastructure
 {
@@ -59,9 +60,9 @@ namespace App.Infrastructure
             return new SearchByKeywordQuery().Execute(DbConnection(), searchPhrase);
         }
 
-        public MySql.Data.MySqlClient.MySqlConnection DbConnection()
+        public MySqlConnection DbConnection()
         {
-            return new MySql.Data.MySqlClient.MySqlConnection(settings.Value.ConnectionString);
+            return new MySqlConnection(settings.Value.ConnectionString);
         }
     }
 }
