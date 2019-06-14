@@ -73,7 +73,7 @@ namespace App.Controllers
         
         [AllowAnonymous]
         [HttpPost("RegisterUser")]
-        public async Task<RegisterUserResponse> RegisterUserAsync([FromBody] RegisterUserRequest request)
+        public async Task<RegisterUserResponse> RegisterUserAsync([FromBody] RegisterUserCommand request)
         {
             return await _mediator.Send(request);
         }

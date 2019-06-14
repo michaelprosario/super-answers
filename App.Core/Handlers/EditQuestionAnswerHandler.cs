@@ -3,13 +3,11 @@ using App.Core.Interfaces;
 using App.Core.Requests;
 using App.Core.Utilities;
 using FluentValidation;
-using MediatR;
 using System.Runtime.Serialization;
-using System;
 
 namespace App.Core.Handlers
 {
-    public class EditQuestionAnswerRequest : IRequest<EditQuestionAnswerResponse>, IUserRequest
+    public class EditQuestionAnswerCommand : Command<EditQuestionAnswerResponse>, IUserRequest
     {
         [DataMember(Order=1)]
         public string Id { get; set; }
@@ -21,7 +19,7 @@ namespace App.Core.Handlers
         public string UserId { get; set; }
     }
 
-    public class EditQuestionAnswerRequestValidator : AbstractValidator<EditQuestionAnswerRequest>
+    public class EditQuestionAnswerRequestValidator : AbstractValidator<EditQuestionAnswerCommand>
     {
         public EditQuestionAnswerRequestValidator()
         {
@@ -35,7 +33,7 @@ namespace App.Core.Handlers
     {
     }
     
-    public class EditQuestionAnswerHandler : BaseHandler<EditQuestionAnswerRequest, EditQuestionAnswerResponse>
+    public class EditQuestionAnswerHandler : BaseHandler<EditQuestionAnswerCommand, EditQuestionAnswerResponse>
     {
 
         IRepository<DbEntities.QuestionAnswer> _repository;
@@ -43,7 +41,7 @@ namespace App.Core.Handlers
         {
             _repository = repository;
         }
-        protected override EditQuestionAnswerResponse Handle(EditQuestionAnswerRequest request)
+        protected override EditQuestionAnswerResponse Handle(EditQuestionAnswerCommand command)
         {
 
             var response = new EditQuestionAnswerResponse
@@ -52,8 +50,8 @@ namespace App.Core.Handlers
                 Code = ResponseCode.Success
             };
 
-            Require.ObjectNotNull(request, "Request is null.");
-            var validationResult = new EditQuestionAnswerRequestValidator().Validate(request);
+            Require.ObjectNotNull(command, "Request is null.");
+            var validationResult = new EditQuestionAnswerRequestValidator().Validate(command);
             if (!validationResult.IsValid)
 
             {
@@ -61,7 +59,7 @@ namespace App.Core.Handlers
                 return response;
             }
 
-            var record = _repository.GetById(request.Id);
+            var record = _repository.GetById(command.Id);
             if(record == null)
             {
                 response.Code = ResponseCode.NotFound;
@@ -69,8 +67,8 @@ namespace App.Core.Handlers
                 return response;
             }
 
-            record.Answer = request.Answer; 
-            HandlerUtilities.TimeStampRecord(record, request.UserId, false);
+            record.Answer = command.Answer; 
+            HandlerUtilities.TimeStampRecord(record, command.UserId, false);
             _repository.Update(record);
 
             return response;

@@ -3,15 +3,13 @@ using App.Core.Enums;
 using App.Core.Interfaces;
 using App.Core.Requests;
 using App.Core.Utilities;
-using MediatR;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Linq;
 using AutoMapper;
 
 namespace App.Core.Handlers
 {
-    public class ListQuestionAnswersRequest : IRequest<ListQuestionAnswersResponse>, IUserRequest
+    public class ListQuestionAnswersQuery : Query<ListQuestionAnswersResponse>, IUserRequest
     {
         public string UserId { get; set; }
     }
@@ -23,7 +21,7 @@ namespace App.Core.Handlers
         public IList<QuestionAnswer> Records;
     }
 
-    public class ListQuestionAnswersHandler : BaseHandler<ListQuestionAnswersRequest, ListQuestionAnswersResponse>
+    public class ListQuestionAnswersHandler : BaseHandler<ListQuestionAnswersQuery, ListQuestionAnswersResponse>
     {
         IRepository<DbEntities.QuestionAnswer> _repository;
         private readonly IMapper _mapper;
@@ -33,14 +31,14 @@ namespace App.Core.Handlers
             _repository = repository;
             _mapper = mapper;
         }
-        protected override ListQuestionAnswersResponse Handle(ListQuestionAnswersRequest request)
+        protected override ListQuestionAnswersResponse Handle(ListQuestionAnswersQuery query)
         {
             var response = new ListQuestionAnswersResponse
             {
                 Code = ResponseCode.Success
             };
 
-            Require.ObjectNotNull(request, "Request is null.");
+            Require.ObjectNotNull(query, "Request is null.");
             response.Records = new List<QuestionAnswer>();
             foreach (var dbRecord in _repository.List())
             {

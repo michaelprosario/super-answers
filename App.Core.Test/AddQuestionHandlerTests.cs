@@ -26,7 +26,7 @@ namespace App.Core.Test
             _repository.Add(Arg.Any<DbEntities.Question>()).Returns(SetupQuestion());
             _handler = new AddQuestionHandler(_repository);
 
-            var request = new AddQuestionRequest()
+            var request = new AddQuestionCommand()
             {
                 Content = "What is 2 + 2",
                 QuestionTitle = "What is 2 +2",
@@ -48,7 +48,7 @@ namespace App.Core.Test
             // arrange
             var questionRepository = Substitute.For<IRepository<DbEntities.Question>>();
             questionRepository.Add(Arg.Any<DbEntities.Question>()).Returns(SetupQuestion());
-            var request = new AddQuestionRequest()
+            var request = new AddQuestionCommand()
             {
                 Content = "",
                 QuestionTitle = "What is 2 +2",

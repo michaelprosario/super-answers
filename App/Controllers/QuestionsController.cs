@@ -9,8 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace App.Controllers
 {
-    
-
     [Authorize]
     [ApiController]
     [Route("[controller]")]
@@ -33,132 +31,132 @@ namespace App.Controllers
         }
 
         [HttpPost("AddQuestion")]
-        public async Task<AddQuestionResponse> AddQuestionAsync([FromBody] AddQuestionRequest request)
+        public async Task<AddQuestionResponse> AddQuestionAsync([FromBody] AddQuestionCommand command)
         {
-            request.UserId = GetUserName();
-            return await _mediator.Send(request);
+            command.UserId = GetUserName();
+            return await _mediator.Send(command);
         }
         
         [HttpPost("EditQuestion")]
-        public async Task<EditQuestionResponse> EditQuestionAsync([FromBody] EditQuestionRequest request)
+        public async Task<EditQuestionResponse> EditQuestionAsync([FromBody] EditQuestionCommand command)
         {
-            request.UserId = GetUserName();
-            return await _mediator.Send(request);
+            command.UserId = GetUserName();
+            return await _mediator.Send(command);
         }
         
         [HttpPost("DeleteQuestion")]
-        public async Task<VoidResponse> DeleteQuestionAsync([FromBody] DeleteQuestionRequest request)
+        public async Task<VoidResponse> DeleteQuestionAsync([FromBody] DeleteQuestionCommand command)
         {
-            request.UserId = GetUserName();
-            return await _mediator.Send(request);
+            command.UserId = GetUserName();
+            return await _mediator.Send(command);
         }
         
         [HttpPost("ListQuestions")]
-        public async Task<ListQuestionsResponse> ListQuestionsAsync([FromBody] ListQuestionsRequest request)
+        public async Task<ListQuestionsResponse> ListQuestionsAsync([FromBody] ListQuestionsQuery query)
         {
-            request.UserId = GetUserName();
-            return await _mediator.Send(request);
+            query.UserId = GetUserName();
+            return await _mediator.Send(query);
         }
         
         [HttpPost("GetQuestion")]
-        public async Task<GetQuestionResponse> GetQuestionAsync([FromBody] GetQuestionRequest request)
+        public async Task<GetQuestionResponse> GetQuestionAsync([FromBody] GetQuestionQuery query)
         {
-            request.UserId = GetUserName();
-            return await _mediator.Send(request);
+            query.UserId = GetUserName();
+            return await _mediator.Send(query);
         }
         
         [HttpPost("AddQuestionTag")]
-        public async Task<AddQuestionTagResponse> AddQuestionTagAsync([FromBody] AddQuestionTagRequest request)
+        public async Task<AddQuestionTagResponse> AddQuestionTagAsync([FromBody] AddQuestionTagCommand command)
         {
-            request.UserId = GetUserName();
-            return await _mediator.Send(request);
+            command.UserId = GetUserName();
+            return await _mediator.Send(command);
         }
         
         [HttpPost("DeleteQuestionTag")]
-        public async Task<VoidResponse> DeleteQuestionTagAsync([FromBody] DeleteQuestionTagRequest request)
+        public async Task<VoidResponse> DeleteQuestionTagAsync([FromBody] DeleteQuestionTagCommand command)
         {
-            request.UserId = GetUserName();
-            return await _mediator.Send(request);
+            command.UserId = GetUserName();
+            return await _mediator.Send(command);
         }
         
         [HttpPost("ListQuestionTags")]
-        public async Task<ListQuestionTagsResponse> ListQuestionTagsAsync([FromBody] ListQuestionTagsRequest request)
+        public async Task<ListQuestionTagsResponse> ListQuestionTagsAsync([FromBody] ListQuestionTagsQuery query)
         {
-            request.UserId = GetUserName();
-            return await _mediator.Send(request);
+            query.UserId = GetUserName();
+            return await _mediator.Send(query);
         }
         
         [HttpPost("AddQuestionAnswer")]
-        public async Task<AddQuestionAnswerResponse> AddQuestionAnswerAsync([FromBody] AddQuestionAnswerRequest request)
+        public async Task<AddQuestionAnswerResponse> AddQuestionAnswerAsync([FromBody] AddQuestionAnswerCommand command)
         {
-            request.UserId = GetUserName();
-            return await _mediator.Send(request);
+            command.UserId = GetUserName();
+            return await _mediator.Send(command);
         }
         
         [HttpPost("EditQuestionAnswer")]
         public async Task<EditQuestionAnswerResponse> EditQuestionAnswerAsync(
-            [FromBody] EditQuestionAnswerRequest request)
+            [FromBody] EditQuestionAnswerCommand command)
         {
-            request.UserId = GetUserName();
-            return await _mediator.Send(request);
+            command.UserId = GetUserName();
+            return await _mediator.Send(command);
         }
         
         [HttpPost("DeleteQuestionAnswer")]
-        public async Task<VoidResponse> DeleteQuestionAnswerAsync([FromBody] DeleteQuestionAnswerRequest request)
+        public async Task<VoidResponse> DeleteQuestionAnswerAsync([FromBody] DeleteQuestionAnswerCommand command)
         {
-            request.UserId = GetUserName();
-            return await _mediator.Send(request);
+            command.UserId = GetUserName();
+            return await _mediator.Send(command);
         }
         
         [HttpPost("ListQuestionAnswers")]
         public async Task<ListQuestionAnswersResponse> ListQuestionAnswersAsync(
-            [FromBody] ListQuestionAnswersRequest request)
+            [FromBody] ListQuestionAnswersQuery request)
         {
             request.UserId = GetUserName();
             return await _mediator.Send(request);
         }
         
         [HttpPost("GetQuestionAnswer")]
-        public async Task<GetQuestionAnswerResponse> GetQuestionAnswerAsync([FromBody] GetQuestionAnswerRequest request)
+        public async Task<GetQuestionAnswerResponse> GetQuestionAnswerAsync([FromBody] GetQuestionAnswerQuery query)
         {
-            request.UserId = GetUserName();
-            return await _mediator.Send(request);
+            query.UserId = GetUserName();
+            return await _mediator.Send(query);
         }
 
         [HttpPost("AddAnswerVote")]
-        public async Task<AddAnswerVoteResponse> AddAnswerVoteAsync([FromBody] AddAnswerVoteRequest request)
+        public async Task<AddAnswerVoteResponse> AddAnswerVoteAsync([FromBody] AddAnswerVoteCommand command)
         {
-            request.UserId = GetUserName();
-            return await _mediator.Send(request);
+            command.UserId = GetUserName();
+            return await _mediator.Send(command);
         }
 
         
         [HttpPost("AddQuestionVote")]
-        public async Task<AddQuestionVoteResponse> AddQuestionVoteAsync([FromBody] AddQuestionVoteRequest request)
+        public async Task<AddQuestionVoteResponse> AddQuestionVoteAsync([FromBody] AddQuestionVoteCommand command)
         {
-            request.UserId = GetUserName();
-            return await _mediator.Send(request);
+            command.UserId = GetUserName();
+            return await _mediator.Send(command);
         }
 
         [HttpPost("DeleteQuestionVote")]
-        public async Task<VoidResponse> DeleteQuestionVoteAsync([FromBody] DeleteQuestionVoteRequest request)
+        public async Task<VoidResponse> DeleteQuestionVoteAsync([FromBody] DeleteQuestionVoteCommand command)
         {
-            request.UserId = GetUserName();
-            return await _mediator.Send(request);
+            command.UserId = GetUserName();
+            return await _mediator.Send(command);
         }
 
         [HttpPost("SearchByKeyword")]
-        public async Task<SearchByKeywordResponse> SearchByKeywordAsync([FromBody] SearchByKeywordRequest request)
+        public async Task<SearchByKeywordResponse> SearchByKeywordAsync([FromBody] SearchByKeywordQuery query)
         {
-            request.UserId = GetUserName();
-            return await _mediator.Send(request);
+            query.UserId = GetUserName();
+            return await _mediator.Send(query);
         }
 
         [HttpPost("GetMostRecentQuestions")]
-        public async Task<GetMostRecentQuestionsResponse> GetMostRecentQuestionsAsync([FromBody] GetMostRecentQuestionsRequest request)
+        public async Task<GetMostRecentQuestionsResponse> GetMostRecentQuestionsAsync([FromBody] GetMostRecentQuestionsQuery query)
         {
-            request.UserId = GetUserName();
-            return await _mediator.Send(request);
+            query.UserId = GetUserName();
+            return await _mediator.Send(query);
         }
     }
 }

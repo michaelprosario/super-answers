@@ -5,12 +5,11 @@ using App.Core.Interfaces;
 using App.Core.Requests;
 using App.Core.Utilities;
 using AutoMapper;
-using MediatR;
 using System.Runtime.Serialization;
 
 namespace App.Core.Handlers
 {
-    public class GetQuestionAnswerRequest : IRequest<GetQuestionAnswerResponse>, IUserRequest
+    public class GetQuestionAnswerQuery : Query<GetQuestionAnswerResponse>, IUserRequest
     {
         public string Id { get; set; }
         public string UserId { get; set; }
@@ -23,7 +22,7 @@ namespace App.Core.Handlers
         [DataMember] public Question Question;
     }
 
-    public class GetQuestionAnswerHandler : BaseHandler<GetQuestionAnswerRequest, GetQuestionAnswerResponse>
+    public class GetQuestionAnswerHandler : BaseHandler<GetQuestionAnswerQuery, GetQuestionAnswerResponse>
     {
         readonly IRepository<DbEntities.QuestionAnswer> _repository;
         private readonly IMapper _mapper;
@@ -36,15 +35,15 @@ namespace App.Core.Handlers
             _questions = questions;
         }
 
-        protected override GetQuestionAnswerResponse Handle(GetQuestionAnswerRequest request)
+        protected override GetQuestionAnswerResponse Handle(GetQuestionAnswerQuery query)
         {
             var response = new GetQuestionAnswerResponse
             {
                 Code = ResponseCode.Success
             };
 
-            Require.ObjectNotNull(request, "Request is null.");
-            var dbRecord = _repository.GetById(request.Id);
+            Require.ObjectNotNull(query, "Request is null.");
+            var dbRecord = _repository.GetById(query.Id);
             if (dbRecord == null)
             {
                 response.Code = ResponseCode.NotFound;
@@ -55,10 +54,10 @@ namespace App.Core.Handlers
 
             response.QuestionAnswer = entity;
 
-            var getQuestionRequest = new GetQuestionRequest()
+            var getQuestionRequest = new GetQuestionQuery()
             {
                 Id = dbRecord.QuestionId,
-                UserId = request.UserId
+                UserId = query.UserId
             };
 
             response.Question = _questions.GetQuestion(getQuestionRequest).Question;

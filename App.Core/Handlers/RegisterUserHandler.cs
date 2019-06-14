@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace App.Core.Handlers
 {
-    public class RegisterUserRequest : IRequest<RegisterUserResponse>
+    public class RegisterUserCommand : IRequest<RegisterUserResponse>
     {
         [DataMember]
         public string FirstName { get; set; }
@@ -23,7 +23,7 @@ namespace App.Core.Handlers
         public string Password { get; set; }
     }
 
-    public class RegisterUserRequestValidator : AbstractValidator<RegisterUserRequest>
+    public class RegisterUserRequestValidator : AbstractValidator<RegisterUserCommand>
     {
         public RegisterUserRequestValidator()
         {
@@ -39,7 +39,7 @@ namespace App.Core.Handlers
         [DataMember] public string Id { get; set; }
     }
 
-    public class RegisterUserHandler : BaseHandler<RegisterUserRequest, RegisterUserResponse>
+    public class RegisterUserHandler : BaseHandler<RegisterUserCommand, RegisterUserResponse>
     {
         private readonly IUserService usersService;
 
@@ -48,15 +48,15 @@ namespace App.Core.Handlers
             this.usersService = usersService;
         }
 
-        protected override RegisterUserResponse Handle(RegisterUserRequest request)
+        protected override RegisterUserResponse Handle(RegisterUserCommand command)
         {
             var response = new RegisterUserResponse
             {
                 Code = ResponseCode.Success
             };
 
-            Require.ObjectNotNull(request, "Request is null.");
-            var validationResult = new RegisterUserRequestValidator().Validate(request);
+            Require.ObjectNotNull(command, "Request is null.");
+            var validationResult = new RegisterUserRequestValidator().Validate(command);
             if (!validationResult.IsValid)
             {
                 response.ValidationErrors = validationResult.Errors;
@@ -64,12 +64,12 @@ namespace App.Core.Handlers
             }
 
 
-            string password = request.Password;
+            string password = command.Password;
             Entities.User user = new Entities.User()
             {
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                UserName = request.UserName
+                FirstName = command.FirstName,
+                LastName = command.LastName,
+                UserName = command.UserName
             };
 
             try

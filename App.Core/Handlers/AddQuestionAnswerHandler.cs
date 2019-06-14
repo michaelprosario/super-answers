@@ -1,16 +1,14 @@
-using App.Core.Entities;
 using App.Core.Enums;
 using App.Core.Interfaces;
 using App.Core.Requests;
 using App.Core.Utilities;
 using FluentValidation;
-using MediatR;
 using System.Runtime.Serialization;
 using System;
 
 namespace App.Core.Handlers
 {
-    public class AddQuestionAnswerRequest : IRequest<AddQuestionAnswerResponse>, IUserRequest
+    public class AddQuestionAnswerCommand : Command<AddQuestionAnswerResponse>, IUserRequest
     {
             [DataMember(Order = 1)]
             public string QuestionId { get; set; }
@@ -20,9 +18,9 @@ namespace App.Core.Handlers
             public string UserId { get; set; }
     }
 
-    public class AddQuestionAnswerRequestValidator : AbstractValidator<AddQuestionAnswerRequest>
+    public class AddQuestionAnswerCommandValidator : AbstractValidator<AddQuestionAnswerCommand>
     {
-        public AddQuestionAnswerRequestValidator()
+        public AddQuestionAnswerCommandValidator()
         {
             RuleFor(x => x.Answer).NotEmpty();
             RuleFor(x => x.Answer).NotEmpty();
@@ -34,7 +32,7 @@ namespace App.Core.Handlers
         [DataMember] public string Id { get; set; }
     }
 
-    public class AddQuestionAnswerHandler : BaseHandler<AddQuestionAnswerRequest, AddQuestionAnswerResponse>
+    public class AddQuestionAnswerHandler : BaseHandler<AddQuestionAnswerCommand, AddQuestionAnswerResponse>
     {
         readonly IRepository<DbEntities.QuestionAnswer> _repository;
 
@@ -43,15 +41,15 @@ namespace App.Core.Handlers
             _repository = repository;
         }
 
-        protected override AddQuestionAnswerResponse Handle(AddQuestionAnswerRequest request)
+        protected override AddQuestionAnswerResponse Handle(AddQuestionAnswerCommand command)
         {
             var response = new AddQuestionAnswerResponse
             {
                 Code = ResponseCode.Success
             };
 
-            Require.ObjectNotNull(request, "Request is null.");
-            var validationResult = new AddQuestionAnswerRequestValidator().Validate(request);
+            Require.ObjectNotNull(command, "Request is null.");
+            var validationResult = new AddQuestionAnswerCommandValidator().Validate(command);
             if (!validationResult.IsValid)
             {
                 response.ValidationErrors = validationResult.Errors;
@@ -60,15 +58,15 @@ namespace App.Core.Handlers
 
             var record = new DbEntities.QuestionAnswer();
             
-            record.QuestionId = request.QuestionId; 
-            record.Answer = request.Answer; 
+            record.QuestionId = command.QuestionId; 
+            record.Answer = command.Answer; 
             record.CreatedAt = DateTime.Now;
-            record.CreatedBy = request.UserId;
+            record.CreatedBy = command.UserId;
             record.UpdatedAt = DateTime.Now; 
-            record.UpdatedBy = request.UserId; 
+            record.UpdatedBy = command.UserId; 
             record.Votes = 0; 
     
-            HandlerUtilities.TimeStampRecord(record, request.UserId, true);
+            HandlerUtilities.TimeStampRecord(record, command.UserId, true);
             var returnRecord = _repository.Add(record);
             response.Id = returnRecord.Id;
 
