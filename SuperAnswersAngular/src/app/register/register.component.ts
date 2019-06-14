@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { User } from '../entities/user';
 import { first } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsersService } from 'src/data-services/services';
-import { RegisterUserRequest } from 'src/data-services/models';
+import { RegisterUserCommand } from 'src/data-services/models';
 
 @Component({
   selector: 'app-register',
@@ -39,13 +38,13 @@ export class RegisterComponent implements OnInit {
         return false;
       }
 
-      let request: RegisterUserRequest = {};
-      request.firstName = this.firstName;
-      request.lastName = this.lastName;
-      request.userName = this.userName;
-      request.password = this.password;
+      let command: RegisterUserCommand = {};
+      command.firstName = this.firstName;
+      command.lastName = this.lastName;
+      command.userName = this.userName;
+      command.password = this.password;
 
-      this.usersService.UsersRegisterUser(request)
+      this.usersService.UsersRegisterUser(command)
       .pipe(first())
       .subscribe(response => 
       { 

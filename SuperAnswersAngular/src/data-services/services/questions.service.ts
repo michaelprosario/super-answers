@@ -8,38 +8,38 @@ import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { AddQuestionResponse } from '../models/add-question-response';
-import { AddQuestionRequest } from '../models/add-question-request';
+import { AddQuestionCommand } from '../models/add-question-command';
 import { EditQuestionResponse } from '../models/edit-question-response';
-import { EditQuestionRequest } from '../models/edit-question-request';
+import { EditQuestionCommand } from '../models/edit-question-command';
 import { VoidResponse } from '../models/void-response';
-import { DeleteQuestionRequest } from '../models/delete-question-request';
+import { DeleteQuestionCommand } from '../models/delete-question-command';
 import { ListQuestionsResponse } from '../models/list-questions-response';
-import { ListQuestionsRequest } from '../models/list-questions-request';
+import { ListQuestionsQuery } from '../models/list-questions-query';
 import { GetQuestionResponse } from '../models/get-question-response';
-import { GetQuestionRequest } from '../models/get-question-request';
+import { GetQuestionQuery } from '../models/get-question-query';
 import { AddQuestionTagResponse } from '../models/add-question-tag-response';
-import { AddQuestionTagRequest } from '../models/add-question-tag-request';
-import { DeleteQuestionTagRequest } from '../models/delete-question-tag-request';
+import { AddQuestionTagCommand } from '../models/add-question-tag-command';
+import { DeleteQuestionTagCommand } from '../models/delete-question-tag-command';
 import { ListQuestionTagsResponse } from '../models/list-question-tags-response';
-import { ListQuestionTagsRequest } from '../models/list-question-tags-request';
+import { ListQuestionTagsQuery } from '../models/list-question-tags-query';
 import { AddQuestionAnswerResponse } from '../models/add-question-answer-response';
-import { AddQuestionAnswerRequest } from '../models/add-question-answer-request';
+import { AddQuestionAnswerCommand } from '../models/add-question-answer-command';
 import { EditQuestionAnswerResponse } from '../models/edit-question-answer-response';
-import { EditQuestionAnswerRequest } from '../models/edit-question-answer-request';
-import { DeleteQuestionAnswerRequest } from '../models/delete-question-answer-request';
+import { EditQuestionAnswerCommand } from '../models/edit-question-answer-command';
+import { DeleteQuestionAnswerCommand } from '../models/delete-question-answer-command';
 import { ListQuestionAnswersResponse } from '../models/list-question-answers-response';
-import { ListQuestionAnswersRequest } from '../models/list-question-answers-request';
+import { ListQuestionAnswersQuery } from '../models/list-question-answers-query';
 import { GetQuestionAnswerResponse } from '../models/get-question-answer-response';
-import { GetQuestionAnswerRequest } from '../models/get-question-answer-request';
+import { GetQuestionAnswerQuery } from '../models/get-question-answer-query';
 import { AddAnswerVoteResponse } from '../models/add-answer-vote-response';
-import { AddAnswerVoteRequest } from '../models/add-answer-vote-request';
+import { AddAnswerVoteCommand } from '../models/add-answer-vote-command';
 import { AddQuestionVoteResponse } from '../models/add-question-vote-response';
-import { AddQuestionVoteRequest } from '../models/add-question-vote-request';
-import { DeleteQuestionVoteRequest } from '../models/delete-question-vote-request';
+import { AddQuestionVoteCommand } from '../models/add-question-vote-command';
+import { DeleteQuestionVoteCommand } from '../models/delete-question-vote-command';
 import { SearchByKeywordResponse } from '../models/search-by-keyword-response';
-import { SearchByKeywordRequest } from '../models/search-by-keyword-request';
+import { SearchByKeywordQuery } from '../models/search-by-keyword-query';
 import { GetMostRecentQuestionsResponse } from '../models/get-most-recent-questions-response';
-import { GetMostRecentQuestionsRequest } from '../models/get-most-recent-questions-request';
+import { GetMostRecentQuestionsQuery } from '../models/get-most-recent-questions-query';
 @Injectable({
   providedIn: 'root',
 })
@@ -71,13 +71,13 @@ class QuestionsService extends __BaseService {
   }
 
   /**
-   * @param request undefined
+   * @param command undefined
    */
-  QuestionsAddQuestionResponse(request: AddQuestionRequest): __Observable<__StrictHttpResponse<AddQuestionResponse>> {
+  QuestionsAddQuestionResponse(command: AddQuestionCommand): __Observable<__StrictHttpResponse<AddQuestionResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = request;
+    __body = command;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/Questions/AddQuestion`,
@@ -96,22 +96,22 @@ class QuestionsService extends __BaseService {
     );
   }
   /**
-   * @param request undefined
+   * @param command undefined
    */
-  QuestionsAddQuestion(request: AddQuestionRequest): __Observable<AddQuestionResponse> {
-    return this.QuestionsAddQuestionResponse(request).pipe(
+  QuestionsAddQuestion(command: AddQuestionCommand): __Observable<AddQuestionResponse> {
+    return this.QuestionsAddQuestionResponse(command).pipe(
       __map(_r => _r.body as AddQuestionResponse)
     );
   }
 
   /**
-   * @param request undefined
+   * @param command undefined
    */
-  QuestionsEditQuestionResponse(request: EditQuestionRequest): __Observable<__StrictHttpResponse<EditQuestionResponse>> {
+  QuestionsEditQuestionResponse(command: EditQuestionCommand): __Observable<__StrictHttpResponse<EditQuestionResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = request;
+    __body = command;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/Questions/EditQuestion`,
@@ -130,22 +130,22 @@ class QuestionsService extends __BaseService {
     );
   }
   /**
-   * @param request undefined
+   * @param command undefined
    */
-  QuestionsEditQuestion(request: EditQuestionRequest): __Observable<EditQuestionResponse> {
-    return this.QuestionsEditQuestionResponse(request).pipe(
+  QuestionsEditQuestion(command: EditQuestionCommand): __Observable<EditQuestionResponse> {
+    return this.QuestionsEditQuestionResponse(command).pipe(
       __map(_r => _r.body as EditQuestionResponse)
     );
   }
 
   /**
-   * @param request undefined
+   * @param command undefined
    */
-  QuestionsDeleteQuestionResponse(request: DeleteQuestionRequest): __Observable<__StrictHttpResponse<VoidResponse>> {
+  QuestionsDeleteQuestionResponse(command: DeleteQuestionCommand): __Observable<__StrictHttpResponse<VoidResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = request;
+    __body = command;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/Questions/DeleteQuestion`,
@@ -164,22 +164,22 @@ class QuestionsService extends __BaseService {
     );
   }
   /**
-   * @param request undefined
+   * @param command undefined
    */
-  QuestionsDeleteQuestion(request: DeleteQuestionRequest): __Observable<VoidResponse> {
-    return this.QuestionsDeleteQuestionResponse(request).pipe(
+  QuestionsDeleteQuestion(command: DeleteQuestionCommand): __Observable<VoidResponse> {
+    return this.QuestionsDeleteQuestionResponse(command).pipe(
       __map(_r => _r.body as VoidResponse)
     );
   }
 
   /**
-   * @param request undefined
+   * @param query undefined
    */
-  QuestionsListQuestionsResponse(request: ListQuestionsRequest): __Observable<__StrictHttpResponse<ListQuestionsResponse>> {
+  QuestionsListQuestionsResponse(query: ListQuestionsQuery): __Observable<__StrictHttpResponse<ListQuestionsResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = request;
+    __body = query;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/Questions/ListQuestions`,
@@ -198,22 +198,22 @@ class QuestionsService extends __BaseService {
     );
   }
   /**
-   * @param request undefined
+   * @param query undefined
    */
-  QuestionsListQuestions(request: ListQuestionsRequest): __Observable<ListQuestionsResponse> {
-    return this.QuestionsListQuestionsResponse(request).pipe(
+  QuestionsListQuestions(query: ListQuestionsQuery): __Observable<ListQuestionsResponse> {
+    return this.QuestionsListQuestionsResponse(query).pipe(
       __map(_r => _r.body as ListQuestionsResponse)
     );
   }
 
   /**
-   * @param request undefined
+   * @param query undefined
    */
-  QuestionsGetQuestionResponse(request: GetQuestionRequest): __Observable<__StrictHttpResponse<GetQuestionResponse>> {
+  QuestionsGetQuestionResponse(query: GetQuestionQuery): __Observable<__StrictHttpResponse<GetQuestionResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = request;
+    __body = query;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/Questions/GetQuestion`,
@@ -232,22 +232,22 @@ class QuestionsService extends __BaseService {
     );
   }
   /**
-   * @param request undefined
+   * @param query undefined
    */
-  QuestionsGetQuestion(request: GetQuestionRequest): __Observable<GetQuestionResponse> {
-    return this.QuestionsGetQuestionResponse(request).pipe(
+  QuestionsGetQuestion(query: GetQuestionQuery): __Observable<GetQuestionResponse> {
+    return this.QuestionsGetQuestionResponse(query).pipe(
       __map(_r => _r.body as GetQuestionResponse)
     );
   }
 
   /**
-   * @param request undefined
+   * @param command undefined
    */
-  QuestionsAddQuestionTagResponse(request: AddQuestionTagRequest): __Observable<__StrictHttpResponse<AddQuestionTagResponse>> {
+  QuestionsAddQuestionTagResponse(command: AddQuestionTagCommand): __Observable<__StrictHttpResponse<AddQuestionTagResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = request;
+    __body = command;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/Questions/AddQuestionTag`,
@@ -266,22 +266,22 @@ class QuestionsService extends __BaseService {
     );
   }
   /**
-   * @param request undefined
+   * @param command undefined
    */
-  QuestionsAddQuestionTag(request: AddQuestionTagRequest): __Observable<AddQuestionTagResponse> {
-    return this.QuestionsAddQuestionTagResponse(request).pipe(
+  QuestionsAddQuestionTag(command: AddQuestionTagCommand): __Observable<AddQuestionTagResponse> {
+    return this.QuestionsAddQuestionTagResponse(command).pipe(
       __map(_r => _r.body as AddQuestionTagResponse)
     );
   }
 
   /**
-   * @param request undefined
+   * @param command undefined
    */
-  QuestionsDeleteQuestionTagResponse(request: DeleteQuestionTagRequest): __Observable<__StrictHttpResponse<VoidResponse>> {
+  QuestionsDeleteQuestionTagResponse(command: DeleteQuestionTagCommand): __Observable<__StrictHttpResponse<VoidResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = request;
+    __body = command;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/Questions/DeleteQuestionTag`,
@@ -300,22 +300,22 @@ class QuestionsService extends __BaseService {
     );
   }
   /**
-   * @param request undefined
+   * @param command undefined
    */
-  QuestionsDeleteQuestionTag(request: DeleteQuestionTagRequest): __Observable<VoidResponse> {
-    return this.QuestionsDeleteQuestionTagResponse(request).pipe(
+  QuestionsDeleteQuestionTag(command: DeleteQuestionTagCommand): __Observable<VoidResponse> {
+    return this.QuestionsDeleteQuestionTagResponse(command).pipe(
       __map(_r => _r.body as VoidResponse)
     );
   }
 
   /**
-   * @param request undefined
+   * @param query undefined
    */
-  QuestionsListQuestionTagsResponse(request: ListQuestionTagsRequest): __Observable<__StrictHttpResponse<ListQuestionTagsResponse>> {
+  QuestionsListQuestionTagsResponse(query: ListQuestionTagsQuery): __Observable<__StrictHttpResponse<ListQuestionTagsResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = request;
+    __body = query;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/Questions/ListQuestionTags`,
@@ -334,22 +334,22 @@ class QuestionsService extends __BaseService {
     );
   }
   /**
-   * @param request undefined
+   * @param query undefined
    */
-  QuestionsListQuestionTags(request: ListQuestionTagsRequest): __Observable<ListQuestionTagsResponse> {
-    return this.QuestionsListQuestionTagsResponse(request).pipe(
+  QuestionsListQuestionTags(query: ListQuestionTagsQuery): __Observable<ListQuestionTagsResponse> {
+    return this.QuestionsListQuestionTagsResponse(query).pipe(
       __map(_r => _r.body as ListQuestionTagsResponse)
     );
   }
 
   /**
-   * @param request undefined
+   * @param command undefined
    */
-  QuestionsAddQuestionAnswerResponse(request: AddQuestionAnswerRequest): __Observable<__StrictHttpResponse<AddQuestionAnswerResponse>> {
+  QuestionsAddQuestionAnswerResponse(command: AddQuestionAnswerCommand): __Observable<__StrictHttpResponse<AddQuestionAnswerResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = request;
+    __body = command;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/Questions/AddQuestionAnswer`,
@@ -368,22 +368,22 @@ class QuestionsService extends __BaseService {
     );
   }
   /**
-   * @param request undefined
+   * @param command undefined
    */
-  QuestionsAddQuestionAnswer(request: AddQuestionAnswerRequest): __Observable<AddQuestionAnswerResponse> {
-    return this.QuestionsAddQuestionAnswerResponse(request).pipe(
+  QuestionsAddQuestionAnswer(command: AddQuestionAnswerCommand): __Observable<AddQuestionAnswerResponse> {
+    return this.QuestionsAddQuestionAnswerResponse(command).pipe(
       __map(_r => _r.body as AddQuestionAnswerResponse)
     );
   }
 
   /**
-   * @param request undefined
+   * @param command undefined
    */
-  QuestionsEditQuestionAnswerResponse(request: EditQuestionAnswerRequest): __Observable<__StrictHttpResponse<EditQuestionAnswerResponse>> {
+  QuestionsEditQuestionAnswerResponse(command: EditQuestionAnswerCommand): __Observable<__StrictHttpResponse<EditQuestionAnswerResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = request;
+    __body = command;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/Questions/EditQuestionAnswer`,
@@ -402,22 +402,22 @@ class QuestionsService extends __BaseService {
     );
   }
   /**
-   * @param request undefined
+   * @param command undefined
    */
-  QuestionsEditQuestionAnswer(request: EditQuestionAnswerRequest): __Observable<EditQuestionAnswerResponse> {
-    return this.QuestionsEditQuestionAnswerResponse(request).pipe(
+  QuestionsEditQuestionAnswer(command: EditQuestionAnswerCommand): __Observable<EditQuestionAnswerResponse> {
+    return this.QuestionsEditQuestionAnswerResponse(command).pipe(
       __map(_r => _r.body as EditQuestionAnswerResponse)
     );
   }
 
   /**
-   * @param request undefined
+   * @param command undefined
    */
-  QuestionsDeleteQuestionAnswerResponse(request: DeleteQuestionAnswerRequest): __Observable<__StrictHttpResponse<VoidResponse>> {
+  QuestionsDeleteQuestionAnswerResponse(command: DeleteQuestionAnswerCommand): __Observable<__StrictHttpResponse<VoidResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = request;
+    __body = command;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/Questions/DeleteQuestionAnswer`,
@@ -436,10 +436,10 @@ class QuestionsService extends __BaseService {
     );
   }
   /**
-   * @param request undefined
+   * @param command undefined
    */
-  QuestionsDeleteQuestionAnswer(request: DeleteQuestionAnswerRequest): __Observable<VoidResponse> {
-    return this.QuestionsDeleteQuestionAnswerResponse(request).pipe(
+  QuestionsDeleteQuestionAnswer(command: DeleteQuestionAnswerCommand): __Observable<VoidResponse> {
+    return this.QuestionsDeleteQuestionAnswerResponse(command).pipe(
       __map(_r => _r.body as VoidResponse)
     );
   }
@@ -447,7 +447,7 @@ class QuestionsService extends __BaseService {
   /**
    * @param request undefined
    */
-  QuestionsListQuestionAnswersResponse(request: ListQuestionAnswersRequest): __Observable<__StrictHttpResponse<ListQuestionAnswersResponse>> {
+  QuestionsListQuestionAnswersResponse(request: ListQuestionAnswersQuery): __Observable<__StrictHttpResponse<ListQuestionAnswersResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -472,20 +472,20 @@ class QuestionsService extends __BaseService {
   /**
    * @param request undefined
    */
-  QuestionsListQuestionAnswers(request: ListQuestionAnswersRequest): __Observable<ListQuestionAnswersResponse> {
+  QuestionsListQuestionAnswers(request: ListQuestionAnswersQuery): __Observable<ListQuestionAnswersResponse> {
     return this.QuestionsListQuestionAnswersResponse(request).pipe(
       __map(_r => _r.body as ListQuestionAnswersResponse)
     );
   }
 
   /**
-   * @param request undefined
+   * @param query undefined
    */
-  QuestionsGetQuestionAnswerResponse(request: GetQuestionAnswerRequest): __Observable<__StrictHttpResponse<GetQuestionAnswerResponse>> {
+  QuestionsGetQuestionAnswerResponse(query: GetQuestionAnswerQuery): __Observable<__StrictHttpResponse<GetQuestionAnswerResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = request;
+    __body = query;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/Questions/GetQuestionAnswer`,
@@ -504,22 +504,22 @@ class QuestionsService extends __BaseService {
     );
   }
   /**
-   * @param request undefined
+   * @param query undefined
    */
-  QuestionsGetQuestionAnswer(request: GetQuestionAnswerRequest): __Observable<GetQuestionAnswerResponse> {
-    return this.QuestionsGetQuestionAnswerResponse(request).pipe(
+  QuestionsGetQuestionAnswer(query: GetQuestionAnswerQuery): __Observable<GetQuestionAnswerResponse> {
+    return this.QuestionsGetQuestionAnswerResponse(query).pipe(
       __map(_r => _r.body as GetQuestionAnswerResponse)
     );
   }
 
   /**
-   * @param request undefined
+   * @param command undefined
    */
-  QuestionsAddAnswerVoteResponse(request: AddAnswerVoteRequest): __Observable<__StrictHttpResponse<AddAnswerVoteResponse>> {
+  QuestionsAddAnswerVoteResponse(command: AddAnswerVoteCommand): __Observable<__StrictHttpResponse<AddAnswerVoteResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = request;
+    __body = command;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/Questions/AddAnswerVote`,
@@ -538,22 +538,22 @@ class QuestionsService extends __BaseService {
     );
   }
   /**
-   * @param request undefined
+   * @param command undefined
    */
-  QuestionsAddAnswerVote(request: AddAnswerVoteRequest): __Observable<AddAnswerVoteResponse> {
-    return this.QuestionsAddAnswerVoteResponse(request).pipe(
+  QuestionsAddAnswerVote(command: AddAnswerVoteCommand): __Observable<AddAnswerVoteResponse> {
+    return this.QuestionsAddAnswerVoteResponse(command).pipe(
       __map(_r => _r.body as AddAnswerVoteResponse)
     );
   }
 
   /**
-   * @param request undefined
+   * @param command undefined
    */
-  QuestionsAddQuestionVoteResponse(request: AddQuestionVoteRequest): __Observable<__StrictHttpResponse<AddQuestionVoteResponse>> {
+  QuestionsAddQuestionVoteResponse(command: AddQuestionVoteCommand): __Observable<__StrictHttpResponse<AddQuestionVoteResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = request;
+    __body = command;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/Questions/AddQuestionVote`,
@@ -572,22 +572,22 @@ class QuestionsService extends __BaseService {
     );
   }
   /**
-   * @param request undefined
+   * @param command undefined
    */
-  QuestionsAddQuestionVote(request: AddQuestionVoteRequest): __Observable<AddQuestionVoteResponse> {
-    return this.QuestionsAddQuestionVoteResponse(request).pipe(
+  QuestionsAddQuestionVote(command: AddQuestionVoteCommand): __Observable<AddQuestionVoteResponse> {
+    return this.QuestionsAddQuestionVoteResponse(command).pipe(
       __map(_r => _r.body as AddQuestionVoteResponse)
     );
   }
 
   /**
-   * @param request undefined
+   * @param command undefined
    */
-  QuestionsDeleteQuestionVoteResponse(request: DeleteQuestionVoteRequest): __Observable<__StrictHttpResponse<VoidResponse>> {
+  QuestionsDeleteQuestionVoteResponse(command: DeleteQuestionVoteCommand): __Observable<__StrictHttpResponse<VoidResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = request;
+    __body = command;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/Questions/DeleteQuestionVote`,
@@ -606,22 +606,22 @@ class QuestionsService extends __BaseService {
     );
   }
   /**
-   * @param request undefined
+   * @param command undefined
    */
-  QuestionsDeleteQuestionVote(request: DeleteQuestionVoteRequest): __Observable<VoidResponse> {
-    return this.QuestionsDeleteQuestionVoteResponse(request).pipe(
+  QuestionsDeleteQuestionVote(command: DeleteQuestionVoteCommand): __Observable<VoidResponse> {
+    return this.QuestionsDeleteQuestionVoteResponse(command).pipe(
       __map(_r => _r.body as VoidResponse)
     );
   }
 
   /**
-   * @param request undefined
+   * @param query undefined
    */
-  QuestionsSearchByKeywordResponse(request: SearchByKeywordRequest): __Observable<__StrictHttpResponse<SearchByKeywordResponse>> {
+  QuestionsSearchByKeywordResponse(query: SearchByKeywordQuery): __Observable<__StrictHttpResponse<SearchByKeywordResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = request;
+    __body = query;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/Questions/SearchByKeyword`,
@@ -640,22 +640,22 @@ class QuestionsService extends __BaseService {
     );
   }
   /**
-   * @param request undefined
+   * @param query undefined
    */
-  QuestionsSearchByKeyword(request: SearchByKeywordRequest): __Observable<SearchByKeywordResponse> {
-    return this.QuestionsSearchByKeywordResponse(request).pipe(
+  QuestionsSearchByKeyword(query: SearchByKeywordQuery): __Observable<SearchByKeywordResponse> {
+    return this.QuestionsSearchByKeywordResponse(query).pipe(
       __map(_r => _r.body as SearchByKeywordResponse)
     );
   }
 
   /**
-   * @param request undefined
+   * @param query undefined
    */
-  QuestionsGetMostRecentQuestionsResponse(request: GetMostRecentQuestionsRequest): __Observable<__StrictHttpResponse<GetMostRecentQuestionsResponse>> {
+  QuestionsGetMostRecentQuestionsResponse(query: GetMostRecentQuestionsQuery): __Observable<__StrictHttpResponse<GetMostRecentQuestionsResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = request;
+    __body = query;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/Questions/GetMostRecentQuestions`,
@@ -674,10 +674,10 @@ class QuestionsService extends __BaseService {
     );
   }
   /**
-   * @param request undefined
+   * @param query undefined
    */
-  QuestionsGetMostRecentQuestions(request: GetMostRecentQuestionsRequest): __Observable<GetMostRecentQuestionsResponse> {
-    return this.QuestionsGetMostRecentQuestionsResponse(request).pipe(
+  QuestionsGetMostRecentQuestions(query: GetMostRecentQuestionsQuery): __Observable<GetMostRecentQuestionsResponse> {
+    return this.QuestionsGetMostRecentQuestionsResponse(query).pipe(
       __map(_r => _r.body as GetMostRecentQuestionsResponse)
     );
   }

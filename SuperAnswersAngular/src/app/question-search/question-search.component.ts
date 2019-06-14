@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Question, SearchByKeywordRequest } from 'src/data-services/models';
+import { Question, SearchByKeywordQuery } from 'src/data-services/models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionsService } from 'src/data-services/services';
 import { first } from 'rxjs/operators';
@@ -30,12 +30,12 @@ export class QuestionSearchComponent implements OnInit {
   ngOnInit() {
     this.terms = this.route.snapshot.paramMap.get('terms');
 
-    let request: SearchByKeywordRequest = {};
-    request.searchTerms = this.terms;
-    request.userId = "test";
+    let query: SearchByKeywordQuery = {};
+    query.searchTerms = this.terms;
+    query.userId = "test";
     
     let current = this;
-    this.questionsService.QuestionsSearchByKeyword(request)
+    this.questionsService.QuestionsSearchByKeyword(query)
       .pipe(first()).subscribe(
         response => {
           current.searchResults = response.questions;
