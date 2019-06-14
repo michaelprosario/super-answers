@@ -9,7 +9,7 @@ import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { UserDto } from '../models/user-dto';
 import { RegisterUserResponse } from '../models/register-user-response';
-import { RegisterUserRequest } from '../models/register-user-request';
+import { RegisterUserCommand } from '../models/register-user-command';
 @Injectable({
   providedIn: 'root',
 })
@@ -61,7 +61,7 @@ class UsersService extends __BaseService {
   /**
    * @param request undefined
    */
-  UsersRegisterUserResponse(request: RegisterUserRequest): __Observable<__StrictHttpResponse<RegisterUserResponse>> {
+  UsersRegisterUserResponse(request: RegisterUserCommand): __Observable<__StrictHttpResponse<RegisterUserResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -86,7 +86,7 @@ class UsersService extends __BaseService {
   /**
    * @param request undefined
    */
-  UsersRegisterUser(request: RegisterUserRequest): __Observable<RegisterUserResponse> {
+  UsersRegisterUser(request: RegisterUserCommand): __Observable<RegisterUserResponse> {
     return this.UsersRegisterUserResponse(request).pipe(
       __map(_r => _r.body as RegisterUserResponse)
     );

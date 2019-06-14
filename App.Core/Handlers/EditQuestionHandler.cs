@@ -3,12 +3,11 @@ using App.Core.Interfaces;
 using App.Core.Requests;
 using App.Core.Utilities;
 using FluentValidation;
-using MediatR;
 using System.Runtime.Serialization;
 
 namespace App.Core.Handlers
 {
-    public class EditQuestionRequest : IRequest<EditQuestionResponse>, IUserRequest
+    public class EditQuestionCommand : Command<EditQuestionResponse>, IUserRequest
     {
         public string QuestionTitle { get; set; }
         public string Content { get; set; }
@@ -18,7 +17,7 @@ namespace App.Core.Handlers
         public string QuestionId { get; set; }
     }
 
-    public class EditQuestionRequestValidator : AbstractValidator<EditQuestionRequest>
+    public class EditQuestionRequestValidator : AbstractValidator<EditQuestionCommand>
     {
         public EditQuestionRequestValidator()
         {
@@ -36,34 +35,34 @@ namespace App.Core.Handlers
         public string Id { get; set; }
     }
     
-    public class EditQuestionHandler : BaseHandler<EditQuestionRequest, EditQuestionResponse>
+    public class EditQuestionHandler : BaseHandler<EditQuestionCommand, EditQuestionResponse>
     {
         IRepository<DbEntities.Question> _repository;
         public EditQuestionHandler(IRepository<DbEntities.Question> repository)
         {
             _repository = repository;
         }
-        protected override EditQuestionResponse Handle(EditQuestionRequest request)
+        protected override EditQuestionResponse Handle(EditQuestionCommand command)
         {
             var response = new EditQuestionResponse
             {
                 Code = ResponseCode.Success
             };
 
-            Require.ObjectNotNull(request, "Request is null.");
-            var validationResult = new EditQuestionRequestValidator().Validate(request);
+            Require.ObjectNotNull(command, "Request is null.");
+            var validationResult = new EditQuestionRequestValidator().Validate(command);
             if (!validationResult.IsValid)
             {
                 response.ValidationErrors = validationResult.Errors;
                 return response;
             }
 
-            var record = _repository.GetById(request.QuestionId);
-            record.Content = request.Content;
-            record.QuestionTitle = request.QuestionTitle;
-            record.Tags = request.Tags;
+            var record = _repository.GetById(command.QuestionId);
+            record.Content = command.Content;
+            record.QuestionTitle = command.QuestionTitle;
+            record.Tags = command.Tags;
        
-            HandlerUtilities.TimeStampRecord(record, request.UserId, false);
+            HandlerUtilities.TimeStampRecord(record, command.UserId, false);
             _repository.Update(record);
 
             return response;

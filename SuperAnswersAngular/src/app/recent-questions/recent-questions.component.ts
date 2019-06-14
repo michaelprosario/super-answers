@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Question, GetMostRecentQuestionsRequest } from 'src/data-services/models';
+import { Question, GetMostRecentQuestionsQuery } from 'src/data-services/models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionsService } from 'src/data-services/services';
 import { first } from 'rxjs/operators';
@@ -27,10 +27,10 @@ export class RecentQuestionsComponent implements OnInit {
 
   ngOnInit() {
 
-    let request: GetMostRecentQuestionsRequest = {};
+    let query: GetMostRecentQuestionsQuery = {};
     
     let current = this;
-    this.questionsService.QuestionsGetMostRecentQuestions(request)
+    this.questionsService.QuestionsGetMostRecentQuestions(query)
       .pipe(first()).subscribe(
         response => {
           current.searchResults = response.questions;

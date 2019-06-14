@@ -3,17 +3,16 @@ using App.Core.Interfaces;
 using App.Core.Requests;
 using App.Core.Utilities;
 using FluentValidation;
-using MediatR;
 
 namespace App.Core.Handlers
 {
-    public class DeleteQuestionVoteRequest : IRequest<VoidResponse>, IUserRequest
+    public class DeleteQuestionVoteCommand : Command<VoidResponse>, IUserRequest
     {
         public string Id { get; set; }
         public string UserId { get; set; }
     }
 
-    public class DeleteQuestionVoteValidator : AbstractValidator<DeleteQuestionVoteRequest>
+    public class DeleteQuestionVoteValidator : AbstractValidator<DeleteQuestionVoteCommand>
     {
         public DeleteQuestionVoteValidator()
         {
@@ -22,29 +21,29 @@ namespace App.Core.Handlers
         }
     }
 
-    public class DeleteQuestionVoteHandler : BaseHandler<DeleteQuestionVoteRequest, VoidResponse>
+    public class DeleteQuestionVoteHandler : BaseHandler<DeleteQuestionVoteCommand, VoidResponse>
     {
         readonly IRepository<DbEntities.QuestionVote> _repository;
         public DeleteQuestionVoteHandler(IRepository<DbEntities.QuestionVote> repository)
         {
             _repository = repository;
         }
-        protected override VoidResponse Handle(DeleteQuestionVoteRequest request)
+        protected override VoidResponse Handle(DeleteQuestionVoteCommand command)
         {
             var response = new VoidResponse
             {
                 Code = ResponseCode.Success
             };
 
-            Require.ObjectNotNull(request, "Request is null.");
-            var validationResult = new DeleteQuestionVoteValidator().Validate(request);
+            Require.ObjectNotNull(command, "Request is null.");
+            var validationResult = new DeleteQuestionVoteValidator().Validate(command);
             if (!validationResult.IsValid)
             {
                 response.ValidationErrors = validationResult.Errors;
                 return response;
             }
 
-            var record = _repository.GetById(request.Id);
+            var record = _repository.GetById(command.Id);
             if (record == null) {
                 response.Code = ResponseCode.NotFound;
                 return response;

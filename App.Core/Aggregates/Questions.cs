@@ -11,7 +11,7 @@ namespace App.Core.Aggregates
 {
     public interface IQuestions
     {
-        GetQuestionResponse GetQuestion(GetQuestionRequest request);
+        GetQuestionResponse GetQuestion(GetQuestionQuery request);
         IEnumerable<Question> SearchByKeyword(string searchTerm);
         IEnumerable<Question> GetMostRecentQuestions();
     }
@@ -29,7 +29,7 @@ namespace App.Core.Aggregates
             _mapper = mapper;
         }
 
-        public GetQuestionResponse GetQuestion(GetQuestionRequest request)
+        public GetQuestionResponse GetQuestion(GetQuestionQuery request)
         {
             var response = new GetQuestionResponse
             {

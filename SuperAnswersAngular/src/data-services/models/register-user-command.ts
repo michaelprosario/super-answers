@@ -1,5 +1,5 @@
 /* tslint:disable */
-export interface RegisterUserRequest {
+export interface RegisterUserCommand {
   firstName?: string;
   lastName?: string;
   userName?: string;

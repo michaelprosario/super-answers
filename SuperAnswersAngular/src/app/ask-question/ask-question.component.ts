@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionsService } from 'src/data-services/services';
 import { first } from 'rxjs/operators';
-import { AddQuestionRequest, ListQuestionsRequest } from 'src/data-services/models';
+import { AddQuestionCommand, ListQuestionsQuery } from 'src/data-services/models';
 import { SiteTopRowComponent } from 'src/app/site-top-row/site-top-row.component';
 import { Router } from '@angular/router';
 
@@ -27,8 +27,8 @@ export class AskQuestionComponent implements OnInit {
 
   ngOnInit() 
   {
-    let request: ListQuestionsRequest = {}
-    this.questionsService.QuestionsListQuestionTags(request).pipe(first()).subscribe(
+    let query: ListQuestionsQuery = {}
+    this.questionsService.QuestionsListQuestionTags(query).pipe(first()).subscribe(
       response => {
         response.records.map(r => this.validTags.push(r.title));
       }
@@ -42,14 +42,14 @@ export class AskQuestionComponent implements OnInit {
 
     let tagsArray = [];
     this.selectedTags.map(t => tagsArray.push(t.value) );
-    let addQuestionRequest : AddQuestionRequest = {
+    let addQuestionCommand : AddQuestionCommand = {
       questionTitle: this.questionTitle,
       content: this.questionContent,
       tags: tagsArray.toString(),
       notifyMeOnResponse: false
     }
 
-    this.questionsService.QuestionsAddQuestion(addQuestionRequest)
+    this.questionsService.QuestionsAddQuestion(addQuestionCommand)
     .pipe(first())
     .subscribe(response => 
     {         

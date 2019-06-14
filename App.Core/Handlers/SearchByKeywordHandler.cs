@@ -2,14 +2,13 @@ using System.Collections.Generic;
 using System.Linq;
 using App.Core.Entities;
 using App.Core.Requests;
-using MediatR;
 using System.Runtime.Serialization;
 using App.Core.Aggregates;
 using App.Core.Utilities;
 
 namespace App.Core.Handlers
 {
-    public class SearchByKeywordRequest : IRequest<SearchByKeywordResponse>
+    public class SearchByKeywordQuery : Query<SearchByKeywordResponse>
     {
         public string SearchTerms { get; set; }
         public string UserId { get; set; }
@@ -22,7 +21,7 @@ namespace App.Core.Handlers
         public IList<Question> Questions;
     }
 
-    public class SearchByKeywordHandler : BaseHandler<SearchByKeywordRequest, SearchByKeywordResponse>
+    public class SearchByKeywordHandler : BaseHandler<SearchByKeywordQuery, SearchByKeywordResponse>
     {
         private readonly IQuestions _questions;
 
@@ -31,13 +30,13 @@ namespace App.Core.Handlers
             _questions = questions;
         }
 
-        protected override SearchByKeywordResponse Handle(SearchByKeywordRequest request)
+        protected override SearchByKeywordResponse Handle(SearchByKeywordQuery query)
         {
-            Require.ObjectNotNull(request, "request should not be null");
+            Require.ObjectNotNull(query, "request should not be null");
 
             var response = new SearchByKeywordResponse
             {
-                Questions = _questions.SearchByKeyword(request.SearchTerms).ToList()
+                Questions = _questions.SearchByKeyword(query.SearchTerms).ToList()
             };
 
             return response;

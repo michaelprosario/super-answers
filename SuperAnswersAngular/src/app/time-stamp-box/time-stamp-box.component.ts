@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Question } from 'src/data-services/models';
 
 @Component({
   selector: 'app-time-stamp-box',

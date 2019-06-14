@@ -19,7 +19,6 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'recentQuestions', component: RecentQuestionsComponent },
   { path: 'searchQuestions/:terms', component: QuestionSearchComponent },   
-  { path: 'test', component: TestComponent },
   { path: 'viewQuestion/:id', component: ViewQuestionComponent },  
 ];
 

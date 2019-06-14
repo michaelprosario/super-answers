@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionsService } from 'src/data-services/services';
-import { GetQuestionRequest, Question, AddQuestionAnswerRequest, AddQuestionVoteRequest, AddAnswerVoteResponse, AddAnswerVoteRequest, QuestionAnswer } from 'src/data-services/models';
+import { GetQuestionQuery, Question, AddQuestionAnswerCommand, AddQuestionVoteCommand, AddAnswerVoteResponse, AddAnswerVoteCommand, QuestionAnswer } from 'src/data-services/models';
 import { first } from 'rxjs/operators';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 
@@ -31,11 +31,11 @@ export class ViewQuestionComponent implements OnInit {
   }
 
   loadQuestionContent(){
-    let request: GetQuestionRequest = {};
-    request.id = this.questionId;
-    request.userId = "test";
+    let query: GetQuestionQuery = {};
+    query.id = this.questionId;
+    query.userId = "test";
 
-    this.questionsService.QuestionsGetQuestion(request)
+    this.questionsService.QuestionsGetQuestion(query)
       .pipe(first()).subscribe(
         response => {
           this.question = response.question;
@@ -46,11 +46,11 @@ export class ViewQuestionComponent implements OnInit {
   }
 
   handleQuestionVote(){
-    const request: AddQuestionVoteRequest = {};
-    request.questionId = this.questionId;
-    request.userId = 'test';
+    const command: AddQuestionVoteCommand = {};
+    command.questionId = this.questionId;
+    command.userId = 'test';
 
-    this.questionsService.QuestionsAddQuestionVote(request)
+    this.questionsService.QuestionsAddQuestionVote(command)
       .pipe(first()).subscribe(
         response => {
           if (response.message === null) {
@@ -61,11 +61,11 @@ export class ViewQuestionComponent implements OnInit {
   }
 
   handleAnswerVote(answer) {   
-    const request: AddAnswerVoteRequest = {};
-    request.questionAnswerId = answer.id;
-    request.userId = 'test';
+    const command: AddAnswerVoteCommand = {};
+    command.questionAnswerId = answer.id;
+    command.userId = 'test';
 
-    this.questionsService.QuestionsAddAnswerVote(request)
+    this.questionsService.QuestionsAddAnswerVote(command)
       .pipe(first()).subscribe(
         response => {
           if (response.message === null) {
@@ -85,12 +85,12 @@ export class ViewQuestionComponent implements OnInit {
       return false;
     }
 
-    let request: AddQuestionAnswerRequest = {
+    let command: AddQuestionAnswerCommand = {
       answer: this.answer,
       questionId: this.questionId
     };
 
-    this.questionsService.QuestionsAddQuestionAnswer(request)
+    this.questionsService.QuestionsAddQuestionAnswer(command)
       .pipe(first()).subscribe(
         response => {
           this.answer = '';

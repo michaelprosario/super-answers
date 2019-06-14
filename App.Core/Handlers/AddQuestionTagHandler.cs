@@ -3,13 +3,12 @@ using App.Core.Interfaces;
 using App.Core.Requests;
 using App.Core.Utilities;
 using FluentValidation;
-using MediatR;
 using System.Runtime.Serialization;
 using System;
 
 namespace App.Core.Handlers
 {
-    public class AddQuestionTagRequest : IRequest<AddQuestionTagResponse>, IUserRequest
+    public class AddQuestionTagCommand : Command<AddQuestionTagResponse>, IUserRequest
     {
         
             [DataMember(Order = 1)]
@@ -17,7 +16,7 @@ namespace App.Core.Handlers
             public string UserId { get; set; }
     }
 
-    public class AddQuestionTagRequestValidator : AbstractValidator<AddQuestionTagRequest>
+    public class AddQuestionTagRequestValidator : AbstractValidator<AddQuestionTagCommand>
     {
         public AddQuestionTagRequestValidator()
         {
@@ -30,7 +29,7 @@ namespace App.Core.Handlers
         [DataMember] public string Id { get; set; }
     }
 
-    public class AddQuestionTagHandler : BaseHandler<AddQuestionTagRequest, AddQuestionTagResponse>
+    public class AddQuestionTagHandler : BaseHandler<AddQuestionTagCommand, AddQuestionTagResponse>
     {
         readonly IRepository<DbEntities.QuestionTag> _repository;
 
@@ -39,15 +38,15 @@ namespace App.Core.Handlers
             _repository = repository;
         }
 
-        protected override AddQuestionTagResponse Handle(AddQuestionTagRequest request)
+        protected override AddQuestionTagResponse Handle(AddQuestionTagCommand command)
         {
             var response = new AddQuestionTagResponse
             {
                 Code = ResponseCode.Success
             };
 
-            Require.ObjectNotNull(request, "Request is null.");
-            var validationResult = new AddQuestionTagRequestValidator().Validate(request);
+            Require.ObjectNotNull(command, "Request is null.");
+            var validationResult = new AddQuestionTagRequestValidator().Validate(command);
             if (!validationResult.IsValid)
             {
                 response.ValidationErrors = validationResult.Errors;
@@ -56,13 +55,13 @@ namespace App.Core.Handlers
 
             var record = new DbEntities.QuestionTag();
             
-            record.Title = request.Title; 
+            record.Title = command.Title; 
             record.CreatedAt = DateTime.Now; 
-            record.CreatedBy = request.UserId; 
+            record.CreatedBy = command.UserId; 
             record.UpdatedAt = DateTime.Now; 
-            record.UpdatedBy = request.UserId; 
+            record.UpdatedBy = command.UserId; 
 
-            HandlerUtilities.TimeStampRecord(record, request.UserId, true);
+            HandlerUtilities.TimeStampRecord(record, command.UserId, true);
             var returnRecord = _repository.Add(record);
             response.Id = returnRecord.Id;
 

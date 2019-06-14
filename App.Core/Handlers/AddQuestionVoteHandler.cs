@@ -10,7 +10,7 @@ using System;
 
 namespace App.Core.Handlers
 {
-    public class AddQuestionVoteRequest : IRequest<AddQuestionVoteResponse>, IUserRequest
+    public class AddQuestionVoteCommand : Command<AddQuestionVoteResponse>, IUserRequest
     {
         
             [DataMember(Order = 1)]
@@ -19,7 +19,7 @@ namespace App.Core.Handlers
             public string UserId { get; set; }
     }
 
-    public class AddQuestionVoteRequestValidator : AbstractValidator<AddQuestionVoteRequest>
+    public class AddQuestionVoteRequestValidator : AbstractValidator<AddQuestionVoteCommand>
     {
         public AddQuestionVoteRequestValidator()
         {
@@ -33,7 +33,7 @@ namespace App.Core.Handlers
         [DataMember] public string Id { get; set; }
     }
 
-    public class AddQuestionVoteHandler : BaseHandler<AddQuestionVoteRequest, AddQuestionVoteResponse>
+    public class AddQuestionVoteHandler : BaseHandler<AddQuestionVoteCommand, AddQuestionVoteResponse>
     {
         readonly IRepository<DbEntities.QuestionVote> _repository;
         readonly IQuestionsDataService _questionsDataService;
@@ -47,22 +47,22 @@ namespace App.Core.Handlers
             _questionsDataService = questionsDataService;
         }
 
-        protected override AddQuestionVoteResponse Handle(AddQuestionVoteRequest request)
+        protected override AddQuestionVoteResponse Handle(AddQuestionVoteCommand command)
         {
             var response = new AddQuestionVoteResponse
             {
                 Code = ResponseCode.Success
             };
 
-            Require.ObjectNotNull(request, "Request is null.");
-            var validationResult = new AddQuestionVoteRequestValidator().Validate(request);
+            Require.ObjectNotNull(command, "Request is null.");
+            var validationResult = new AddQuestionVoteRequestValidator().Validate(command);
             if (!validationResult.IsValid)
             {
                 response.ValidationErrors = validationResult.Errors;
                 return response;
             }
 
-            if(_questionsDataService.QuestionVoteAlreadyExists(request.UserId, request.QuestionId)){
+            if(_questionsDataService.QuestionVoteAlreadyExists(command.UserId, command.QuestionId)){
                 response.Message = "User has already voted for this question";
                 response.Code = ResponseCode.Success;
                 return response;
@@ -70,13 +70,13 @@ namespace App.Core.Handlers
 
             var record = new DbEntities.QuestionVote();
             
-            record.QuestionId = request.QuestionId; 
+            record.QuestionId = command.QuestionId; 
             record.CreatedAt = DateTime.Now; 
-            record.CreatedBy = request.UserId; 
+            record.CreatedBy = command.UserId; 
             record.UpdatedAt = DateTime.Now; 
-            record.UpdatedBy = request.UserId; 
+            record.UpdatedBy = command.UserId; 
     
-            HandlerUtilities.TimeStampRecord(record, request.UserId, true);
+            HandlerUtilities.TimeStampRecord(record, command.UserId, true);
             var returnRecord = _repository.Add(record);
             response.Id = returnRecord.Id;
 

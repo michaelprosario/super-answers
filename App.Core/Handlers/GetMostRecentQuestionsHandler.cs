@@ -2,14 +2,13 @@
 using System.Linq;
 using App.Core.Entities;
 using App.Core.Requests;
-using MediatR;
 using System.Runtime.Serialization;
 using App.Core.Aggregates;
 using App.Core.Utilities;
 
 namespace App.Core.Handlers
 {
-    public class GetMostRecentQuestionsRequest : IRequest<GetMostRecentQuestionsResponse>
+    public class GetMostRecentQuestionsQuery : Query<GetMostRecentQuestionsResponse>
     {
         public string UserId { get; set; }
     }
@@ -21,7 +20,7 @@ namespace App.Core.Handlers
         public IList<Question> Questions;
     }
 
-    public class GetMostRecentQuestionsHandler : BaseHandler<GetMostRecentQuestionsRequest, GetMostRecentQuestionsResponse>
+    public class GetMostRecentQuestionsHandler : BaseHandler<GetMostRecentQuestionsQuery, GetMostRecentQuestionsResponse>
     {
         private readonly IQuestions _questions;
 
@@ -30,9 +29,9 @@ namespace App.Core.Handlers
             _questions = questions;
         }
 
-        protected override GetMostRecentQuestionsResponse Handle(GetMostRecentQuestionsRequest request)
+        protected override GetMostRecentQuestionsResponse Handle(GetMostRecentQuestionsQuery query)
         {
-            Require.ObjectNotNull(request, "request should not be null");
+            Require.ObjectNotNull(query, "request should not be null");
 
             var response = new GetMostRecentQuestionsResponse
             {

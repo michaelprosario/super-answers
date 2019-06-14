@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Question, GetQuestionRequest, EditQuestionRequest } from 'src/data-services/models';
+import { Question, GetQuestionQuery, EditQuestionCommand } from 'src/data-services/models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionsService } from 'src/data-services/services';
 import { first } from 'rxjs/operators';
@@ -40,11 +40,11 @@ export class EditQuestionComponent implements OnInit {
       }
     )
 
-    let request: GetQuestionRequest = {};
-    request.id = this.questionId;
-    request.userId = "test";
+    let query: GetQuestionQuery = {};
+    query.id = this.questionId;
+    query.userId = "test";
 
-    this.questionsService.QuestionsGetQuestion(request)
+    this.questionsService.QuestionsGetQuestion(query)
       .pipe(first()).subscribe(
         response => {
           this.question = response.question;
@@ -63,7 +63,7 @@ export class EditQuestionComponent implements OnInit {
     let tagsArray = [];
     
     this.question.tagArray.map(t => tagsArray.push(t) );
-    let editQuestionRequest : EditQuestionRequest = {
+    let editQuestionCommand : EditQuestionCommand = {
       questionTitle: this.question.questionTitle,
       content: this.question.contentAsMarkDown,
       tags: tagsArray.toString(),
@@ -71,7 +71,7 @@ export class EditQuestionComponent implements OnInit {
       questionId: this.question.id
     }
 
-    this.questionsService.QuestionsEditQuestion(editQuestionRequest)
+    this.questionsService.QuestionsEditQuestion(editQuestionCommand)
     .pipe(first())
     .subscribe(response => 
     {         
