@@ -11,5 +11,6 @@ export interface Question {
   createdAt: string;
   updatedAt: string;
   votes: number;
+  views: number;
   answerCount: number;
 }

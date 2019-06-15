@@ -3,14 +3,16 @@ using System;
 using App.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace App.Migrations
 {
     [DbContext(typeof(EfContext))]
-    partial class EfContextModelSnapshot : ModelSnapshot
+    [Migration("20190615105729_QuestionVotesTable")]
+    partial class QuestionVotesTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -115,26 +117,6 @@ namespace App.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("QuestionTags");
-                });
-
-            modelBuilder.Entity("App.Core.DbEntities.QuestionView", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.Property<string>("CreatedBy");
-
-                    b.Property<string>("QuestionId");
-
-                    b.Property<DateTime>("UpdatedAt");
-
-                    b.Property<string>("UpdatedBy");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("QuestionViews");
                 });
 
             modelBuilder.Entity("App.Core.DbEntities.QuestionVote", b =>

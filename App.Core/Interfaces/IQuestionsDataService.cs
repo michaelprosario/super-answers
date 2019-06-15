@@ -15,5 +15,6 @@ namespace App.Core.Interfaces
         IEnumerable<Question> SearchByKeyword(string searchTerm);
 
         IEnumerable<Question> GetMostRecentQuestions();
+        Question GetQuestion(string id);
     }
 }

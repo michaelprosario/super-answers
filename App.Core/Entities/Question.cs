@@ -41,6 +41,8 @@ namespace App.Core.Entities
         [DataMember]
         public int Votes { get; set; }
         [DataMember]
+        public int Views { get; set; }
+        [DataMember]
         public int AnswerCount { get; set; }
     }
 }

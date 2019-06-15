@@ -939,6 +939,7 @@
         "createdAt",
         "updatedAt",
         "votes",
+        "views",
         "answerCount"
       ],
       "properties": {
@@ -978,6 +979,10 @@
           "format": "date-time"
         },
         "votes": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "views": {
           "type": "integer",
           "format": "int32"
         },

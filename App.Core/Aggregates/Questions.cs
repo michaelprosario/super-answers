@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using App.Core.DbEntities;
 using App.Core.Enums;
 using App.Core.Handlers;
 using App.Core.Interfaces;
 using App.Core.Utilities;
 using AutoMapper;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Question = App.Core.Entities.Question;
 
 namespace App.Core.Aggregates
@@ -21,34 +23,34 @@ namespace App.Core.Aggregates
         private readonly IRepository<DbEntities.Question> _questionRepository;
         private readonly IQuestionsDataService _questionsDataService;
         private readonly IMapper _mapper;
+        private readonly IRepository<QuestionView> _questionViewRepository;
 
-        public Questions(IRepository<DbEntities.Question> questionRepository, IQuestionsDataService questionsDataService, IMapper mapper)
+        public Questions(IRepository<DbEntities.Question> questionRepository, IQuestionsDataService questionsDataService, IMapper mapper, IRepository<QuestionView> questionViewRepository)
         {
             _questionRepository = questionRepository;
             _questionsDataService = questionsDataService;
             _mapper = mapper;
+            _questionViewRepository = questionViewRepository;
         }
 
-        public GetQuestionResponse GetQuestion(GetQuestionQuery request)
+        public GetQuestionResponse GetQuestion(GetQuestionQuery query)
         {
             var response = new GetQuestionResponse
             {
                 Code = ResponseCode.Success
             };
 
-            Require.ObjectNotNull(request, "Request is null.");
-            var dbRecord = _questionRepository.GetById(request.Id);
-            if (dbRecord == null)
+            Require.ObjectNotNull(query, "Query is null.");
+            Entities.Question question = _questionsDataService.GetQuestion(query.Id);
+            if (question == null)
             {
                 response.Code = ResponseCode.NotFound;
             }
             else
             {
-                var question = _mapper.Map<Question>(dbRecord);
                 response.Question = question;
                 question.ContentAsMarkDown = question.Content;
                 question.Content = Markdig.Markdown.ToHtml(question.Content);
-                response.Question.Votes = _questionsDataService.GetQuestionVotes(response.Question.Id);
             }
 
             var answers = _questionsDataService.GetAnswersForQuestion(response.Question.Id);
@@ -59,6 +61,17 @@ namespace App.Core.Aggregates
                 }
                 response.Answers = answers.OrderByDescending(r => r.Votes).ToList();
             }
+
+            var questionView = new QuestionView()
+            {
+                CreatedAt = DateTime.Now,
+                CreatedBy = query.UserId,
+                UpdatedAt = DateTime.Now,
+                UpdatedBy = query.UserId,
+                QuestionId = query.Id
+            };
+
+            _questionViewRepository.Add(questionView);
 
             return response;
         }

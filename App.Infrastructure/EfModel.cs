@@ -8,7 +8,7 @@ namespace App.Infrastructure
         public EfContext(DbContextOptions<EfContext> options)
             : base(options)
         {
-            
+
         }
 
         public DbSet<User> Users { get; set; }
@@ -17,5 +17,7 @@ namespace App.Infrastructure
         public DbSet<Core.DbEntities.QuestionAnswer> QuestionAnswers { get; set; }
         public DbSet<Core.DbEntities.QuestionVote> QuestionVotes { get; set; }
         public DbSet<Core.DbEntities.QuestionAnswerVote> QuestionAnswerVotes { get; set; }
+        public DbSet<Core.DbEntities.QuestionView> QuestionViews { get; set; }
+
     }
 }

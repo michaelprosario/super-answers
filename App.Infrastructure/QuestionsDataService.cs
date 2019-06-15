@@ -1,15 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using App.Core;
 using App.Core.Entities;
 using App.Core.Interfaces;
-using Dapper;
 using App.Core.Utilities;
-using System.Data;
-using App.Core;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
 using App.Infrastructure.Queries;
+using Microsoft.Extensions.Options;
 using MySql.Data.MySqlClient;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace App.Infrastructure
 {
@@ -63,6 +60,11 @@ namespace App.Infrastructure
         public MySqlConnection DbConnection()
         {
             return new MySqlConnection(settings.Value.ConnectionString);
+        }
+
+        public Question GetQuestion(string id)
+        {
+            return new GetQuestionsQuery().Execute(DbConnection(), id);
         }
     }
 }
