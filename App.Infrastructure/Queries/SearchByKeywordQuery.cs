@@ -15,6 +15,8 @@ namespace App.Infrastructure.Queries
             string sql = CommonQueries.GetQuestionSql();
             var parameters = new DynamicParameters();
             int termCount = 0;
+
+            sql += "AND (";
             foreach (var term in searchTerms)
             {
                 var searchTerm = $"%{term}%";
@@ -31,6 +33,8 @@ namespace App.Infrastructure.Queries
                 parameters.Add(searchTermName, searchTerm, DbType.String, ParameterDirection.Input);
                 termCount++;
             }
+            sql += " ) ";
+
 
             sql += " limit 200 ";
 

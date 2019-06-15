@@ -3,6 +3,7 @@ using App.Core.Interfaces;
 using App.Core.Requests;
 using App.Core.Utilities;
 using FluentValidation;
+using System;
 
 namespace App.Core.Handlers
 {
@@ -48,7 +49,11 @@ namespace App.Core.Handlers
                 response.Code = ResponseCode.NotFound;
                 return response;
             }
-            _repository.Delete(record);
+
+            record.DeleteAt = DateTime.Now;
+            record.DeletedBy = command.UserId;
+            record.IsDeleted = true;
+            _repository.Update(record);
 
             return response;
         }

@@ -5,7 +5,7 @@ using App.Core.Interfaces;
 
 namespace App.Core.DbEntities {
     [DataContract]
-    public class QuestionAnswer : BaseEntity, ITimeStampedEntity
+    public class QuestionAnswer : BaseEntity, ITimeStampedEntity, ILogicalDelete
     {
         [DataMember]
         public string QuestionId { get; set; }
@@ -27,7 +27,12 @@ namespace App.Core.DbEntities {
         
         [DataMember]
         public int Votes { get; set; }
-            
-    } 
+
+        public string DeletedBy { get; set; }
+        public DateTime? DeleteAt { get; set; }
+        public bool IsDeleted { get; set; }
+
+
+    }
 }
 

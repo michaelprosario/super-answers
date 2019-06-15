@@ -4,7 +4,6 @@ import { RegisterComponent } from './register/register.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ViewQuestionComponent } from './view-question/view-question.component';
 import { AskQuestionComponent } from './ask-question/ask-question.component';
-import { TestComponent } from './test/test.component';
 import { EditQuestionComponent } from './edit-question/edit-question.component';
 import { EditQuestionAnswerComponent } from './edit-question-answer/edit-question-answer.component';
 import { QuestionSearchComponent } from './question-search/question-search.component';

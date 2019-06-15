@@ -17,7 +17,7 @@
                     (select count(*) from QuestionVotes qv where qv.QuestionId = questions.Id) Votes,
                     (select count(*) from QuestionAnswers qa where qa.QuestionId = questions.Id) AnswerCount
                     from questions
-                    where
+                    where IsDeleted = 0
                     ";
         }
     }

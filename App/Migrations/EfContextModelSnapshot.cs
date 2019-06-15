@@ -28,6 +28,12 @@ namespace App.Migrations
 
                     b.Property<string>("CreatedBy");
 
+                    b.Property<DateTime?>("DeleteAt");
+
+                    b.Property<string>("DeletedBy");
+
+                    b.Property<bool>("IsDeleted");
+
                     b.Property<string>("QuestionTitle");
 
                     b.Property<string>("Tags");
@@ -51,6 +57,12 @@ namespace App.Migrations
                     b.Property<DateTime>("CreatedAt");
 
                     b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime?>("DeleteAt");
+
+                    b.Property<string>("DeletedBy");
+
+                    b.Property<bool>("IsDeleted");
 
                     b.Property<string>("QuestionId");
 
