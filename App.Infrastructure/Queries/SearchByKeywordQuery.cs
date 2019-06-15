@@ -1,5 +1,4 @@
 ﻿using App.Core.Entities;
-using App.Infrastructure.Queries;
 using Dapper;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;

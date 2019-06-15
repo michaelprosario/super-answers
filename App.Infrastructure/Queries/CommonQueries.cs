@@ -15,7 +15,7 @@
                     UpdatedBy,
                     UpdatedAt,
                     (select count(*) from QuestionVotes qv where qv.QuestionId = questions.Id) Votes,
-                    (select count(*) from QuestionAnswers qa where qa.QuestionId = questions.Id) AnswerCount
+                    (select count(*) from QuestionAnswers qa where qa.QuestionId = questions.Id and IsDeleted = 0) AnswerCount
                     from questions
                     where IsDeleted = 0
                     ";
