@@ -20,7 +20,7 @@ namespace App.Infrastructure.Queries
                 (select count(*) from QuestionAnswerVotes where QuestionAnswerId = QuestionAnswers.Id  ) Votes,
                 Id
                 from QuestionAnswers
-                where questionId = @questionId ";
+                where questionId = @questionId and IsDeleted = 0 ";
 
             var commandDefinition = new CommandDefinition(sql, new { questionId });
             return QueryExe.Query<QuestionAnswer>(connection, commandDefinition);

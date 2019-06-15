@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionsService } from 'src/data-services/services';
-import { GetQuestionQuery, Question, AddQuestionAnswerCommand, AddQuestionVoteCommand, AddAnswerVoteResponse, AddAnswerVoteCommand, QuestionAnswer } from 'src/data-services/models';
+import { GetQuestionQuery, Question, AddQuestionAnswerCommand, AddQuestionVoteCommand, AddAnswerVoteResponse, AddAnswerVoteCommand, QuestionAnswer, DeleteQuestionCommand, DeleteQuestionAnswerCommand } from 'src/data-services/models';
 import { first } from 'rxjs/operators';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 
@@ -105,5 +105,38 @@ export class ViewQuestionComponent implements OnInit {
 
   editAnswer(answer: QuestionAnswer){
     this.router.navigate(['/editQuestionAnswer/' + answer.id]);
+  }
+
+  deleteAnswer(answer: QuestionAnswer){
+    if(confirm("Press OK to delete answer")){
+      const command: DeleteQuestionAnswerCommand = {};
+      command.id = answer.id;
+  
+      this.questionsService.QuestionsDeleteQuestionAnswer(command)
+        .pipe(first()).subscribe(
+          response => {
+            if (response.message === null) {
+              this.loadQuestionContent();
+            }
+          }
+        );
+    }    
+  }
+
+  handleDeleteQuestion(){
+    if(confirm("Press OK to delete question")){
+      const command: DeleteQuestionCommand = {};
+      command.id = this.questionId;
+  
+      this.questionsService.QuestionsDeleteQuestion(command)
+        .pipe(first()).subscribe(
+          response => {
+            if (response.message === null) {
+              alert('Question deleted.');
+            }
+          }
+        );
+  
+    }
   }
 }
