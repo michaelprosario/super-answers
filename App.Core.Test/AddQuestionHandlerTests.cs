@@ -19,14 +19,14 @@ namespace App.Core.Test
         }
 
         [TestMethod]
-        public void AddQuestionHandler__Execute__HappyCaseAsync()
+        public void HandlerShouldWorkWhenCommandIsFilledOut()
         {
             // arrange
             var _repository = Substitute.For<IRepository<DbEntities.Question>>();
             _repository.Add(Arg.Any<DbEntities.Question>()).Returns(SetupQuestion());
             _handler = new AddQuestionHandler(_repository);
 
-            var request = new AddQuestionCommand()
+            var command = new AddQuestionCommand()
             {
                 Content = "What is 2 + 2",
                 QuestionTitle = "What is 2 +2",
@@ -36,14 +36,14 @@ namespace App.Core.Test
             };
 
             // act
-            var response =  _handler.Execute(request);
+            var response = _handler.Execute(command);
 
             // assert
             Assert.IsTrue(response != null);
         }
 
         [TestMethod]
-        public void AddQuestionHandler__Execute__FailWhenContentEmptyAsync()
+        public void HandlerShouldFailWhenContentNotProvided()
         {
             // arrange
             var questionRepository = Substitute.For<IRepository<DbEntities.Question>>();

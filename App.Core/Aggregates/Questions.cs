@@ -45,13 +45,12 @@ namespace App.Core.Aggregates
             if (question == null)
             {
                 response.Code = ResponseCode.NotFound;
+                return response;
             }
-            else
-            {
-                response.Question = question;
-                question.ContentAsMarkDown = question.Content;
-                question.Content = Markdig.Markdown.ToHtml(question.Content);
-            }
+
+            response.Question = question;
+            question.ContentAsMarkDown = question.Content;
+            question.Content = Markdig.Markdown.ToHtml(question.Content);
 
             var answers = _questionsDataService.GetAnswersForQuestion(response.Question.Id);
             if(answers.Any()) {
