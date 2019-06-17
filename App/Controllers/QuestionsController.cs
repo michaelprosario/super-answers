@@ -36,63 +36,63 @@ namespace App.Controllers
             command.UserId = GetUserName();
             return await _mediator.Send(command);
         }
-        
+
         [HttpPost("EditQuestion")]
         public async Task<EditQuestionResponse> EditQuestionAsync([FromBody] EditQuestionCommand command)
         {
             command.UserId = GetUserName();
             return await _mediator.Send(command);
         }
-        
+
         [HttpPost("DeleteQuestion")]
         public async Task<VoidResponse> DeleteQuestionAsync([FromBody] DeleteQuestionCommand command)
         {
             command.UserId = GetUserName();
             return await _mediator.Send(command);
         }
-        
+
         [HttpPost("ListQuestions")]
         public async Task<ListQuestionsResponse> ListQuestionsAsync([FromBody] ListQuestionsQuery query)
         {
             query.UserId = GetUserName();
             return await _mediator.Send(query);
         }
-        
+
         [HttpPost("GetQuestion")]
         public async Task<GetQuestionResponse> GetQuestionAsync([FromBody] GetQuestionQuery query)
         {
             query.UserId = GetUserName();
             return await _mediator.Send(query);
         }
-        
+
         [HttpPost("AddQuestionTag")]
         public async Task<AddQuestionTagResponse> AddQuestionTagAsync([FromBody] AddQuestionTagCommand command)
         {
             command.UserId = GetUserName();
             return await _mediator.Send(command);
         }
-        
+
         [HttpPost("DeleteQuestionTag")]
         public async Task<VoidResponse> DeleteQuestionTagAsync([FromBody] DeleteQuestionTagCommand command)
         {
             command.UserId = GetUserName();
             return await _mediator.Send(command);
         }
-        
+
         [HttpPost("ListQuestionTags")]
         public async Task<ListQuestionTagsResponse> ListQuestionTagsAsync([FromBody] ListQuestionTagsQuery query)
         {
             query.UserId = GetUserName();
             return await _mediator.Send(query);
         }
-        
+
         [HttpPost("AddQuestionAnswer")]
         public async Task<AddQuestionAnswerResponse> AddQuestionAnswerAsync([FromBody] AddQuestionAnswerCommand command)
         {
             command.UserId = GetUserName();
             return await _mediator.Send(command);
         }
-        
+
         [HttpPost("EditQuestionAnswer")]
         public async Task<EditQuestionAnswerResponse> EditQuestionAnswerAsync(
             [FromBody] EditQuestionAnswerCommand command)
@@ -100,14 +100,14 @@ namespace App.Controllers
             command.UserId = GetUserName();
             return await _mediator.Send(command);
         }
-        
+
         [HttpPost("DeleteQuestionAnswer")]
         public async Task<VoidResponse> DeleteQuestionAnswerAsync([FromBody] DeleteQuestionAnswerCommand command)
         {
             command.UserId = GetUserName();
             return await _mediator.Send(command);
         }
-        
+
         [HttpPost("ListQuestionAnswers")]
         public async Task<ListQuestionAnswersResponse> ListQuestionAnswersAsync(
             [FromBody] ListQuestionAnswersQuery request)
@@ -115,7 +115,7 @@ namespace App.Controllers
             request.UserId = GetUserName();
             return await _mediator.Send(request);
         }
-        
+
         [HttpPost("GetQuestionAnswer")]
         public async Task<GetQuestionAnswerResponse> GetQuestionAnswerAsync([FromBody] GetQuestionAnswerQuery query)
         {
@@ -130,7 +130,7 @@ namespace App.Controllers
             return await _mediator.Send(command);
         }
 
-        
+
         [HttpPost("AddQuestionVote")]
         public async Task<AddQuestionVoteResponse> AddQuestionVoteAsync([FromBody] AddQuestionVoteCommand command)
         {
@@ -158,5 +158,46 @@ namespace App.Controllers
             query.UserId = GetUserName();
             return await _mediator.Send(query);
         }
+
+        [AllowAnonymous]
+        [HttpPost("AddQuestionComment")]
+        public async Task<AddQuestionCommentResponse> AddQuestionCommentAsync([FromBody] AddQuestionCommentCommand command)
+        {
+            command.UserId = "test";
+            return await _mediator.Send(command);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("EditQuestionComment")]
+        public async Task<EditQuestionCommentResponse> EditQuestionCommentAsync([FromBody] EditQuestionCommentCommand command)
+        {
+            command.UserId = "test";
+            return await _mediator.Send(command);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("DeleteQuestionComment")]
+        public async Task<VoidResponse> DeleteQuestionCommentAsync([FromBody] DeleteQuestionCommentCommand command)
+        {
+            command.UserId = "test";
+            return await _mediator.Send(command);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("ListQuestionComments")]
+        public async Task<ListQuestionCommentsResponse> ListQuestionCommentsAsync([FromBody] ListQuestionCommentsQuery query)
+        {
+            query.UserId = "test";
+            return await _mediator.Send(query);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("GetQuestionComment")]
+        public async Task<GetQuestionCommentResponse> GetQuestionCommentAsync([FromBody] GetQuestionCommentQuery query)
+        {
+            query.UserId = "test";
+            return await _mediator.Send(query);
+        }
+
     }
 }
