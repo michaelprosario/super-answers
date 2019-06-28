@@ -1,4 +1,5 @@
-﻿using App.Core;
+﻿/*
+using App.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
@@ -22,3 +23,4 @@ namespace App.Controllers
         }
     }
 }
+*/
