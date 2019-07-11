@@ -82,6 +82,22 @@ namespace App.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "QuestionViews",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    QuestionId = table.Column<string>(nullable: true),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    UpdatedAt = table.Column<DateTime>(nullable: false),
+                    UpdatedBy = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QuestionViews", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "QuestionVotes",
                 columns: table => new
                 {
@@ -131,6 +147,9 @@ namespace App.Migrations
 
             migrationBuilder.DropTable(
                 name: "QuestionTags");
+
+            migrationBuilder.DropTable(
+                name: "QuestionViews");
 
             migrationBuilder.DropTable(
                 name: "QuestionVotes");

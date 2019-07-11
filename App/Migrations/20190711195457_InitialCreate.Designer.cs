@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Migrations
 {
     [DbContext(typeof(EfContext))]
-    [Migration("20190615110108_QuestionVotesTable2")]
-    partial class QuestionVotesTable2
+    [Migration("20190711195457_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
